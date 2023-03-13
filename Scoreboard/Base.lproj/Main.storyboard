@@ -17,20 +17,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTM-uP-4S5">
-                                <rect key="frame" x="878" y="688" width="173" height="154"/>
+                                <rect key="frame" x="775" y="532" width="173" height="154"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="記録画面"/>
+                                <connections>
+                                    <action selector="transitionToRecord:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mg3-hJ-MjR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7H-Uq-0TP">
+                                <rect key="frame" x="430" y="532" width="173" height="154"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="チーム登録"/>
+                                <connections>
+                                    <action selector="transitionToRegisterTeam:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Oa1-ax-291"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="HbO-ei-ovQ"/>
                     <size key="freeformSize" width="1366" height="1024"/>
+                    <connections>
+                        <outlet property="toRecordButton" destination="mTM-uP-4S5" id="3Ot-wl-a0Q"/>
+                        <outlet property="toRegisterTeamButton" destination="N7H-Uq-0TP" id="Tg8-xi-sgp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="47.87701317715959" y="-2.34375"/>
+            <point key="canvasLocation" x="741.87408491947281" y="-2.34375"/>
         </scene>
     </scenes>
     <resources>
