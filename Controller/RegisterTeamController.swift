@@ -10,9 +10,8 @@
 //Mainを操作するcontrollerの役割
 import UIKit
 
+
 class RegisterTeamController:UIViewController{
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
+    
+    @IBOutlet weak var testLabel: UILabel!
 }

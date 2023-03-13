@@ -24,6 +24,7 @@
 		80888DAA292548AB0006F42A /* ScoreboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888DA9292548AB0006F42A /* ScoreboardTests.swift */; };
 		80888DB4292548AB0006F42A /* ScoreboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888DB3292548AB0006F42A /* ScoreboardUITests.swift */; };
 		80888DB6292548AB0006F42A /* ScoreboardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888DB5292548AB0006F42A /* ScoreboardUITestsLaunchTests.swift */; };
+		80B472AD29BFD5460081345F /* RecordsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B472AC29BFD5460081345F /* RecordsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		80888DAF292548AB0006F42A /* ScoreboardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScoreboardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80888DB3292548AB0006F42A /* ScoreboardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardUITests.swift; sourceTree = "<group>"; };
 		80888DB5292548AB0006F42A /* ScoreboardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		80B472AC29BFD5460081345F /* RecordsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				8031BA7829BFA23900331EEB /* LoginController.swift */,
 				8031BA7A29BFA25100331EEB /* SigninController.swift */,
 				8031BA7E29BFAFBA00331EEB /* RegisterTeamController.swift */,
+				80B472AC29BFD5460081345F /* RecordsController.swift */,
 			);
 			path = Controller;
 			sourceTree = SOURCE_ROOT;
@@ -316,6 +319,7 @@
 				80888D93292548A70006F42A /* AppDelegate.swift in Sources */,
 				80888D95292548A70006F42A /* SceneDelegate.swift in Sources */,
 				8031BA7B29BFA25100331EEB /* SigninController.swift in Sources */,
+				80B472AD29BFD5460081345F /* RecordsController.swift in Sources */,
 				8031BA7F29BFAFBA00331EEB /* RegisterTeamController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

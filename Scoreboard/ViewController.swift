@@ -32,6 +32,12 @@ class ViewController: UIViewController {
     }
     @IBAction func transitionToRecord(_ sender : Any){
         print("record")
+        let storyboard = UIStoryboard(name: "Records", bundle: nil)
+        
+                let registerTeamController = storyboard.instantiateViewController(withIdentifier: "ReacordTeamA")
+        
+                //navigationControllerクラスがない場合はメソッドそのものが呼び出されない
+                self.navigationController?.pushViewController(registerTeamController, animated: true)
         
     }
     
