@@ -45,6 +45,7 @@
 		80823CB429C3B3DB009BDE94 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 80823CB329C3B3DB009BDE94 /* FirebaseRemoteConfigSwift */; };
 		80823CB629C3B3DB009BDE94 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 80823CB529C3B3DB009BDE94 /* FirebaseStorage */; };
 		80823CB829C3B3DB009BDE94 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 80823CB729C3B3DB009BDE94 /* FirebaseStorageCombine-Community */; };
+		80823CBA29C3C0FD009BDE94 /* registerNewTeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80823CB929C3C0FD009BDE94 /* registerNewTeamModel.swift */; };
 		80888D93292548A70006F42A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888D92292548A70006F42A /* AppDelegate.swift */; };
 		80888D95292548A70006F42A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888D94292548A70006F42A /* SceneDelegate.swift */; };
 		80888D97292548A70006F42A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888D96292548A70006F42A /* ViewController.swift */; };
@@ -91,6 +92,7 @@
 		8031BA7E29BFAFBA00331EEB /* RegisterTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTeamController.swift; sourceTree = "<group>"; };
 		8031BA8029BFBC1C00331EEB /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
 		80823C8029C3B284009BDE94 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		80823CB929C3C0FD009BDE94 /* registerNewTeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerNewTeamModel.swift; sourceTree = "<group>"; };
 		80888D8F292548A70006F42A /* Scoreboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scoreboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80888D92292548A70006F42A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80888D94292548A70006F42A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 		8031BA7229BFA11600331EEB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				80823CB929C3C0FD009BDE94 /* registerNewTeamModel.swift */,
 			);
 			path = Model;
 			sourceTree = SOURCE_ROOT;
@@ -571,6 +574,7 @@
 				80888D95292548A70006F42A /* SceneDelegate.swift in Sources */,
 				808DF54529C209BE003DE7A8 /* RegisterNewTeamController.swift in Sources */,
 				8031BA7B29BFA25100331EEB /* SigninController.swift in Sources */,
+				80823CBA29C3C0FD009BDE94 /* registerNewTeamModel.swift in Sources */,
 				80B472AD29BFD5460081345F /* RecordsController.swift in Sources */,
 				8031BA7F29BFAFBA00331EEB /* RegisterTeamController.swift in Sources */,
 			);

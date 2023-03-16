@@ -9,7 +9,7 @@ import UIKit
 class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
     //最大で26人分の選手データを登録する配列
-    var regiserTeamData = [
+    var registerTeamData:[[String]] = [
         ["",""],["",""],
         ["",""],["",""],
         ["",""],["",""],
@@ -30,6 +30,8 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var teamNameField: UITextField!
     @IBOutlet weak var registerFormTableView: UITableView!
+    
+    let registerInstance = registerNewTeamModel()
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return 26;
         }
@@ -40,19 +42,14 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "proto", for: indexPath)
 
         let indexlabel = cell.contentView.viewWithTag(1) as!UILabel
-        
         indexlabel.text = String(indexPath.row+1)
         
-        
-        
         let numberField = cell.contentView.viewWithTag(2) as!UITextField
-        numberField.text = regiserTeamData[indexPath.row][0]
+        numberField.text = registerTeamData[indexPath.row][0]
 
         let nameField = cell.contentView.viewWithTag(3) as! UITextField
-        nameField.text = regiserTeamData[indexPath.row][1]
+        nameField.text = registerTeamData[indexPath.row][1]
         
-        //割り当てるタグの制限
-       
          return cell
      }
     
@@ -67,14 +64,17 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
     
     //登録ボタンをタップしたとき
     @IBAction func registerSubmitButtonTapped(_ sender: UIButton) {
+        print(teamNameField.text!)
+        print(registerTeamData)
+        registerInstance.registerNewTeam(teamName:teamNameField.text!,members:registerTeamData)
         print("clicked")
     }
     //TableViewからformで送信して登録する値を取得してくる
     
     //配列の内容を更新する関数
     func updateRegisterTeamData(index:Int,value:String,option:Int){
-        regiserTeamData[index-1][option] = value
-        print(regiserTeamData)
+        registerTeamData[index-1][option] = value
+        print(registerTeamData)
         return
     }
     //Playerの背番号を更新する関数
