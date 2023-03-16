@@ -10,19 +10,19 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
 
     //最大で26人分の選手データを登録する配列
     var regiserTeamData = [
-        ["1",""],["2",""],
-        ["3",""],["4",""],
-        ["5",""],["6",""],
-        ["7",""],["8",""],
-        ["9",""],["10",""],
-        ["11",""],["12",""],
-        ["13",""],["14",""],
-        ["15",""],["16",""],
-        ["17",""],["18",""],
-        ["19",""],["20",""],
-        ["21",""],["22",""],
-        ["23",""],["24",""],
-        ["25",""],["26",""]
+        ["",""],["",""],
+        ["",""],["",""],
+        ["",""],["",""],
+        ["",""],["",""],
+        ["",""],["",""],
+        ["",""],["",""],
+        ["",""],["",""],
+        ["",""],["",""],
+        ["",""],["",""],
+        ["",""],["",""],
+        ["",""],["",""],
+        ["",""],["",""],
+        ["",""],["",""]
     ]
 
     
@@ -33,26 +33,22 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return 26;
         }
+    var rowCount = 1
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          // セルを取得する
-         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "proto", for: indexPath)
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "proto", for: indexPath)
 
-         // TableViewCellの中に配置したLabelを取得する
-         let numberField = cell.contentView.viewWithTag(1) as!UITextField
-         let nameField = cell.contentView.viewWithTag(2) as! UITextField
+        let indexlabel = cell.contentView.viewWithTag(1) as!UILabel
+        indexlabel.text = String(rowCount)
+        
+        let numberField = cell.contentView.viewWithTag(2) as!UITextField
+        numberField.text = regiserTeamData[indexPath.row][0]
 
-         // Labelにテキストを設定する
-         numberField.text = regiserTeamData[indexPath.row][0]
-         nameField.text = regiserTeamData[indexPath.row][1]
+        let nameField = cell.contentView.viewWithTag(3) as! UITextField
+        nameField.text = regiserTeamData[indexPath.row][1]
         
-        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-          print("変更あり")
-          return true
-        }
-        
-        
-
+        rowCount = rowCount+1
          return cell
      }
     
@@ -61,7 +57,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         }
     
     //戻るボタンをタップしたとき
-    @IBAction func backButtonTapped(_ sender: Any) {
+    @IBAction func backButtonTapped(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -69,17 +65,51 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
     @IBAction func registerSubmitButtonTapped(_ sender: UIButton) {
         print("clicked")
     }
-    
-    
     //TableViewからformで送信して登録する値を取得してくる
     
+    //配列の内容を更新する関数
+    func updateRegisterTeamData(index:Int,value:String,option:Int){
+        regiserTeamData[index-1][option] = value
+        print(regiserTeamData)
+        return
+    }
+    
+    
+    //Playerの背番号を更新する関数
     @IBAction func changePlayerNumber(_ sender: UITextField) {
         let changedNumber = String(sender.text!)
-            print(changedNumber)
+        if let changedSuperview  = sender.superview{
+            let index = changedSuperview.viewWithTag(1) as!UILabel
+            if let indexInt = Int(index.text!) {
+                updateRegisterTeamData(index: indexInt, value: changedNumber, option: 0)
+                // intValueが値を持つことが保証される
+            } else {
+                print("数値ではありません。")
+                return
+            }
+        }else{
+            return
+        }
+        
+            
     }
+    
+    //playerの名前を更新する関数
     @IBAction func changePlayerName(_ sender: UITextField) {
         let changedName = String(sender.text!)
-            print(changedName)
+        if let changedSuperview  = sender.superview{
+            let index = changedSuperview.viewWithTag(1) as!UILabel
+            if let indexInt = Int(index.text!) {
+                updateRegisterTeamData(index: indexInt, value: changedName, option: 1)
+                // intValueが値を持つことが保証される
+            } else {
+                print("数値ではありません。")
+                return
+            }
+        }else{
+            return
+        }
+        
     }
     
 }
