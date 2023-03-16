@@ -13,6 +13,10 @@ import UIKit
 
 class RegisterTeamController:UIViewController{
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        }
+    
     @IBOutlet weak var testLabel: UILabel!
     
     @IBOutlet weak var backButton: UIButton!
