@@ -50,12 +50,20 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="changePlayerName:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="Axv-Vi-HHB"/>
+                                                        <action selector="changePlayerName:" destination="Y6W-OH-hqX" eventType="editingChanged" id="Azr-rH-7WB"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kz0-7B-gLn">
                                                     <rect key="frame" x="0.0" y="-2" width="303" height="45.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="changePlayerNumber:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="5Yc-Vy-Bqj"/>
+                                                        <action selector="changePlayerNumber:" destination="Y6W-OH-hqX" eventType="editingChanged" id="dSk-ME-ljH"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -66,12 +74,23 @@
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="Uia-nj-J49"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mkw-ZS-73L">
+                                <rect key="frame" x="929" y="70" width="111" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="チーム登録"/>
+                                <connections>
+                                    <action selector="registerSubmitButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="6cN-HM-6dR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="DgF-P5-bSA" id="u9P-GD-HZ7"/>
+                        <outlet property="registerFormTableView" destination="b8g-yp-kjy" id="Ms7-js-FLj"/>
+                        <outlet property="registerSubmitButton" destination="Mkw-ZS-73L" id="Hvf-ZS-4Xz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
