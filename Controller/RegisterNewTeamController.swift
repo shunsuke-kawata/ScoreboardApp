@@ -25,22 +25,25 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         ["",""],["",""]
     ]
 
-    
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var registerSubmitButton: UIButton!
     
+    @IBOutlet weak var teamNameField: UITextField!
     @IBOutlet weak var registerFormTableView: UITableView!
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return 26;
         }
-    var rowCount = 1
+  
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          // セルを取得する
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "proto", for: indexPath)
 
         let indexlabel = cell.contentView.viewWithTag(1) as!UILabel
-        indexlabel.text = String(rowCount)
+        
+        indexlabel.text = String(indexPath.row+1)
+        
+        
         
         let numberField = cell.contentView.viewWithTag(2) as!UITextField
         numberField.text = regiserTeamData[indexPath.row][0]
@@ -48,7 +51,8 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         let nameField = cell.contentView.viewWithTag(3) as! UITextField
         nameField.text = regiserTeamData[indexPath.row][1]
         
-        rowCount = rowCount+1
+        //割り当てるタグの制限
+       
          return cell
      }
     
@@ -73,8 +77,6 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         print(regiserTeamData)
         return
     }
-    
-    
     //Playerの背番号を更新する関数
     @IBAction func changePlayerNumber(_ sender: UITextField) {
         let changedNumber = String(sender.text!)
@@ -82,7 +84,6 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
             let index = changedSuperview.viewWithTag(1) as!UILabel
             if let indexInt = Int(index.text!) {
                 updateRegisterTeamData(index: indexInt, value: changedNumber, option: 0)
-                // intValueが値を持つことが保証される
             } else {
                 print("数値ではありません。")
                 return
@@ -90,8 +91,6 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         }else{
             return
         }
-        
-            
     }
     
     //playerの名前を更新する関数
@@ -101,7 +100,6 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
             let index = changedSuperview.viewWithTag(1) as!UILabel
             if let indexInt = Int(index.text!) {
                 updateRegisterTeamData(index: indexInt, value: changedName, option: 1)
-                // intValueが値を持つことが保証される
             } else {
                 print("数値ではありません。")
                 return
@@ -109,9 +107,5 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         }else{
             return
         }
-        
     }
-    
 }
-
-
