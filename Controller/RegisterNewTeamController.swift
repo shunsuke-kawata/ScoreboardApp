@@ -9,34 +9,34 @@ import UIKit
 class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
     //最大で26人分の選手データを登録する配列
-    //dict型の配列に変更予定
+    //dict型の配列に変更
     var registerTeamData:[Dictionary<String,String>] = [
-        ["number":"1","name":""],
-        ["number":"2","name":""],
-        ["number":"3","name":""],
-        ["number":"4","name":""],
-        ["number":"5","name":""],
-        ["number":"6","name":""],
-        ["number":"7","name":""],
-        ["number":"8","name":""],
-        ["number":"9","name":""],
-        ["number":"10","name":""],
-        ["number":"11","name":""],
-        ["number":"12","name":""],
-        ["number":"13","name":""],
-        ["number":"14","name":""],
-        ["number":"15","name":""],
-        ["number":"16","name":""],
-        ["number":"17","name":""],
-        ["number":"18","name":""],
-        ["number":"19","name":""],
-        ["number":"20","name":""],
-        ["number":"21","name":""],
-        ["number":"22","name":""],
-        ["number":"23","name":""],
-        ["number":"24","name":""],
-        ["number":"25","name":""],
-        ["number":"26","name":""]
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""],
+        ["number":"","name":""]
     ]
 
     @IBOutlet weak var backButton: UIButton!
@@ -81,6 +81,13 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
     @IBAction func registerSubmitButtonTapped(_ sender: UIButton) {
         print(teamNameField.text!)
         print(registerTeamData)
+        //登録するデータのバリデーションを行う
+        if(!validateRegisterData()){
+            print("登録できない選手情報が発見されました。")
+            return
+        }else{
+            print("バリーデーションエラーなし")
+        }
         registerInstance.registerNewTeam(teamName:teamNameField.text!,members:registerTeamData)
         print("clicked")
     }
@@ -89,22 +96,45 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
     //配列の内容を更新する関数
     func updateRegisterTeamData(index:Int,value:String,option:String){
         registerTeamData[index-1][option] = value
-        let _ = validateRegisterData()
-        print(registerTeamData)
         return
     }
     
     func validateRegisterData()->Bool{
-//        for datum in registerTeamData{
-//            //登録しないデータ　正常系としてcontinueで飛ばす
-//            if(datum["number"]=="" && datum["name"]==""){
-//                continue
-//            }
-//            
-//            if(datum["num"])
-//            
-//        }
-        return true
+        for datum in registerTeamData{
+            //登録しないデータ　正常系としてcontinueで飛ばす
+            if(datum["number"]=="" && datum["name"]==""){
+                continue
+            }else{
+                //どちらかの値が入っていないデータは登録しない
+                if(datum["number"]=="" || datum["name"]==""){
+                    print("登録できない選手情報があります。")
+                    return false
+                }else {
+                    //numberが数値かどうか判定する
+                    let numInt:Int? = Int(datum["number"]!)
+                    //アンラップを使用して判定処理を行う
+                    if let unwrappedInt = numInt{
+                        if(1<=unwrappedInt && unwrappedInt<=99){
+                            continue
+                        }else{
+                            print("背番号が正しい値ではありません。")
+                            return false
+                        }
+                    }else{
+                        print("背番号が認識できない選手情報があります。")
+                        return false
+                    }
+                }
+            }
+
+        }
+        if(teamNameField.text! == ""){
+            return false
+        }else{
+            return true
+        }
+        
+        
     }
     //Playerの背番号を更新する関数
     @IBAction func changePlayerNumber(_ sender: UITextField) {
