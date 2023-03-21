@@ -8,11 +8,10 @@
 import UIKit
 import FirebaseFirestore
 
-class registerNewTeamModel{
+class RegisterNewTeamModel{
     
     func registerNewTeam(teamName:String, members:[Dictionary<String,String>]) {
         
-
         let db = Firestore.firestore()
         let documentRef = db.collection("teams").document()
         

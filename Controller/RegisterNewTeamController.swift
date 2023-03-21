@@ -45,12 +45,11 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var teamNameField: UITextField!
     @IBOutlet weak var registerFormTableView: UITableView!
     
-    let registerInstance = registerNewTeamModel()
+    let registerInstance = RegisterNewTeamModel()
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return 26;
         }
   
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          // セルを取得する
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "proto", for: indexPath)
@@ -89,7 +88,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
             print("バリーデーションエラーなし")
         }
         registerInstance.registerNewTeam(teamName:teamNameField.text!,members:registerTeamData)
-        print("clicked")
+        self.navigationController?.popViewController(animated: true)
     }
     //TableViewからformで送信して登録する値を取得してくる
     
@@ -126,7 +125,6 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
                     }
                 }
             }
-
         }
         if(teamNameField.text! == ""){
             return false
@@ -148,6 +146,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
                 return
             }
         }else{
+            print("親クラスが見つかりません。")
             return
         }
     }
@@ -164,6 +163,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
                 return
             }
         }else{
+            print("親クラスが見つかりません。")
             return
         }
     }

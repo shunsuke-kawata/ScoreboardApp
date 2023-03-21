@@ -14,10 +14,9 @@
 		8031BA7729BFA1F500331EEB /* Signin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8031BA7629BFA1F500331EEB /* Signin.storyboard */; };
 		8031BA7929BFA23900331EEB /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8031BA7829BFA23900331EEB /* LoginController.swift */; };
 		8031BA7B29BFA25100331EEB /* SigninController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8031BA7A29BFA25100331EEB /* SigninController.swift */; };
-		8031BA7D29BFA62700331EEB /* RegisterTeam.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8031BA7C29BFA62700331EEB /* RegisterTeam.storyboard */; };
-		8031BA7F29BFAFBA00331EEB /* RegisterTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8031BA7E29BFAFBA00331EEB /* RegisterTeamController.swift */; };
+		8031BA7D29BFA62700331EEB /* ShowTeams.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8031BA7C29BFA62700331EEB /* ShowTeams.storyboard */; };
+		8031BA7F29BFAFBA00331EEB /* ShowTeamsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8031BA7E29BFAFBA00331EEB /* ShowTeamsController.swift */; };
 		8031BA8129BFBC1C00331EEB /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8031BA8029BFBC1C00331EEB /* Test.storyboard */; };
-		80823C8129C3B284009BDE94 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80823C8029C3B284009BDE94 /* GoogleService-Info.plist */; };
 		80823C8429C3B3DB009BDE94 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 80823C8329C3B3DB009BDE94 /* FirebaseAnalytics */; };
 		80823C8629C3B3DB009BDE94 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 80823C8529C3B3DB009BDE94 /* FirebaseAnalyticsOnDeviceConversion */; };
 		80823C8829C3B3DB009BDE94 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 80823C8729C3B3DB009BDE94 /* FirebaseAnalyticsSwift */; };
@@ -45,7 +44,8 @@
 		80823CB429C3B3DB009BDE94 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 80823CB329C3B3DB009BDE94 /* FirebaseRemoteConfigSwift */; };
 		80823CB629C3B3DB009BDE94 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 80823CB529C3B3DB009BDE94 /* FirebaseStorage */; };
 		80823CB829C3B3DB009BDE94 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 80823CB729C3B3DB009BDE94 /* FirebaseStorageCombine-Community */; };
-		80823CBA29C3C0FD009BDE94 /* registerNewTeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80823CB929C3C0FD009BDE94 /* registerNewTeamModel.swift */; };
+		80823CBA29C3C0FD009BDE94 /* RegisterNewTeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80823CB929C3C0FD009BDE94 /* RegisterNewTeamModel.swift */; };
+		80823CBC29C4259D009BDE94 /* ShowTeamsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80823CBB29C4259D009BDE94 /* ShowTeamsModel.swift */; };
 		80888D93292548A70006F42A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888D92292548A70006F42A /* AppDelegate.swift */; };
 		80888D95292548A70006F42A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888D94292548A70006F42A /* SceneDelegate.swift */; };
 		80888D97292548A70006F42A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888D96292548A70006F42A /* ViewController.swift */; };
@@ -57,6 +57,7 @@
 		80888DB6292548AB0006F42A /* ScoreboardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888DB5292548AB0006F42A /* ScoreboardUITestsLaunchTests.swift */; };
 		808DF54329C20982003DE7A8 /* RegisterNewTeam.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808DF54229C20982003DE7A8 /* RegisterNewTeam.storyboard */; };
 		808DF54529C209BE003DE7A8 /* RegisterNewTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808DF54429C209BE003DE7A8 /* RegisterNewTeamController.swift */; };
+		80B2128F29C70D4A007FC761 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80B2128E29C70D4A007FC761 /* GoogleService-Info.plist */; };
 		80B472AD29BFD5460081345F /* RecordsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B472AC29BFD5460081345F /* RecordsController.swift */; };
 		8B40DB48856DEE9731F91E68 /* Pods_Scoreboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFA982C5F7101A3EFD80AAC /* Pods_Scoreboard.framework */; };
 /* End PBXBuildFile section */
@@ -88,11 +89,11 @@
 		8031BA7629BFA1F500331EEB /* Signin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Signin.storyboard; sourceTree = "<group>"; };
 		8031BA7829BFA23900331EEB /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		8031BA7A29BFA25100331EEB /* SigninController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninController.swift; sourceTree = "<group>"; };
-		8031BA7C29BFA62700331EEB /* RegisterTeam.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterTeam.storyboard; sourceTree = "<group>"; };
-		8031BA7E29BFAFBA00331EEB /* RegisterTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTeamController.swift; sourceTree = "<group>"; };
+		8031BA7C29BFA62700331EEB /* ShowTeams.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowTeams.storyboard; sourceTree = "<group>"; };
+		8031BA7E29BFAFBA00331EEB /* ShowTeamsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTeamsController.swift; sourceTree = "<group>"; };
 		8031BA8029BFBC1C00331EEB /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
-		80823C8029C3B284009BDE94 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		80823CB929C3C0FD009BDE94 /* registerNewTeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = registerNewTeamModel.swift; sourceTree = "<group>"; };
+		80823CB929C3C0FD009BDE94 /* RegisterNewTeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNewTeamModel.swift; sourceTree = "<group>"; };
+		80823CBB29C4259D009BDE94 /* ShowTeamsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTeamsModel.swift; sourceTree = "<group>"; };
 		80888D8F292548A70006F42A /* Scoreboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scoreboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80888D92292548A70006F42A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80888D94292548A70006F42A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +109,7 @@
 		80888DB5292548AB0006F42A /* ScoreboardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		808DF54229C20982003DE7A8 /* RegisterNewTeam.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterNewTeam.storyboard; sourceTree = "<group>"; };
 		808DF54429C209BE003DE7A8 /* RegisterNewTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNewTeamController.swift; sourceTree = "<group>"; };
+		80B2128E29C70D4A007FC761 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		80B472AC29BFD5460081345F /* RecordsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsController.swift; sourceTree = "<group>"; };
 		8BFA982C5F7101A3EFD80AAC /* Pods_Scoreboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scoreboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DF92203EEB48181BD08E14E /* Pods_Scoreboard_ScoreboardUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scoreboard_ScoreboardUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,7 +189,7 @@
 				8031BA7029BFA0BE00331EEB /* Records.storyboard */,
 				8031BA7429BFA1CB00331EEB /* Login.storyboard */,
 				8031BA7629BFA1F500331EEB /* Signin.storyboard */,
-				8031BA7C29BFA62700331EEB /* RegisterTeam.storyboard */,
+				8031BA7C29BFA62700331EEB /* ShowTeams.storyboard */,
 				808DF54229C20982003DE7A8 /* RegisterNewTeam.storyboard */,
 			);
 			path = View;
@@ -196,7 +198,8 @@
 		8031BA7229BFA11600331EEB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				80823CB929C3C0FD009BDE94 /* registerNewTeamModel.swift */,
+				80823CB929C3C0FD009BDE94 /* RegisterNewTeamModel.swift */,
+				80823CBB29C4259D009BDE94 /* ShowTeamsModel.swift */,
 			);
 			path = Model;
 			sourceTree = SOURCE_ROOT;
@@ -206,7 +209,7 @@
 			children = (
 				8031BA7829BFA23900331EEB /* LoginController.swift */,
 				8031BA7A29BFA25100331EEB /* SigninController.swift */,
-				8031BA7E29BFAFBA00331EEB /* RegisterTeamController.swift */,
+				8031BA7E29BFAFBA00331EEB /* ShowTeamsController.swift */,
 				80B472AC29BFD5460081345F /* RecordsController.swift */,
 				808DF54429C209BE003DE7A8 /* RegisterNewTeamController.swift */,
 			);
@@ -248,7 +251,7 @@
 				80888D9D292548AA0006F42A /* LaunchScreen.storyboard */,
 				80888D9B292548AA0006F42A /* Assets.xcassets */,
 				80888DA0292548AA0006F42A /* Info.plist */,
-				80823C8029C3B284009BDE94 /* GoogleService-Info.plist */,
+				80B2128E29C70D4A007FC761 /* GoogleService-Info.plist */,
 				8031BA8029BFBC1C00331EEB /* Test.storyboard */,
 			);
 			path = Scoreboard;
@@ -433,12 +436,12 @@
 			files = (
 				8031BA7729BFA1F500331EEB /* Signin.storyboard in Resources */,
 				808DF54329C20982003DE7A8 /* RegisterNewTeam.storyboard in Resources */,
-				8031BA7D29BFA62700331EEB /* RegisterTeam.storyboard in Resources */,
+				8031BA7D29BFA62700331EEB /* ShowTeams.storyboard in Resources */,
 				80888D9F292548AA0006F42A /* LaunchScreen.storyboard in Resources */,
 				80888D9C292548AA0006F42A /* Assets.xcassets in Resources */,
 				80888D9A292548A70006F42A /* Main.storyboard in Resources */,
 				8031BA7529BFA1CB00331EEB /* Login.storyboard in Resources */,
-				80823C8129C3B284009BDE94 /* GoogleService-Info.plist in Resources */,
+				80B2128F29C70D4A007FC761 /* GoogleService-Info.plist in Resources */,
 				8031BA8129BFBC1C00331EEB /* Test.storyboard in Resources */,
 				8031BA7129BFA0BE00331EEB /* Records.storyboard in Resources */,
 			);
@@ -569,14 +572,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				80888D97292548A70006F42A /* ViewController.swift in Sources */,
+				80823CBC29C4259D009BDE94 /* ShowTeamsModel.swift in Sources */,
 				8031BA7929BFA23900331EEB /* LoginController.swift in Sources */,
 				80888D93292548A70006F42A /* AppDelegate.swift in Sources */,
 				80888D95292548A70006F42A /* SceneDelegate.swift in Sources */,
 				808DF54529C209BE003DE7A8 /* RegisterNewTeamController.swift in Sources */,
 				8031BA7B29BFA25100331EEB /* SigninController.swift in Sources */,
-				80823CBA29C3C0FD009BDE94 /* registerNewTeamModel.swift in Sources */,
+				80823CBA29C3C0FD009BDE94 /* RegisterNewTeamModel.swift in Sources */,
 				80B472AD29BFD5460081345F /* RecordsController.swift in Sources */,
-				8031BA7F29BFAFBA00331EEB /* RegisterTeamController.swift in Sources */,
+				8031BA7F29BFAFBA00331EEB /* ShowTeamsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

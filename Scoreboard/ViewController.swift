@@ -25,9 +25,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func transitionToRegisterTeam(_ sender : Any){
-        let storyboard = UIStoryboard(name: "RegisterTeam", bundle: nil)
+        let storyboard = UIStoryboard(name: "ShowTeams", bundle: nil)
         
-                let registerTeamController = storyboard.instantiateViewController(withIdentifier: "RegisterTeamController")
+                let registerTeamController = storyboard.instantiateViewController(withIdentifier: "ShowTeamsController")
         
                 //navigationControllerクラスがない場合はメソッドそのものが呼び出されない
                 self.navigationController?.pushViewController(registerTeamController, animated: true)
