@@ -25,9 +25,6 @@ class ShowTeamsModel{
         //teamsコレクションを取得する
         let documentRef = db.collection("teams")
         var allFetchedData:[Dictionary<String,Any>] = []
-        
-        
-        
         //documentRefからsnapshotでデータを取得する
         documentRef.getDocuments(){ (querySnapshot, error) in
             if let error = error {

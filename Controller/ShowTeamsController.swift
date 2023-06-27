@@ -12,40 +12,11 @@ import FirebaseFirestore
 
 class ShowTeamsController:UIViewController{
     
-    let dispatchQueue = DispatchQueue(label: "queue")
-    
-    var showTeamInstance:ShowTeamsModel?
-    
     override func viewDidLoad(){
         super.viewDidLoad()
-        print("start")
-        let fetchedData = showTeamInstance?.fetchAllTeamsData()
-        print(fetchedData!)
-        showTeamInstance?.createDisplayTeamData(allFetchedData: fetchedData!)
-        
-//        let db = Firestore.firestore()
-//        let documentRef = db.collection("teams")
-//        var allFetchedData:[Dictionary<String,Any>] = []
-//        //documentRefからsnapshotでデータを取得する
-//        documentRef.getDocuments(){ (querySnapshot, error) in
-//            if let error = error {
-//                print("Error getting documents: \(error)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    //ドキュメントから取得してきたデータ
-//                    let documentData = document.data()
-//                    allFetchedData.append(documentData)
-//                }
-//            }
-//        }
-//        print(allFetchedData)
-        
     }
-    
-    @IBOutlet weak var testLabel: UILabel!
-    
+    @IBOutlet weak var titlelabel:UILabel!
     @IBOutlet weak var backButton: UIButton!
-    
     @IBOutlet weak var newTeamButton: UIButton!
     
     @IBAction func newTeamButtonTapped(_ sender: Any){

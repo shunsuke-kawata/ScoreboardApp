@@ -57,8 +57,8 @@
 		80888DB6292548AB0006F42A /* ScoreboardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888DB5292548AB0006F42A /* ScoreboardUITestsLaunchTests.swift */; };
 		808DF54329C20982003DE7A8 /* RegisterNewTeam.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808DF54229C20982003DE7A8 /* RegisterNewTeam.storyboard */; };
 		808DF54529C209BE003DE7A8 /* RegisterNewTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808DF54429C209BE003DE7A8 /* RegisterNewTeamController.swift */; };
-		80B2128F29C70D4A007FC761 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80B2128E29C70D4A007FC761 /* GoogleService-Info.plist */; };
 		80B472AD29BFD5460081345F /* RecordsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B472AC29BFD5460081345F /* RecordsController.swift */; };
+		80DE99B429FC4544008B3BD9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80DE99B329FC4543008B3BD9 /* GoogleService-Info.plist */; };
 		8B40DB48856DEE9731F91E68 /* Pods_Scoreboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFA982C5F7101A3EFD80AAC /* Pods_Scoreboard.framework */; };
 /* End PBXBuildFile section */
 
@@ -109,8 +109,9 @@
 		80888DB5292548AB0006F42A /* ScoreboardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		808DF54229C20982003DE7A8 /* RegisterNewTeam.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterNewTeam.storyboard; sourceTree = "<group>"; };
 		808DF54429C209BE003DE7A8 /* RegisterNewTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNewTeamController.swift; sourceTree = "<group>"; };
-		80B2128E29C70D4A007FC761 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		80B472AC29BFD5460081345F /* RecordsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsController.swift; sourceTree = "<group>"; };
+		80DE99B229FC4484008B3BD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		80DE99B329FC4543008B3BD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8BFA982C5F7101A3EFD80AAC /* Pods_Scoreboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scoreboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DF92203EEB48181BD08E14E /* Pods_Scoreboard_ScoreboardUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scoreboard_ScoreboardUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABFE8967F5DF0E1F9F9BA0CE /* Pods-Scoreboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scoreboard.debug.xcconfig"; path = "Target Support Files/Pods-Scoreboard/Pods-Scoreboard.debug.xcconfig"; sourceTree = "<group>"; };
@@ -176,6 +177,7 @@
 		50D76EE1FB660BFBD51EBE58 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				80DE99B229FC4484008B3BD9 /* GoogleService-Info.plist */,
 				8BFA982C5F7101A3EFD80AAC /* Pods_Scoreboard.framework */,
 				F7686B5171CECAEC283B8B47 /* Pods_ScoreboardTests.framework */,
 				8DF92203EEB48181BD08E14E /* Pods_Scoreboard_ScoreboardUITests.framework */,
@@ -251,7 +253,7 @@
 				80888D9D292548AA0006F42A /* LaunchScreen.storyboard */,
 				80888D9B292548AA0006F42A /* Assets.xcassets */,
 				80888DA0292548AA0006F42A /* Info.plist */,
-				80B2128E29C70D4A007FC761 /* GoogleService-Info.plist */,
+				80DE99B329FC4543008B3BD9 /* GoogleService-Info.plist */,
 				8031BA8029BFBC1C00331EEB /* Test.storyboard */,
 			);
 			path = Scoreboard;
@@ -441,7 +443,7 @@
 				80888D9C292548AA0006F42A /* Assets.xcassets in Resources */,
 				80888D9A292548A70006F42A /* Main.storyboard in Resources */,
 				8031BA7529BFA1CB00331EEB /* Login.storyboard in Resources */,
-				80B2128F29C70D4A007FC761 /* GoogleService-Info.plist in Resources */,
+				80DE99B429FC4544008B3BD9 /* GoogleService-Info.plist in Resources */,
 				8031BA8129BFBC1C00331EEB /* Test.storyboard in Resources */,
 				8031BA7129BFA0BE00331EEB /* Records.storyboard in Resources */,
 			);

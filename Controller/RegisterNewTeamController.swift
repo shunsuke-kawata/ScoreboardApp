@@ -78,11 +78,9 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
     
     //登録ボタンをタップしたとき
     @IBAction func registerSubmitButtonTapped(_ sender: UIButton) {
-        print(teamNameField.text!)
-        print(registerTeamData)
+        
         //登録するデータのバリデーションを行う
         if(!validateRegisterData()){
-            print("登録できない選手情報が発見されました。")
             return
         }else{
             print("バリーデーションエラーなし")
