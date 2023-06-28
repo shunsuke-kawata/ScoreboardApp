@@ -1,6 +1,0 @@
-framework module Pods_Scoreboard_ScoreboardUITests {
-  umbrella header "Pods-Scoreboard-ScoreboardUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

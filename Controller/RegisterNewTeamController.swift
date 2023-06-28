@@ -104,7 +104,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
             }else{
                 //どちらかの値が入っていないデータは登録しない
                 if(datum["number"]=="" || datum["name"]==""){
-                    print("登録できない選手情報があります。")
+                    print("登録できない選手情報")
                     return false
                 }else {
                     //numberが数値かどうか判定する
@@ -114,17 +114,18 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
                         if(1<=unwrappedInt && unwrappedInt<=99){
                             continue
                         }else{
-                            print("背番号が正しい値ではありません。")
+                            print("背番号が正しい値でない")
                             return false
                         }
                     }else{
-                        print("背番号が認識できない選手情報があります。")
+                        print("背番号が認識できない選手情報")
                         return false
                     }
                 }
             }
         }
         if(teamNameField.text! == ""){
+            print("チーム名が未入力")
             return false
         }else{
             return true

@@ -20,9 +20,8 @@ class RegisterNewTeamModel{
         print("resisterData")
         print(registerData)
         userDefault.set([registerData], forKey: "teams")
-        
-        if let value = UserDefaults.standard.dictionary(forKey: "teams") {
-        }
+        let teams = UserDefaults.standard.object(forKey: "teams")
+        print(teams)
         
     }
 }
