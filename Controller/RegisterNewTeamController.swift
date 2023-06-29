@@ -83,7 +83,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         if(!validateRegisterData()){
             return
         }else{
-            print("バリーデーションエラーなし")
+            print("No validation errors")
         }
         registerInstance.registerNewTeam(teamName:teamNameField.text!,members:registerTeamData)
         self.navigationController?.popViewController(animated: true)
@@ -96,6 +96,8 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         return
     }
     
+    
+    //チーム登録を行うフィールドに対してバリデーションを行う
     func validateRegisterData()->Bool{
         for datum in registerTeamData{
             //登録しないデータ　正常系としてcontinueで飛ばす
@@ -104,7 +106,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
             }else{
                 //どちらかの値が入っていないデータは登録しない
                 if(datum["number"]=="" || datum["name"]==""){
-                    print("登録できない選手情報")
+                    print("Either name or number is blank")
                     return false
                 }else {
                     //numberが数値かどうか判定する
@@ -114,18 +116,18 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
                         if(1<=unwrappedInt && unwrappedInt<=99){
                             continue
                         }else{
-                            print("背番号が正しい値でない")
+                            print("Number is invalid")
                             return false
                         }
                     }else{
-                        print("背番号が認識できない選手情報")
+                        print("number is invalid")
                         return false
                     }
                 }
             }
         }
         if(teamNameField.text! == ""){
-            print("チーム名が未入力")
+            print("teamname is blank")
             return false
         }else{
             return true

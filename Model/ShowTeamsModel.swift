@@ -13,11 +13,6 @@ class ShowTeamsModel{
     struct fetchedData {
         var name:String
         var members: NSArray
-        
-//        init(name: String, members:NSArray) {
-//                self.name = name
-//                self.members = members
-//            }
     }
     
     func fetchAllTeamsData()->[Dictionary<String,Any>]{
