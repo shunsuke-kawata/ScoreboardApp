@@ -12,6 +12,13 @@ import FirebaseFirestore
 
 class ShowTeamsController:UIViewController{
     
+    let showInstance = ShowTeamsModel()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showInstance.fetchAllTeamsData()
+    }
+    
     override func viewDidLoad(){
         super.viewDidLoad()
     }

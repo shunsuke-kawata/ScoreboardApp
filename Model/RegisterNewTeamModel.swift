@@ -25,6 +25,7 @@ class Team:Object,ObjectKeyIdentifiable{
     @Persisted var createdAt = Date()  //作成日
 }
 
+
 class RegisterNewTeamModel{
     
     let realm = try! Realm() //realmデータベースのインスタンスを取得
