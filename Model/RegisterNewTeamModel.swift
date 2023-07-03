@@ -10,18 +10,19 @@ import Foundation
 import RealmSwift
 
 //メンバーを定義する構造体
-class Member: Object {
+class  Player: Object {
     @Persisted(primaryKey: true) var id:UUID = UUID()  //uuid
     @Persisted var name:String  //名前
     @Persisted var number:Int  //背番号
     @Persisted var createdAt = Date()  //作成日
+    @Persisted var updatedAt = Date()  //作成日
 }
 
 //チームを定義する構造体
 class Team:Object,ObjectKeyIdentifiable{
     @Persisted(primaryKey: true) var id:UUID = UUID()  //uuid
     @Persisted var name:String  //チームの名前
-    @Persisted  var members = RealmSwift.List<Member>() //メンバー全員のリスト
+    @Persisted  var members = RealmSwift.List<Player>() //メンバー全員のリスト
     @Persisted var createdAt = Date()  //作成日
 }
 
@@ -38,12 +39,12 @@ class RegisterNewTeamModel{
         team.name = teamName
                 
         for member_dict in members{
-            let member = Member()
+            let player = Player()
 
             if let memberName = member_dict["name"]{
                 //空欄であれば飛ばす
                 if(memberName != ""){
-                    member.name=memberName
+                    player.name=memberName
                 }else{
                     print("name is invalid")
                     continue
@@ -53,7 +54,7 @@ class RegisterNewTeamModel{
                 //空欄であれば飛ばす
                 if(memberNumber != ""){
                     if let memberNumberInt = Int(memberNumber){
-                        member.number = memberNumberInt
+                        player.number = memberNumberInt
                     }else{
                         print("number is invalid")
                         continue
@@ -63,9 +64,11 @@ class RegisterNewTeamModel{
             
             //条件を満たしたら配列に追加する
             try! realm.write {
-                team.members.append(member)
+                team.members.append(player)
             }
         }
+        
+        //チームのレコードをデータベースに追加する
         try! realm.write {
             realm.add(team)
         }

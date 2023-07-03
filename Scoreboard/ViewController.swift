@@ -8,6 +8,7 @@
 
 //Mainを操作するcontrollerの役割
 import UIKit
+import RealmSwift
 
 class ViewController: UIViewController {
 
@@ -22,6 +23,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.isHidden = true
+        guard let fileURL = Realm.Configuration.defaultConfiguration.fileURL else {
+            print("failed to get realm url")
+            return
+        }
+
+        print(fileURL)
     }
     
     @IBAction func transitionToRegisterTeam(_ sender : Any){

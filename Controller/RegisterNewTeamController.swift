@@ -46,6 +46,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var registerFormTableView: UITableView!
     
     let registerInstance = RegisterNewTeamModel()
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return 26;
         }
