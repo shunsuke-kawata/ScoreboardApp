@@ -12,7 +12,7 @@
         <!--ReacordTeamA-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController title="ReacordTeamA" id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReacordTeamA" title="ReacordTeamA" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -510,10 +510,10 @@
             </objects>
             <point key="canvasLocation" x="609.66325036603212" y="-645.1171875"/>
         </scene>
-        <!--View Controller-->
+        <!--Register Team Controller-->
         <scene sceneID="WmV-DW-wel">
             <objects>
-                <viewController id="GRX-g2-yXn" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterTeamController" id="GRX-g2-yXn" customClass="RegisterTeamController" customModule="Scoreboard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="93E-Q2-eF3">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
