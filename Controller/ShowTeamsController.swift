@@ -62,6 +62,7 @@ class ShowTeamsController:UIViewController, UITableViewDelegate, UITableViewData
             teamNameLabel.text = team.name
             teamCountLabel.text = String(team.members.count)
         }else{
+            //取得できなかった場合のデータ出力
             teamNameLabel.text = "error"
             teamCountLabel.text = String(0)
             

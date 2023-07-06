@@ -144,11 +144,11 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
             if let indexInt = Int(index.text!) {
                 updateRegisterTeamData(index: indexInt, value: changedNumber, option: "number")
             } else {
-                print("数値ではありません。")
+                print("number is invalid")
                 return
             }
         }else{
-            print("親クラスが見つかりません。")
+            print("could not find super class")
             return
         }
     }
@@ -161,11 +161,11 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
             if let indexInt = Int(index.text!) {
                 updateRegisterTeamData(index: indexInt, value: changedName, option: "name")
             } else {
-                print("数値ではありません。")
+                print("number is invalid")
                 return
             }
         }else{
-            print("親クラスが見つかりません。")
+            print("could not find super class")
             return
         }
     }
