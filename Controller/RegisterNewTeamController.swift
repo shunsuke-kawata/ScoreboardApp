@@ -53,7 +53,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
   
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          // セルを取得する
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "proto", for: indexPath)
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "protoRegisterNewTeam", for: indexPath)
 
         let indexlabel = cell.contentView.viewWithTag(1) as!UILabel
         indexlabel.text = String(indexPath.row+1)

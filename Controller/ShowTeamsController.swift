@@ -11,26 +11,62 @@ import Firebase
 import FirebaseFirestore
 import RealmSwift
 
-class ShowTeamsController:UIViewController{
+class ShowTeamsController:UIViewController, UITableViewDelegate, UITableViewDataSource  {
     //ShowTeamsModelのインスタンスを作成する
     let showInstance = ShowTeamsModel()
-    var teams: Results<Team>?
-    
+    var teams: Results<Team>!
     required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
     }
+    
+    @IBOutlet weak var showTeamsTableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //データベースからのデータ取得（初回以降）
         teams = showInstance.fetchAllTeamsData()
+        
         // データの取得後の処理を実行する
         if let teams = teams {
+            print(teams.count)
             for team in teams {
-                print(team.name)
+                print(type(of: team))
                 print(team.members.count)
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if let teams = teams {
+            //チームの配列の長さを返す
+            print("teamscount",teams.count)
+            return teams.count
+        }else{
+            //配列を返せない時は0を返す
+            print("default")
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "protoShowTeams", for: indexPath)
+        
+        let indexlabel = cell.contentView.viewWithTag(1) as!UILabel
+        indexlabel.text = String(indexPath.row+1)
+        
+        let teamNameLabel = cell.contentView.viewWithTag(2) as!UILabel
+        let teamCountLabel = cell.contentView.viewWithTag(3) as!UILabel
+        
+        if let team = teams?[indexPath.row] {
+            teamNameLabel.text = team.name
+            teamCountLabel.text = String(team.members.count)
+        }else{
+            teamNameLabel.text = "error"
+            teamCountLabel.text = String(0)
+            
+        }
+       return cell
     }
 
     override func viewDidLoad(){
@@ -41,7 +77,7 @@ class ShowTeamsController:UIViewController{
         if let teams = teams {
             for team in teams {
                 print(team.name)
-                print(team.members.count) 
+                print(team.members.count)
             }
         }
     }
