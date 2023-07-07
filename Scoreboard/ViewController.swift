@@ -16,9 +16,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var toRegisterTeamButton: UIButton!
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -27,7 +24,6 @@ class ViewController: UIViewController {
             print("failed to get realm url")
             return
         }
-
         print(fileURL)
     }
     
