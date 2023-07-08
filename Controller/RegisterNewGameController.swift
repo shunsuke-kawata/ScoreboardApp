@@ -11,4 +11,9 @@ import UIKit
 class RegisterNewGameController:UIViewController{
     
     
+    @IBOutlet weak var backButton: UIButton!
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }

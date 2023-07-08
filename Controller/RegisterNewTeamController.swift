@@ -86,6 +86,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         }else{
             print("No validation errors")
         }
+        print(registerTeamData)
         registerInstance.registerNewTeam(teamName:teamNameField.text!,members:registerTeamData)
         self.navigationController?.popViewController(animated: true)
     }
@@ -106,8 +107,8 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
                 continue
             }else{
                 //どちらかの値が入っていないデータは登録しない
-                if(datum["number"]=="" || datum["name"]==""){
-                    print("Either name or number is blank")
+                if(datum["number"]==""){
+                    print("number is blank")
                     return false
                 }else {
                     //numberが数値かどうか判定する

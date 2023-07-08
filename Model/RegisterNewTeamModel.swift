@@ -14,16 +14,19 @@ class  Player: Object {
     @Persisted(primaryKey: true) var id:UUID = UUID()  //uuid
     @Persisted var name:String  //名前
     @Persisted var number:Int  //背番号
-    @Persisted var createdAt = Date()  //作成日
-    @Persisted var updatedAt = Date()  //作成日
+    @Persisted var team_id:UUID
+    @Persisted var position:String
+    @Persisted var created_at:Date = Date()  //作成日
+    @Persisted var updated_at:Date = Date()  //作成日
 }
 
 //チームを定義する構造体
 class Team:Object,ObjectKeyIdentifiable{
     @Persisted(primaryKey: true) var id:UUID = UUID()  //uuid
     @Persisted var name:String  //チームの名前
-    @Persisted  var members = RealmSwift.List<Player>() //メンバー全員のリスト
-    @Persisted var createdAt = Date()  //作成日
+    @Persisted  var members:List = RealmSwift.List<Player>() //メンバー全員のリスト
+    @Persisted var created_at:Date = Date()  //作成日
+    @Persisted var updated_at:Date = Date()
 }
 
 
@@ -40,24 +43,29 @@ class RegisterNewTeamModel{
                 
         for member_dict in members{
             let player = Player()
+            player.team_id = team.id
 
             if let memberName = member_dict["name"]{
                 //空欄であれば飛ばす
                 if(memberName != ""){
                     player.name=memberName
                 }else{
-                    print("name is invalid")
-                    continue
+                    player.name=""
+                    print("name is blank")
                 }
             }
             if let memberNumber = member_dict["number"]{
+                
+                print(type(of: memberNumber))
                 //空欄であれば飛ばす
-                if(memberNumber != ""){
+                if(memberNumber == ""){
+                    print(memberNumber)
+                    print("number is invalid")
+                    continue
+                    
+                }else{
                     if let memberNumberInt = Int(memberNumber){
                         player.number = memberNumberInt
-                    }else{
-                        print("number is invalid")
-                        continue
                     }
                 }
             }
