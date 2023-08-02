@@ -7,8 +7,11 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class RegisterNewGameController:UIViewController{
+    
+    let showInstance = ShowTeamsModel()
     
     
     @IBOutlet weak var backButton: UIButton!

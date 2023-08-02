@@ -8,35 +8,42 @@ import UIKit
 
 class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
+    enum PositionType: String {
+            case none = "--"
+            case fw = "FW"
+            case mf = "MF"
+            case df = "DF"
+            case gk = "GK"
+        }
     //最大で26人分の選手データを登録する配列
     //dict型の配列に変更
     var registerTeamData:[Dictionary<String,String>] = [
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""]
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"]
     ]
 
     @IBOutlet weak var backButton: UIButton!
@@ -134,7 +141,6 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         }else{
             return true
         }
-        
         
     }
     //Playerの背番号を更新する関数
