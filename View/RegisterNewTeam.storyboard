@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -74,20 +73,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U9g-Pu-uMc">
-                                                    <rect key="frame" x="748" y="1" width="232" height="45"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <menu key="menu" id="7ou-um-rQs">
-                                                        <children>
-                                                            <command title="-" id="liF-xb-SBg"/>
-                                                            <command title="FW" id="EuD-6n-dOr"/>
-                                                            <command title="MF" id="DI7-Hw-qKY"/>
-                                                            <command title="MF" id="NOz-bH-iaN" userLabel="DF"/>
-                                                            <command title="MF" id="JjD-pN-Z6w" userLabel="GK"/>
-                                                        </children>
-                                                    </menu>
-                                                    <state key="normal" title="Button"/>
-                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>

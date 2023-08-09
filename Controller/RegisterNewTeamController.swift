@@ -6,16 +6,37 @@
 //
 import UIKit
 
-class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableViewDataSource  {
-
-    enum PositionType: String {
-            case none = "--"
-            case fw = "FW"
-            case mf = "MF"
-            case df = "DF"
-            case gk = "GK"
+enum PositionType: CaseIterable {
+    case none
+    case fw
+    case mf
+    case df
+    case gk
+    
+    var selected:String{
+        switch self {
+        case .none:
+            return "--"
+        case .fw:
+            return "FW"
+        case .mf:
+            return "MF"
+        case .df:
+            return "DF"
+        case .gk:
+            return "GK"
+        default:
+            return "--"
         }
-    //最大で26人分の選手データを登録する配列
+    }
+}
+
+
+class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableViewDataSource  {
+    
+    //ポジションを選択するタイプの定義
+    
+        //最大で26人分の選手データを登録する配列
     //dict型の配列に変更
     var registerTeamData:[Dictionary<String,String>] = [
         ["number":"","name":"","position":"--"],
@@ -49,6 +70,8 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var registerSubmitButton: UIButton!
     
+//    @IBOutlet weak var positionSelectButton: UIButton!
+    var selectedMenuType = PositionType.none
     @IBOutlet weak var teamNameField: UITextField!
     @IBOutlet weak var registerFormTableView: UITableView!
     
@@ -72,11 +95,17 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         let nameField = cell.contentView.viewWithTag(3) as! UITextField
         nameField.text = row["name"]!
         
+//        if let positionSelectButton = cell.contentView.viewWithTag(4) as? UIButton {
+//            positionSelectButton.setTitle("--", for: .normal)
+//        }
+        
+        
          return cell
      }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureMenu()
         }
     
     //戻るボタンをタップしたとき
@@ -98,7 +127,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         self.navigationController?.popViewController(animated: true)
     }
     //TableViewからformで送信して登録する値を取得してくる
-    
+
     //配列の内容を更新する関数
     func updateRegisterTeamData(index:Int,value:String,option:String){
         registerTeamData[index-1][option] = value
@@ -176,4 +205,5 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
             return
         }
     }
+    
 }

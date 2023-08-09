@@ -3,4 +3,114 @@
    uuid = "0251CD92-258B-4807-B97E-6DD2689A820A"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4D099B8D-1192-4C1F-A777-E0DFE3C1091A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Controller/RegisterNewTeamController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "RegisterNewTeamController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "4D099B8D-1192-4C1F-A777-E0DFE3C1091A - 8d7f4626522f96b6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Scoreboard.RegisterNewTeamController.teamNameField.getter : Swift.Optional&lt;__C.UITextField&gt;"
+                  moduleName = "Scoreboard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kawatashunsuke/development/ScoreboardApp/Controller/RegisterNewTeamController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "4D099B8D-1192-4C1F-A777-E0DFE3C1091A - d768198349e9aaa2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Scoreboard.RegisterNewTeamController.teamNameField.setter : Swift.Optional&lt;__C.UITextField&gt;"
+                  moduleName = "Scoreboard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kawatashunsuke/development/ScoreboardApp/Controller/RegisterNewTeamController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "4D099B8D-1192-4C1F-A777-E0DFE3C1091A - e24964833db6db1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Scoreboard.RegisterNewTeamController.teamNameField.modify : Swift.Optional&lt;__C.UITextField&gt;"
+                  moduleName = "Scoreboard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kawatashunsuke/development/ScoreboardApp/Controller/RegisterNewTeamController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "4D099B8D-1192-4C1F-A777-E0DFE3C1091A - de75963d3db1342f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Scoreboard.RegisterNewTeamController.teamNameField.modify : Swift.Optional&lt;__C.UITextField&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Scoreboard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kawatashunsuke/development/ScoreboardApp/Controller/RegisterNewTeamController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "4D099B8D-1192-4C1F-A777-E0DFE3C1091A - 212e7765e099ea97"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Scoreboard.RegisterNewTeamController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Scoreboard.RegisterNewTeamController"
+                  moduleName = "Scoreboard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kawatashunsuke/development/ScoreboardApp/Controller/RegisterNewTeamController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "8384">
+               </Location>
+               <Location
+                  uuid = "4D099B8D-1192-4C1F-A777-E0DFE3C1091A - f5c6667eedfb90d5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Scoreboard.RegisterNewTeamController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Scoreboard.RegisterNewTeamController&gt;"
+                  moduleName = "Scoreboard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kawatashunsuke/development/ScoreboardApp/Controller/RegisterNewTeamController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "8360">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
