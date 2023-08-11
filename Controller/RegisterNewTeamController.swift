@@ -25,8 +25,6 @@ enum PositionType: CaseIterable {
             return "DF"
         case .gk:
             return "GK"
-        default:
-            return "--"
         }
     }
 }
@@ -105,7 +103,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureMenu()
+//        self.configureMenu()
         }
     
     //戻るボタンをタップしたとき
