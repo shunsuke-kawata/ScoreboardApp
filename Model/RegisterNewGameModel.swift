@@ -15,13 +15,13 @@ class RegisterNewGameModel{
     let weatherArray:Dictionary<String,String> = ["晴れ":"sunny","くもり":"cloudy","雨":"rainy","雪":"snowy"]
     let realm = try! Realm() //realmデータベースのインスタンスを取得
     
-    func registerNewGame(gameTitle:String?, placeName:String?, weatherValue:String, regulationTimeValue:Int,myTeamName:String,yourTeamName:String){
+    func registerNewGame(gameTitle:String?, placeName:String?, weatherValue:String, regulationTimeValue:Int,myTeamName:String,yourTeamName:String)->(flag:Bool,game:Game?){
         let game = Game()
         let gameTable = realm.objects(Game.self)
         if let result = gameTable.where({ $0.title == gameTitle!}).first  {
             print(result.title)
             print("there is already same name team")
-            return
+            return (false , nil)
         }else{
             game.title = gameTitle!
         }
@@ -32,7 +32,7 @@ class RegisterNewGameModel{
         } else {
             // weatherValue に対応する日本語表現が見つからなかった場合の処理
             print("Unknown weather: \(weatherValue)")
-            return
+            return (false,nil)
         }
         
         game.regulation_time = regulationTimeValue
@@ -41,19 +41,21 @@ class RegisterNewGameModel{
         if let resultMyteam = teamTable.where({ $0.name == myTeamName}).first  {
             game.my_team_id = resultMyteam.id
         }else{
-            return
+            return (false,nil)
         }
         
         if let resultYourteam = teamTable.where({ $0.name == yourTeamName}).first  {
             game.your_team_id = resultYourteam.id
         }else{
-            game.your_team_id = nil
+            return (false,nil)
         }
         
         //ゲームのレコードをデータベースに追加する
         try! realm.write {
             realm.add(game)
         }
+        
+        return (true,game)
 
     }
     

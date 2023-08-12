@@ -15,6 +15,7 @@ let regulationTimeArray :[String] = ["15","20","25","30","35","40","45","50"]
 class RegisterNewGameController:UIViewController{
     
     
+    
     var teamsArray:[String] = []
     
     let showTeamsInstance = ShowTeamsModel()
@@ -95,8 +96,20 @@ class RegisterNewGameController:UIViewController{
         }else{
             print("No validation errors")
         }
-        var regulationTimeInt = Int(selectedRegulationTime)!
-        registerNewGameInstance.registerNewGame(gameTitle: gameNameField.text, placeName: placeNameField.text, weatherValue: selectedWeather, regulationTimeValue: regulationTimeInt,myTeamName: selectedMyteam, yourTeamName: selectedYourteam)
+        let regulationTimeInt = Int(selectedRegulationTime)!
+        let result = registerNewGameInstance.registerNewGame(gameTitle: gameNameField.text, placeName: placeNameField.text, weatherValue: selectedWeather, regulationTimeValue: regulationTimeInt,myTeamName: selectedMyteam, yourTeamName: selectedYourteam)
+        if (result.flag){
+            let storyboard = UIStoryboard(name: "RecordGame", bundle: nil)
+            //navigationControllerクラスがない場合はメソッドそのものが呼び出されない
+            if let recordGameController = storyboard.instantiateViewController(withIdentifier: "RecordGameController") as? RecordGameController {
+                recordGameController.thisGame = result.game
+                self.navigationController?.pushViewController(recordGameController, animated: true)
+            }
+        }else{
+            print("failed to register game")
+            return
+        }
+        
     }
     
     private func configureWeatherMenu(){

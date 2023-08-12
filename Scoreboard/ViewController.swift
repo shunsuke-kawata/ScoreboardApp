@@ -35,10 +35,10 @@ class ViewController: UIViewController {
     @IBAction func transitionToShowTeams(_ sender: Any) {
         let storyboard = UIStoryboard(name: "ShowTeams", bundle: nil)
         
-                let registerTeamController = storyboard.instantiateViewController(withIdentifier: "ShowTeamsController")
+        let registerTeamController = storyboard.instantiateViewController(withIdentifier: "ShowTeamsController")
         
-                //navigationControllerクラスがない場合はメソッドそのものが呼び出されない
-                self.navigationController?.pushViewController(registerTeamController, animated: true)
+        //navigationControllerクラスがない場合はメソッドそのものが呼び出されない
+        self.navigationController?.pushViewController(registerTeamController, animated: true)
         
     }
     

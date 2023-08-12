@@ -14,7 +14,7 @@ class RegisterNewTeamModel{
     
     let realm = try! Realm() //realmデータベースのインスタンスを取得
     
-    func registerNewTeam(teamName:String, members:[Dictionary<String,String>]) {
+    func registerNewTeam(teamName:String, members:[Dictionary<String,String>]) ->Bool{
         
         print("resisterData")
         
@@ -24,7 +24,7 @@ class RegisterNewTeamModel{
         if let result = teamTable.where({ $0.name == teamName}).first  {
             print(result.name)
             print("there is already same name team")
-            return
+            return false
         }else{
             team.name = teamName
         }
@@ -65,12 +65,15 @@ class RegisterNewTeamModel{
             }
         }
         
-        //チームのレコードをデータベースに追加する
-        try! realm.write {
-            realm.add(team)
-        }
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+   
+            try! realm.write {
+                realm.add(team)
+            }
+
+       
         
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        return true
     }
 }
 
