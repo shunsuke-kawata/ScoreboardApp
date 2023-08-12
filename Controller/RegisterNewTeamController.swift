@@ -73,7 +73,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var teamNameField: UITextField!
     @IBOutlet weak var registerFormTableView: UITableView!
     
-    let registerInstance = RegisterNewTeamModel()
+    let registerNewTeamInstance = RegisterNewTeamModel()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return 26;
@@ -92,12 +92,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
 
         let nameField = cell.contentView.viewWithTag(3) as! UITextField
         nameField.text = row["name"]!
-        
-//        if let positionSelectButton = cell.contentView.viewWithTag(4) as? UIButton {
-//            positionSelectButton.setTitle("--", for: .normal)
-//        }
-        
-        
+
          return cell
      }
     
@@ -120,8 +115,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         }else{
             print("No validation errors")
         }
-        print(registerTeamData)
-        registerInstance.registerNewTeam(teamName:teamNameField.text!,members:registerTeamData)
+        registerNewTeamInstance.registerNewTeam(teamName:teamNameField.text!,members:registerTeamData)
         self.navigationController?.popViewController(animated: true)
     }
     //TableViewからformで送信して登録する値を取得してくる

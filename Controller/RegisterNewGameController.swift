@@ -9,28 +9,17 @@ import Foundation
 import UIKit
 import RealmSwift
 
-enum weatherType: CaseIterable {
-    case sunny
-    case cloudy
-    case rainy
-
-    var title: String {
-        switch self {
-        case .sunny:
-            return "晴れ"
-        case .cloudy:
-            return "くもり"
-        case .rainy:
-            return "雨"
-        }
-    }
-}
+let weatherArray:[String] = ["晴れ","くもり","雨","雪"]
+let regulationTimeArray :[String] = ["15","20","25","30","35","40","45","50"]
 
 class RegisterNewGameController:UIViewController{
-    let weather:Dictionary<String,String> = ["晴れ":"sunny","くもり":"cloudy","雨":"rainy"]
+    
+    
     var teamsArray:[String] = []
     
-    let showInstance = ShowTeamsModel()
+    let showTeamsInstance = ShowTeamsModel()
+    let registerNewGameInstance = RegisterNewGameModel()
+    
     var teams: Results<Team>!
     
     @IBOutlet weak var backButton: UIButton!
@@ -40,19 +29,29 @@ class RegisterNewGameController:UIViewController{
     
     @IBOutlet weak var wetherSelectButton: UIButton!
     
+    
+    @IBOutlet weak var regulationTimeSelectButton: UIButton!
+    
     @IBOutlet weak var myTeamSelectButton: UIButton!
     
     @IBOutlet weak var yourTeamSelectButton: UIButton!
     
+    @IBOutlet weak var registerSubmitButton: UIButton!
     //天気の初期値
-    private var selectedWeather = weatherType.sunny
-    private var selectedMyteam:String?
-    private var selectedYourteam:String?
+    private var selectedWeather = weatherArray[0]
+    private var selectedRegulationTime = regulationTimeArray[2]
+    private var selectedMyteam = "--"
+    private var selectedYourteam = "--"
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        //それぞれのボタンのメニューを設定する
+        configureWeatherMenu()
+        configureRegulationTimeMenu()
+        
         //データベースからのデータ取得（初回以降）
-        teams = showInstance.fetchAllTeamsData()
+        teams = showTeamsInstance.fetchAllTeamsData()
         
         // データの取得後の処理を実行する
         if let teams = teams {
@@ -64,14 +63,10 @@ class RegisterNewGameController:UIViewController{
             if (teamsArray.count != 0){
                 selectedMyteam = teamsArray[0]
                 selectedYourteam = teamsArray[0]
-            }else{
-                selectedMyteam = "--"
-                selectedYourteam = "--"
             }
         }
         
-        //それぞれのボタンのメニューを設定する
-        configureWeatherMenu()
+        //チームのリストからメニューを設定する
         configureMyTeamMenu(teamsArray: teamsArray)
         configureYourTeamMenu(teamsArray: teamsArray)
     }
@@ -79,10 +74,13 @@ class RegisterNewGameController:UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        teams = showInstance.fetchAllTeamsData()
-        
         //それぞれのボタンのメニューを設定する
         configureWeatherMenu()
+        configureRegulationTimeMenu()
+        
+        teams = showTeamsInstance.fetchAllTeamsData()
+        
+        //チームのリストからメニューを設定する
         configureMyTeamMenu(teamsArray:teamsArray)
         configureYourTeamMenu(teamsArray: teamsArray)
         
@@ -91,11 +89,21 @@ class RegisterNewGameController:UIViewController{
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func registerSubmitButtonTapped(_ sender: Any) {
+        if (!varidateRegisterData()){
+            return
+        }else{
+            print("No validation errors")
+        }
+        var regulationTimeInt = Int(selectedRegulationTime)!
+        registerNewGameInstance.registerNewGame(gameTitle: gameNameField.text, placeName: placeNameField.text, weatherValue: selectedWeather, regulationTimeValue: regulationTimeInt,myTeamName: selectedMyteam, yourTeamName: selectedYourteam)
+    }
+    
     private func configureWeatherMenu(){
-        let actions = weatherType.allCases
+        let actions = weatherArray
             .compactMap { i in
                 UIAction(
-                    title:i.title,
+                    title:i,
                     state:i == selectedWeather ? .on : .off,
                     handler: { _ in
                         self.selectedWeather = i
@@ -105,9 +113,25 @@ class RegisterNewGameController:UIViewController{
             }
         wetherSelectButton.menu = UIMenu(title: "", options: .displayInline, children: actions)
         wetherSelectButton.showsMenuAsPrimaryAction = true
-        wetherSelectButton.setTitle(selectedWeather.title, for: .normal)
+        wetherSelectButton.setTitle(selectedWeather, for: .normal)
     }
     
+    private func configureRegulationTimeMenu(){
+        let actions = regulationTimeArray
+            .compactMap{ i in
+                UIAction(
+                    title:i,
+                    state:i == selectedRegulationTime ? .on : .off,
+                    handler: {  _ in
+                        self.selectedRegulationTime = i
+                        self.configureRegulationTimeMenu()
+                    }
+                )
+            }
+        regulationTimeSelectButton.menu = UIMenu(title: "", options: .displayInline, children: actions)
+        regulationTimeSelectButton.showsMenuAsPrimaryAction = true
+        regulationTimeSelectButton.setTitle(selectedRegulationTime, for: .normal)
+    }
     private func configureMyTeamMenu(teamsArray:[String]){
         let actions = teamsArray.compactMap{ i in
                 UIAction(
@@ -138,5 +162,17 @@ class RegisterNewGameController:UIViewController{
         yourTeamSelectButton.menu = UIMenu(title: "", options: .displayInline, children: actions)
         yourTeamSelectButton.showsMenuAsPrimaryAction = true
         yourTeamSelectButton.setTitle(selectedYourteam, for: .normal)
+    }
+    
+    func varidateRegisterData()->Bool{
+        if (gameNameField.text! == ""){
+            print("gamename is blank")
+            return false
+        }else if (selectedMyteam == "--"){
+            print("teamname is blank")
+            return false
+        }else{
+            return true
+        }
     }
 }

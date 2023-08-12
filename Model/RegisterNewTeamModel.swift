@@ -17,9 +17,18 @@ class RegisterNewTeamModel{
     func registerNewTeam(teamName:String, members:[Dictionary<String,String>]) {
         
         print("resisterData")
+        
+        let teamTable = realm.objects(Team.self)
         //チームオブジェクトを作成
         let team = Team()
-        team.name = teamName
+        if let result = teamTable.where({ $0.name == teamName}).first  {
+            print(result.name)
+            print("there is already same name team")
+            return
+        }else{
+            team.name = teamName
+        }
+        
                 
         for member_dict in members{
             let player = Player()

@@ -29,18 +29,12 @@ class ShowTeamsController:UIViewController, UITableViewDelegate, UITableViewData
         // データの取得後の処理を実行する
         if let teams = teams {
             print(teams.count)
-            for team in teams {
-                print(type(of: team))
-                print(team.members.count)
-            }
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if let teams = teams {
-            //チームの配列の長さを返す
-            print("teamscount",teams.count)
             return teams.count
         }else{
             //配列を返せない時は0を返す

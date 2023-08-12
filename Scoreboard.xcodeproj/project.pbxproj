@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		801A0BD72A86476D0013FDFB /* DatatableModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A0BD62A86476D0013FDFB /* DatatableModels.swift */; };
+		801A0BD92A864D6B0013FDFB /* RegisterNewGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A0BD82A864D6B0013FDFB /* RegisterNewGameModel.swift */; };
 		8031BA7129BFA0BE00331EEB /* Records.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8031BA7029BFA0BE00331EEB /* Records.storyboard */; };
 		8031BA7529BFA1CB00331EEB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8031BA7429BFA1CB00331EEB /* Login.storyboard */; };
 		8031BA7729BFA1F500331EEB /* Signin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8031BA7629BFA1F500331EEB /* Signin.storyboard */; };
@@ -82,6 +83,7 @@
 
 /* Begin PBXFileReference section */
 		801A0BD62A86476D0013FDFB /* DatatableModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatatableModels.swift; sourceTree = "<group>"; };
+		801A0BD82A864D6B0013FDFB /* RegisterNewGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNewGameModel.swift; sourceTree = "<group>"; };
 		8031BA7029BFA0BE00331EEB /* Records.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Records.storyboard; sourceTree = "<group>"; };
 		8031BA7429BFA1CB00331EEB /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		8031BA7629BFA1F500331EEB /* Signin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Signin.storyboard; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				80823CB929C3C0FD009BDE94 /* RegisterNewTeamModel.swift */,
 				80823CBB29C4259D009BDE94 /* ShowTeamsModel.swift */,
 				801A0BD62A86476D0013FDFB /* DatatableModels.swift */,
+				801A0BD82A864D6B0013FDFB /* RegisterNewGameModel.swift */,
 			);
 			path = Model;
 			sourceTree = SOURCE_ROOT;
@@ -514,6 +517,7 @@
 				80823CBA29C3C0FD009BDE94 /* RegisterNewTeamModel.swift in Sources */,
 				80B472AD29BFD5460081345F /* RecordsController.swift in Sources */,
 				801A0BD72A86476D0013FDFB /* DatatableModels.swift in Sources */,
+				801A0BD92A864D6B0013FDFB /* RegisterNewGameModel.swift in Sources */,
 				8031BA7F29BFAFBA00331EEB /* ShowTeamsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
