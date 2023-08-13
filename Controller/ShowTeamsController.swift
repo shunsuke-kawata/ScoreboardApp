@@ -24,18 +24,17 @@ class ShowTeamsController:UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //データベースからのデータ取得（初回以降）
-        teams = showInstance.fetchAllTeamsData()
-        
+        teams = showInstance.fetchAllTeams()
         // データの取得後の処理を実行する
-        if let teams = teams {
-            print(teams.count)
+        if let _teams = teams {
+            print(_teams.count)
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let teams = teams {
-            return teams.count
+        if let _teams = teams {
+            return _teams.count
         }else{
             //配列を返せない時は0を返す
             print("default")
@@ -52,9 +51,9 @@ class ShowTeamsController:UIViewController, UITableViewDelegate, UITableViewData
         let teamNameLabel = cell.contentView.viewWithTag(2) as!UILabel
         let teamCountLabel = cell.contentView.viewWithTag(3) as!UILabel
         
-        if let team = teams?[indexPath.row] {
-            teamNameLabel.text = team.name
-            teamCountLabel.text = String(team.members.count)
+        if let _team = teams?[indexPath.row] {
+            teamNameLabel.text = _team.name
+            teamCountLabel.text = String(_team.members.count)
         }else{
             //取得できなかった場合のデータ出力
             teamNameLabel.text = "error"
@@ -67,10 +66,10 @@ class ShowTeamsController:UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad(){
         super.viewDidLoad()
         //データベースからのデータ取得（初回）
-        teams = showInstance.fetchAllTeamsData()
+        teams = showInstance.fetchAllTeams()
         
-        if let teams = teams {
-            for team in teams {
+        if let _teams = teams {
+            for team in _teams {
                 print(team.name)
                 print(team.members.count)
             }
@@ -82,11 +81,9 @@ class ShowTeamsController:UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func newTeamButtonTapped(_ sender: Any){
         let storyboard = UIStoryboard(name: "RegisterNewTeam", bundle: nil)
-        
-                let registerNewTeamController = storyboard.instantiateViewController(withIdentifier: "RegisterNewTeamController")
-        
-                //navigationControllerクラスがない場合はメソッドそのものが呼び出されない
-                self.navigationController?.pushViewController(registerNewTeamController, animated: true)
+        let registerNewTeamController = storyboard.instantiateViewController(withIdentifier: "RegisterNewTeamController")
+        //navigationControllerクラスがない場合はメソッドそのものが呼び出されない
+        self.navigationController?.pushViewController(registerNewTeamController, animated: true)
     }
     @IBAction func backButtonTapped(_ sender: Any) {
             self.navigationController?.popViewController(animated: true)

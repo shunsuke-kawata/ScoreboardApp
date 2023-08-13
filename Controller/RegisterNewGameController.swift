@@ -52,12 +52,12 @@ class RegisterNewGameController:UIViewController{
         configureRegulationTimeMenu()
         
         //データベースからのデータ取得（初回以降）
-        teams = showTeamsInstance.fetchAllTeamsData()
+        teams = showTeamsInstance.fetchAllTeams()
         
         // データの取得後の処理を実行する
-        if let teams = teams {
+        if let _teams = teams {
             teamsArray=[]
-            for team in teams {
+            for team in _teams {
                 teamsArray.append(team.name)
             }
             
@@ -79,7 +79,7 @@ class RegisterNewGameController:UIViewController{
         configureWeatherMenu()
         configureRegulationTimeMenu()
         
-        teams = showTeamsInstance.fetchAllTeamsData()
+        teams = showTeamsInstance.fetchAllTeams()
         
         //チームのリストからメニューを設定する
         configureMyTeamMenu(teamsArray:teamsArray)

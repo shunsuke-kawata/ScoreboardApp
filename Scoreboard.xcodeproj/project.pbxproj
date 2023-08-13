@@ -62,6 +62,7 @@
 		808DF54329C20982003DE7A8 /* RegisterNewTeam.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808DF54229C20982003DE7A8 /* RegisterNewTeam.storyboard */; };
 		808DF54529C209BE003DE7A8 /* RegisterNewTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808DF54429C209BE003DE7A8 /* RegisterNewTeamController.swift */; };
 		80B472AD29BFD5460081345F /* RecordsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B472AC29BFD5460081345F /* RecordsController.swift */; };
+		80C5F5A82A881B7A00263D11 /* RecordGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C5F5A72A881B7A00263D11 /* RecordGameModel.swift */; };
 		80DE99B429FC4544008B3BD9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80DE99B329FC4543008B3BD9 /* GoogleService-Info.plist */; };
 		8B40DB48856DEE9731F91E68 /* Pods_Scoreboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFA982C5F7101A3EFD80AAC /* Pods_Scoreboard.framework */; };
 /* End PBXBuildFile section */
@@ -116,6 +117,7 @@
 		808DF54229C20982003DE7A8 /* RegisterNewTeam.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterNewTeam.storyboard; sourceTree = "<group>"; };
 		808DF54429C209BE003DE7A8 /* RegisterNewTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNewTeamController.swift; sourceTree = "<group>"; };
 		80B472AC29BFD5460081345F /* RecordsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsController.swift; sourceTree = "<group>"; };
+		80C5F5A72A881B7A00263D11 /* RecordGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordGameModel.swift; sourceTree = "<group>"; };
 		80DE99B229FC4484008B3BD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		80DE99B329FC4543008B3BD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8BFA982C5F7101A3EFD80AAC /* Pods_Scoreboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scoreboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +208,7 @@
 				80823CBB29C4259D009BDE94 /* ShowTeamsModel.swift */,
 				801A0BD62A86476D0013FDFB /* DatatableModels.swift */,
 				801A0BD82A864D6B0013FDFB /* RegisterNewGameModel.swift */,
+				80C5F5A72A881B7A00263D11 /* RecordGameModel.swift */,
 			);
 			path = Model;
 			sourceTree = SOURCE_ROOT;
@@ -518,6 +521,7 @@
 				801A0BDD2A878FB50013FDFB /* RecordGameController.swift in Sources */,
 				8031BA7929BFA23900331EEB /* LoginController.swift in Sources */,
 				804433392A58A1C200A6A983 /* RegisterNewGameController.swift in Sources */,
+				80C5F5A82A881B7A00263D11 /* RecordGameModel.swift in Sources */,
 				80888D93292548A70006F42A /* AppDelegate.swift in Sources */,
 				80888D95292548A70006F42A /* SceneDelegate.swift in Sources */,
 				808DF54529C209BE003DE7A8 /* RegisterNewTeamController.swift in Sources */,

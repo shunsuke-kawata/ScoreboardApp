@@ -16,8 +16,6 @@ class RegisterNewTeamModel{
     
     func registerNewTeam(teamName:String, members:[Dictionary<String,String>]) ->Bool{
         
-        print("resisterData")
-        
         let teamTable = realm.objects(Team.self)
         //チームオブジェクトを作成
         let team = Team()
@@ -29,7 +27,6 @@ class RegisterNewTeamModel{
             team.name = teamName
         }
         
-                
         for member_dict in members{
             let player = Player()
             player.team_id = team.id
@@ -64,14 +61,9 @@ class RegisterNewTeamModel{
                 team.members.append(player)
             }
         }
-        
-   
             try! realm.write {
                 realm.add(team)
             }
-
-       
-        
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         return true
     }

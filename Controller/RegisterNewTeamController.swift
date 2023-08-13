@@ -115,8 +115,12 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         }else{
             print("No validation errors")
         }
-        registerNewTeamInstance.registerNewTeam(teamName:teamNameField.text!,members:registerTeamData)
-        self.navigationController?.popViewController(animated: true)
+        if(registerNewTeamInstance.registerNewTeam(teamName:teamNameField.text!,members:registerTeamData)){
+            self.navigationController?.popViewController(animated: true)
+        }else{
+            return
+        }
+        
     }
     //TableViewからformで送信して登録する値を取得してくる
 

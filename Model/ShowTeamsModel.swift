@@ -14,7 +14,7 @@ class ShowTeamsModel{
     
     let realm = try! Realm() //realmデータベースのインスタンスを取得
     
-    func fetchAllTeamsData()-> Results<Team>{
+     func fetchAllTeams()-> Results<Team>{
         // RegisterNewTeamModelのクラスを使用
         let teams = realm.objects(Team.self)
         return teams

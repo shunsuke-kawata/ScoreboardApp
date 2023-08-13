@@ -49,7 +49,6 @@ class RegisterNewGameModel{
         }else{
             return (false,nil)
         }
-        
         //ゲームのレコードをデータベースに追加する
         try! realm.write {
             realm.add(game)
