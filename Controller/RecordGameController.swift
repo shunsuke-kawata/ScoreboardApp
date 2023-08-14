@@ -227,15 +227,18 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
         
         //背番号を取得
         if let numberString = splitComponents.first {
-            let selectedMemberDatum = playDataMatrix[numberString]!
-            selectedMemberScoreLabel.text = selectedMemberDatum["score_count"]
-            selectedMemberShootLabel.text = selectedMemberDatum["shoot_count"]
-            selectedMemberAssistLabel.text = selectedMemberDatum["assist_count"]
-            selectedMemberScoreLateLabel.text = selectedMemberDatum["score_count"]
-            selectedMemberMissLabel.text = selectedMemberDatum["miss_count"]
-            selectedMemberSaveLabel.text = selectedMemberDatum["save_count"]
-            selectedMemberYellowLabel.text = selectedMemberDatum["yellow_count"]
-            selectedMemberRedLabel.text = selectedMemberDatum["red_count"]
+            if let selectedMemberDatum = playDataMatrix[numberString] {
+                selectedMemberScoreLabel.text = selectedMemberDatum["score_count"]
+                selectedMemberShootLabel.text = selectedMemberDatum["shoot_count"]
+                selectedMemberAssistLabel.text = selectedMemberDatum["assist_count"]
+                selectedMemberScoreLateLabel.text = selectedMemberDatum["score_count"]
+                selectedMemberMissLabel.text = selectedMemberDatum["miss_count"]
+                selectedMemberSaveLabel.text = selectedMemberDatum["save_count"]
+                selectedMemberYellowLabel.text = selectedMemberDatum["yellow_count"]
+                selectedMemberRedLabel.text = selectedMemberDatum["red_count"]
+            }
+            
+           
             
         } else {
             print("failed to update selected member infomation")
@@ -250,13 +253,39 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func updateDisplayDataTableView(){
+        let splitComponents = selectedMemberByPicker.components(separatedBy: " ")
+        
         if let _myTeam = myTeam {
             let rowsCount = _myTeam.members.count
             for row in 0..<rowsCount{
-                let indexPath = IndexPath(row: row, section: 0)
-                dataDisplayTableView.reloadRows(at: [indexPath], with: .automatic)
+                if let cell:UITableViewCell = getCell(atRow: row){
+                    let numberLabel = cell.contentView.viewWithTag(1) as!UILabel
+                    if splitComponents.first == numberLabel.text {
+                        if let selected = playDataMatrix[splitComponents.first!]{
+                        let scoreLabel = cell.contentView.viewWithTag(3) as!UILabel
+                        scoreLabel.text = selected["score_count"]
+                        let shootLabel = cell.contentView.viewWithTag(4) as!UILabel
+                        shootLabel.text = selected["shoot_count"]
+                        let assistLabel = cell.contentView.viewWithTag(5) as!UILabel
+                        assistLabel.text = selected["assist_count"]
+
+                        let Label = cell.contentView.viewWithTag(6) as!UILabel
+                        Label.text = selected["score_count"]
+
+                        let missLabel = cell.contentView.viewWithTag(7) as!UILabel
+                        missLabel.text = selected["miss_count"]
+                        let saveLabel = cell.contentView.viewWithTag(8) as!UILabel
+                        saveLabel.text = selected["save_count"]
+                        let yellowLabel = cell.contentView.viewWithTag(9) as!UILabel
+                        yellowLabel.text = selected["yellow_count"]
+                        let redLabel = cell.contentView.viewWithTag(10) as!UILabel
+                        redLabel.text = selected["red_count"]
+                        }
+                    }
+                }
             }
         }else{
+            print("failed to get cell")
             return
         }
         
@@ -322,6 +351,8 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
     @IBAction func scorePlusButtonTapped(_ sender: Any) {
         increaseCount(key: "score_count")
         updateSelectedMemberInfomation()
+        updateDisplayDataTableView()
+        print(playDataMatrix)
 
     }
     
