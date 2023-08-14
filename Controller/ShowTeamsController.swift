@@ -45,8 +45,8 @@ class ShowTeamsController:UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "protoShowTeams", for: indexPath)
         
-        let indexlabel = cell.contentView.viewWithTag(1) as!UILabel
-        indexlabel.text = String(indexPath.row+1)
+        let indexLabel = cell.contentView.viewWithTag(1) as!UILabel
+        indexLabel.text = String(indexPath.row+1)
         
         let teamNameLabel = cell.contentView.viewWithTag(2) as!UILabel
         let teamCountLabel = cell.contentView.viewWithTag(3) as!UILabel
