@@ -83,8 +83,8 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
          // セルを取得する
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "protoRegisterNewTeam", for: indexPath)
 
-        let indexlabel = cell.contentView.viewWithTag(1) as!UILabel
-        indexlabel.text = String(indexPath.row+1)
+        let indexLabel = cell.contentView.viewWithTag(1) as!UILabel
+        indexLabel.text = String(indexPath.row+1)
         
         let row = registerTeamData[indexPath.row]
         let numberField = cell.contentView.viewWithTag(2) as!UITextField
