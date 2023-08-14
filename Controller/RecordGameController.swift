@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class RecordGameController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class RecordGameController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate, UIPickerViewDataSource {
     
     var thisGame: Game? = nil
     private var timerIsRunning: Bool = false
@@ -11,6 +11,7 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
     private var myTeam:Team?
     private var yourTeam: Team?
     private var playDataMatrix:[Dictionary<String,String>] = []
+    private var pickerNameAndNumberArray:[String] = []
     
     let recordGameInstance = RecordGameModel()
     
@@ -19,6 +20,18 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
     @IBOutlet weak var resetTimerButton: UIButton!
     
     @IBOutlet weak var dataDisplayTableView: UITableView!
+    @IBOutlet weak var teamNameLabel: UILabel!
+
+    @IBOutlet weak var memberSelectPickerView: UIPickerView!
+    
+    @IBOutlet weak var selectedMemberScoreLabel: UILabel!
+    @IBOutlet weak var selectedMemberShootLabel: UILabel!
+    @IBOutlet weak var selectedMemberAssistLabel: UILabel!
+    @IBOutlet weak var selectedMemberScoreLateLabel: UILabel!
+    @IBOutlet weak var selectedMemberMissLabel: UILabel!
+    @IBOutlet weak var selectedMemberSaveLabel: UILabel!
+    @IBOutlet weak var selectedMemberYellowLabel: UILabel!
+    @IBOutlet weak var selectedMemberRedLabel: UILabel!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let _myTeam = myTeam {
@@ -45,6 +58,8 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
                 "yellow_count":"0",
                 "red_count":"0"
             ]
+            
+            //indexPath.rowの番号と追加されたictのindexが同じ番号であると言える
             let _ = addPlayDataMatrix(tmpDict: tmpDict)
             let numberLabel = cell.contentView.viewWithTag(1) as!UILabel
             numberLabel.text = tmpDict["number"]
@@ -57,9 +72,8 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
             let assistLabel = cell.contentView.viewWithTag(5) as!UILabel
             assistLabel.text = tmpDict["assist_count"]
             
-            
             let Label = cell.contentView.viewWithTag(6) as!UILabel
-            Label.text = tmpDict["id"]
+            Label.text = tmpDict["score_count"]
             
             let missLabel = cell.contentView.viewWithTag(7) as!UILabel
             missLabel.text = tmpDict["miss_count"]
@@ -69,10 +83,7 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
             yellowLabel.text = tmpDict["yellow_count"]
             let redLabel = cell.contentView.viewWithTag(10) as!UILabel
             redLabel.text = tmpDict["red_count"]
-            
-            
         }
-        
         return cell
     }
     
@@ -80,12 +91,65 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
         super.viewWillAppear(animated)
         if let _thisGame = thisGame {
             myTeam = recordGameInstance.searchTeam(teamId: _thisGame.my_team_id)!
+            
 //            yourTeam = recordGameInstance.searchTeam(teamId: _thisGame.your_team_id)!
             regulationTime = Double(_thisGame.regulation_time)
             InitializeTimer(regulationTime: regulationTime)
+            setTeamInfomation(team: myTeam)
         }else{
-            print("failed to get game infomation")
+            print("failed to game infomation")
         }
+    
+        updateTimerDisplay()
+        
+        //delegateの設定
+        memberSelectPickerView.delegate = self
+        memberSelectPickerView.dataSource = self
+    }
+    
+    // 列数
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    //デフォルト値の設定
+    func pickerView(_ pickerView: UIPickerView,numberOfRowsInComponent component: Int) -> Int {
+        if let _myTeam = myTeam {
+            return _myTeam.members.count
+        }else{
+            return 1
+        }
+    }
+    
+    //選択が変更された時の処理
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedNameAndNumber = pickerNameAndNumberArray[row]
+        let splitComponents = selectedNameAndNumber.components(separatedBy: " ")
+        
+        //背番号を取得
+        if let numberString = splitComponents.first {
+            for playDatum in playDataMatrix{
+                //背番号をもとに情報を更新
+                if numberString == playDatum["number"]{
+                    selectedMemberScoreLabel.text = playDatum["score_count"]
+                    selectedMemberShootLabel.text = playDatum["shoot_count"]
+                    selectedMemberAssistLabel.text = playDatum["assist_count"]
+                    selectedMemberScoreLateLabel.text = playDatum["score_count"]
+                    selectedMemberMissLabel.text = playDatum["miss_count"]
+                    selectedMemberSaveLabel.text = playDatum["save_count"]
+                    selectedMemberYellowLabel.text = playDatum["yellow_count"]
+                    selectedMemberRedLabel.text = playDatum["red_count"]
+                    
+                    break
+                }
+            }
+        } else {
+            return
+        }
+    }
+    
+    // 最初に選択状態にする行データ
+    func pickerView(_ pickerView: UIPickerView,titleForRow row: Int,forComponent component: Int) -> String? {
+        return pickerNameAndNumberArray[row]
     }
     
     override func viewDidLoad() {
@@ -96,8 +160,27 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
 //            yourTeam = recordGameInstance.searchTeam(teamId: _thisGame.your_team_id)!
             regulationTime = Double(_thisGame.regulation_time)
             InitializeTimer(regulationTime: regulationTime)
+            setTeamInfomation(team: myTeam)
+        }else{
+            print("failed to game infomation")
         }
         updateTimerDisplay()
+        
+        //delegateの設定
+        memberSelectPickerView.delegate = self
+        memberSelectPickerView.dataSource = self
+    }
+    
+    func setTeamInfomation(team:Team?){
+        if let _team = team{
+            teamNameLabel.text = _team.name
+            for member in _team.members{
+                let numberAndName:String = String(member.number) + " " + String(member.name)
+                pickerNameAndNumberArray.append(numberAndName)
+            }
+        }else{
+            print("failed to set team infomation")
+        }
     }
     
     func InitializeTimer(regulationTime:Double){
@@ -119,10 +202,10 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
 
     
     @IBAction func resetTimerButtonTapped(_ sender: Any) {
+        timerIsRunning = false
         InitializeTimer(regulationTime: regulationTime)
         updateTimerDisplay()
     }
-    
     
     @IBAction func timerButtonTapped(_ sender: Any) {
         if timerIsRunning {
@@ -145,8 +228,3 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
         self.navigationController?.popViewController(animated: true)
     }
 }
-
-
-class DisplayDataTableViewCell:UITableViewCell{
-}
-
