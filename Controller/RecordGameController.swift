@@ -261,6 +261,38 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
         }
         
     }
+    
+    func increaseCount(key:String){
+        let splitComponents = selectedMemberByPicker.components(separatedBy: " ")
+        if let numberString = splitComponents.first,let  selectedMemberDatum = playDataMatrix[numberString]{
+            if let keyString = selectedMemberDatum[key] , let keyInt = Int(keyString){
+                let tmpCount = keyInt + 1
+                playDataMatrix[numberString]![key] = String(tmpCount)
+            }
+        } else {
+            print("failed to update selected member infomation")
+            return
+        }
+    }
+    
+    func decreaseCount(key:String){
+        let splitComponents = selectedMemberByPicker.components(separatedBy: " ")
+        if let numberString = splitComponents.first,let  selectedMemberDatum = playDataMatrix[numberString]{
+            if let keyString = selectedMemberDatum[key] , let keyInt = Int(keyString){
+                var tmpCount:Int
+                if keyInt > 0{
+                    tmpCount = keyInt - 1
+                }else{
+                    tmpCount = keyInt
+                }
+                
+                playDataMatrix[numberString]![key] = String(tmpCount)
+            }
+        } else {
+            print("failed to update selected member infomation")
+            return
+        }
+    }
 
     
     @IBAction func resetTimerButtonTapped(_ sender: Any) {
@@ -288,65 +320,75 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
     
     
     @IBAction func scorePlusButtonTapped(_ sender: Any) {
-        let splitComponents = selectedMemberByPicker.components(separatedBy: " ")
-        if let numberString = splitComponents.first,let  selectedMemberDatum = playDataMatrix[numberString]{
-            if let scoreString = selectedMemberDatum["score_count"] , let scoreInt = Int(scoreString){
-                let tmpScore = scoreInt + 1
-                playDataMatrix[numberString]!["score_count"] = String(tmpScore)
-            }
-        } else {
-            print("failed to update selected member infomation")
-            return
-        }
-        
+        increaseCount(key: "score_count")
         updateSelectedMemberInfomation()
-        print(playDataMatrix)
-//        updateDisplayDataTableView()
 
-        
-        
     }
     
     @IBAction func scoreMinusButtonTapped(_ sender: Any) {
+        decreaseCount(key: "score_count")
+        updateSelectedMemberInfomation()
     }
     
     @IBAction func shootPlusButtonTapped(_ sender: Any) {
+        increaseCount(key: "shoot_count")
+        updateSelectedMemberInfomation()
     }
     
     @IBAction func shootMinusButtonTapped(_ sender: Any) {
+        decreaseCount(key: "shoot_count")
+        updateSelectedMemberInfomation()
     }
     
     @IBAction func assistPlusButtonTapped(_ sender: Any) {
+        increaseCount(key: "assist_count")
+        updateSelectedMemberInfomation()
     }
     
     @IBAction func assistMinusButtonTapped(_ sender: Any) {
+        decreaseCount(key: "assist_count")
+        updateSelectedMemberInfomation()
     }
     
     @IBAction func missPlusButtonTapped(_ sender: Any) {
+        increaseCount(key: "miss_count")
+        updateSelectedMemberInfomation()
     }
     
     @IBAction func missMinusButtonTapped(_ sender: Any) {
+        decreaseCount(key: "miss_count")
+        updateSelectedMemberInfomation()
     }
     
     @IBAction func savePlusButtonTapped(_ sender: Any) {
+        increaseCount(key: "save_count")
+        updateSelectedMemberInfomation()
     }
     
     @IBAction func saveMinusButtonTapped(_ sender: Any) {
+        decreaseCount(key: "save_count")
+        updateSelectedMemberInfomation()
     }
     
     @IBAction func yellowPlusButtonTapped(_ sender: Any) {
+        increaseCount(key: "yellow_count")
+        updateSelectedMemberInfomation()
     }
     
     @IBAction func yellowMinusButtonTapped(_ sender: Any) {
+        decreaseCount(key: "yellow_count")
+        updateSelectedMemberInfomation()
     }
     
     @IBAction func redPlusButtonTapped(_ sender: Any) {
+        increaseCount(key: "red_count")
+        updateSelectedMemberInfomation()
     }
     
     @IBAction func redMinusButtonTapped(_ sender: Any) {
+        decreaseCount(key: "red_count")
+        updateSelectedMemberInfomation()
     }
-    
-    
     
     @IBAction func backButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
