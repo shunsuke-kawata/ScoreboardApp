@@ -233,12 +233,6 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
         }
     
         updateTimerDisplay()
-        
-        
-//        if let initialSelectedRow = pickerNameAndNumberArray.firstIndex(of: selectedMemberByPicker) {
-//                memberSelectPickerView.selectRow(initialSelectedRow, inComponent: 0, animated: false)
-//                updateSelectedMember(selectedRow: initialSelectedRow)
-//            }
     }
     
     // 列数
@@ -295,12 +289,6 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
         }
     
         updateTimerDisplay()
-        
-//        if let initialSelectedRow = pickerNameAndNumberArray.firstIndex(of: selectedMemberByPicker) {
-//                memberSelectPickerView.selectRow(initialSelectedRow, inComponent: 0, animated: false)
-//                updateSelectedMember(selectedRow: initialSelectedRow)
-//            }
-//        print("executed")
     }
     
     func setTeamInfomation(team:Team?){
@@ -315,7 +303,7 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
         }else{
             print("failed to set team infomation")
         }
-//        updateSelectedMemberInfomation()
+        updateSelectedMemberInfomation()
     }
     
     
