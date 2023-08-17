@@ -6,46 +6,74 @@
 //
 import UIKit
 
-class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableViewDataSource  {
+enum PositionType: CaseIterable {
+    case none
+    case fw
+    case mf
+    case df
+    case gk
+    
+    var selected:String{
+        switch self {
+        case .none:
+            return "--"
+        case .fw:
+            return "FW"
+        case .mf:
+            return "MF"
+        case .df:
+            return "DF"
+        case .gk:
+            return "GK"
+        }
+    }
+}
 
-    //最大で26人分の選手データを登録する配列
+
+class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableViewDataSource  {
+    
+    //ポジションを選択するタイプの定義
+    
+        //最大で26人分の選手データを登録する配列
     //dict型の配列に変更
     var registerTeamData:[Dictionary<String,String>] = [
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""],
-        ["number":"","name":""]
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"],
+        ["number":"","name":"","position":"--"]
     ]
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var registerSubmitButton: UIButton!
     
+//    @IBOutlet weak var positionSelectButton: UIButton!
+    var selectedMenuType = PositionType.none
     @IBOutlet weak var teamNameField: UITextField!
     @IBOutlet weak var registerFormTableView: UITableView!
     
-    let registerInstance = RegisterNewTeamModel()
+    let registerNewTeamInstance = RegisterNewTeamModel()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return 26;
@@ -55,8 +83,8 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
          // セルを取得する
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "protoRegisterNewTeam", for: indexPath)
 
-        let indexlabel = cell.contentView.viewWithTag(1) as!UILabel
-        indexlabel.text = String(indexPath.row+1)
+        let indexLabel = cell.contentView.viewWithTag(1) as!UILabel
+        indexLabel.text = String(indexPath.row+1)
         
         let row = registerTeamData[indexPath.row]
         let numberField = cell.contentView.viewWithTag(2) as!UITextField
@@ -64,12 +92,13 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
 
         let nameField = cell.contentView.viewWithTag(3) as! UITextField
         nameField.text = row["name"]!
-        
+
          return cell
      }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.configureMenu()
         }
     
     //戻るボタンをタップしたとき
@@ -86,11 +115,15 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         }else{
             print("No validation errors")
         }
-        registerInstance.registerNewTeam(teamName:teamNameField.text!,members:registerTeamData)
-        self.navigationController?.popViewController(animated: true)
+        if(registerNewTeamInstance.registerNewTeam(teamName:teamNameField.text!,members:registerTeamData)){
+            self.navigationController?.popViewController(animated: true)
+        }else{
+            return
+        }
+        
     }
     //TableViewからformで送信して登録する値を取得してくる
-    
+
     //配列の内容を更新する関数
     func updateRegisterTeamData(index:Int,value:String,option:String){
         registerTeamData[index-1][option] = value
@@ -106,8 +139,8 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
                 continue
             }else{
                 //どちらかの値が入っていないデータは登録しない
-                if(datum["number"]=="" || datum["name"]==""){
-                    print("Either name or number is blank")
+                if(datum["number"]==""){
+                    print("number is blank")
                     return false
                 }else {
                     //numberが数値かどうか判定する
@@ -133,7 +166,6 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         }else{
             return true
         }
-        
         
     }
     //Playerの背番号を更新する関数
@@ -169,4 +201,5 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
             return
         }
     }
+    
 }

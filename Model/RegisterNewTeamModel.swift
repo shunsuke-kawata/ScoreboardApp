@@ -9,55 +9,49 @@ import UIKit
 import Foundation
 import RealmSwift
 
-//メンバーを定義する構造体
-class  Player: Object {
-    @Persisted(primaryKey: true) var id:UUID = UUID()  //uuid
-    @Persisted var name:String  //名前
-    @Persisted var number:Int  //背番号
-    @Persisted var createdAt = Date()  //作成日
-    @Persisted var updatedAt = Date()  //作成日
-}
-
-//チームを定義する構造体
-class Team:Object,ObjectKeyIdentifiable{
-    @Persisted(primaryKey: true) var id:UUID = UUID()  //uuid
-    @Persisted var name:String  //チームの名前
-    @Persisted  var members = RealmSwift.List<Player>() //メンバー全員のリスト
-    @Persisted var createdAt = Date()  //作成日
-}
-
 
 class RegisterNewTeamModel{
     
     let realm = try! Realm() //realmデータベースのインスタンスを取得
     
-    func registerNewTeam(teamName:String, members:[Dictionary<String,String>]) {
+    func registerNewTeam(teamName:String, members:[Dictionary<String,String>]) ->Bool{
         
-        print("resisterData")
+        let teamTable = realm.objects(Team.self)
         //チームオブジェクトを作成
         let team = Team()
-        team.name = teamName
-                
+        if let result = teamTable.where({ $0.name == teamName}).first  {
+            print(result.name)
+            print("there is already same name team")
+            return false
+        }else{
+            team.name = teamName
+        }
+        
         for member_dict in members{
             let player = Player()
+            player.team_id = team.id
 
             if let memberName = member_dict["name"]{
                 //空欄であれば飛ばす
                 if(memberName != ""){
                     player.name=memberName
                 }else{
-                    print("name is invalid")
-                    continue
+                    player.name=""
+                    print("name is blank")
                 }
             }
             if let memberNumber = member_dict["number"]{
+                
+                print(type(of: memberNumber))
                 //空欄であれば飛ばす
-                if(memberNumber != ""){
+                if(memberNumber == ""){
+                    print(memberNumber)
+                    print("number is invalid")
+                    continue
+                    
+                }else{
                     if let memberNumberInt = Int(memberNumber){
                         player.number = memberNumberInt
-                    }else{
-                        print("number is invalid")
-                        continue
                     }
                 }
             }
@@ -67,13 +61,11 @@ class RegisterNewTeamModel{
                 team.members.append(player)
             }
         }
-        
-        //チームのレコードをデータベースに追加する
-        try! realm.write {
-            realm.add(team)
-        }
+            try! realm.write {
+                realm.add(team)
+            }
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-        
+        return true
     }
 }
 

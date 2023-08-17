@@ -23,7 +23,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="記録画面"/>
                                 <connections>
-                                    <action selector="transitionToRecord:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mg3-hJ-MjR"/>
+                                    <action selector="transitionToRegisterNewGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CcB-Us-uub"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7H-Uq-0TP">
@@ -32,7 +32,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="チーム一覧"/>
                                 <connections>
-                                    <action selector="transitionToRegisterTeam:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Oa1-ax-291"/>
+                                    <action selector="transitionToShowTeams:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eww-iG-bLZ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="スコアボードアプリ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Af5-03-8SM">
@@ -42,6 +42,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Rw-oc-xyU">
+                                <rect key="frame" x="1057" y="836" width="146" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="データリセット"/>
+                                <connections>
+                                    <action selector="deleteDatabase:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UrC-dN-Xm6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -49,8 +58,9 @@
                     <navigationItem key="navigationItem" id="HbO-ei-ovQ"/>
                     <size key="freeformSize" width="1366" height="1024"/>
                     <connections>
+                        <outlet property="dataResetButton" destination="0Rw-oc-xyU" id="nDg-DJ-0kI"/>
                         <outlet property="toRecordButton" destination="mTM-uP-4S5" id="3Ot-wl-a0Q"/>
-                        <outlet property="toRegisterTeamButton" destination="N7H-Uq-0TP" id="Tg8-xi-sgp"/>
+                        <outlet property="toShowTeamsButton" destination="N7H-Uq-0TP" id="phH-Tk-Wk0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
