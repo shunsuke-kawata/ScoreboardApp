@@ -107,7 +107,7 @@ class PlayDataObject {
 }
 
 
-class RecordGameController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate, UIPickerViewDataSource {
+class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate, UIPickerViewDataSource {
     
     var thisGame: Game? = nil
     private var timerIsRunning: Bool = false
@@ -190,9 +190,17 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
         let assistLabel = cell.contentView.viewWithTag(5) as!UILabel
         assistLabel.text = String(playDataObjectArray[indexString]!.assist_count)
         
-        let Label = cell.contentView.viewWithTag(6) as!UILabel
-        Label.text = String(playDataObjectArray[indexString]!.score_count)
-        
+        let scoreLateLabel = cell.contentView.viewWithTag(6) as!UILabel
+        if (playDataObjectArray[indexString]!.score_count == 0){
+            scoreLateLabel.text = String(Double(playDataObjectArray[indexString]!.score_count)) + "%"
+        }
+        else if (playDataObjectArray[indexString]!.shoot_count == 0){
+            selectedMemberScoreLateLabel.text  = "error"
+        }else{
+            let scoreLate = round(Double(playDataObjectArray[indexString]!.score_count)/Double(playDataObjectArray[indexString]!.shoot_count)*100)
+            selectedMemberScoreLateLabel.text = String(scoreLate) + "%"
+        }
+
         let missLabel = cell.contentView.viewWithTag(7) as!UILabel
         missLabel.text = String(playDataObjectArray[indexString]!.miss_count)
         let saveLabel = cell.contentView.viewWithTag(8) as!UILabel
@@ -333,7 +341,15 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
                 selectedMemberScoreLabel.text = String(selectedMemberDatum.score_count)
                 selectedMemberShootLabel.text = String(selectedMemberDatum.shoot_count)
                 selectedMemberAssistLabel.text = String(selectedMemberDatum.assist_count)
-                selectedMemberScoreLateLabel.text = String(selectedMemberDatum.score_count)
+                if (selectedMemberDatum.score_count == 0){
+                    selectedMemberScoreLateLabel.text = String(Double(selectedMemberDatum.score_count)) + "%"
+                }
+                else if (selectedMemberDatum.shoot_count == 0){
+                    selectedMemberScoreLateLabel.text  = "error"
+                }else{
+                    let scoreLate = round(Double(selectedMemberDatum.score_count)/Double(selectedMemberDatum.shoot_count)*100)
+                    selectedMemberScoreLateLabel.text = String(scoreLate) + "%"
+                }
                 selectedMemberMissLabel.text = String(selectedMemberDatum.miss_count)
                 selectedMemberSaveLabel.text = String(selectedMemberDatum.save_count)
                 selectedMemberYellowLabel.text = String(selectedMemberDatum.yellow_count)
@@ -372,8 +388,20 @@ class RecordGameController: UIViewController,UITableViewDelegate,UITableViewData
                         let assistLabel = cell.contentView.viewWithTag(5) as!UILabel
                         assistLabel.text = String(data.assist_count)
 
-                        let Label = cell.contentView.viewWithTag(6) as!UILabel
-                        Label.text = String(data.score_count)
+                        let scoreLateLabel = cell.contentView.viewWithTag(6) as!UILabel
+                        if (data.score_count == 0){
+                            print(1)
+                            scoreLateLabel.text = String(Double(data.score_count)) + "%"
+                        }
+                        else if (data.shoot_count == 0){
+                            print(2)
+                            scoreLateLabel.text  = "error"
+                        }else{
+                            print(3)
+                            let scoreLate = round(Double(data.score_count)/Double(data.shoot_count)*100)
+                            scoreLateLabel.text = String(scoreLate) + "%"
+                        }
+                        
 
                         let missLabel = cell.contentView.viewWithTag(7) as!UILabel
                         missLabel.text = String(data.miss_count)
