@@ -8,9 +8,11 @@
 import Foundation
 import UIKit
 
-var timerIsRunning: Bool = false
+var isSwiped:Bool = false
+
 var time: Double = 0.0
-var timer: Timer = Timer()
+var timerAIsRunning:Bool = false
+var timerBIsRunning:Bool = false
 
 class RecordPageViewController:UIPageViewController{
     
@@ -32,17 +34,25 @@ class RecordPageViewController:UIPageViewController{
         recordTeamA.thisGame = registeredGame
         recordTeamB.thisGame = registeredGame
         
-//        let recordTeamB = storyboard.instantiateViewController(withIdentifier: "ThirdView") as! ThirdViewController
-
-            // ③ インスタンス化したViewControllerを配列に保存する
-            self.controllers = [ recordTeamA,recordTeamB ]
-
-            // ④ 最初に表示するViewControllerを指定する
-            setViewControllers([self.controllers[0]], direction: .forward, animated: true, completion: nil)
-           
-            // ④ PageViewControllerのDataSourceを関連付ける
-            self.dataSource = self
+        //試合時間を初期化
+        if let _registeredGame = registeredGame {
+            time = Double(_registeredGame.regulation_time)*60
         }
+
+        // インスタンス化したViewControllerを配列に保存する
+        self.controllers = [ recordTeamA,recordTeamB ]
+
+        // 最初に表示するViewControllerを指定する
+        setViewControllers([self.controllers[0]], direction: .forward, animated: true, completion: nil)
+       
+        // PageViewControllerのDataSourceを関連付ける
+        self.dataSource = self
+    }
+    
+    
+    
+    
+
     
 }
 

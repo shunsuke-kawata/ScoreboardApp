@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 var allScoreCountYourTeam:Int = 0
-
+var timerB: Timer = Timer()
 class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate, UIPickerViewDataSource{
     
     var thisGame: Game? = nil
@@ -19,6 +19,9 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     private var idAndIndexPath:Dictionary<Int,String> = [:]
     private var pickerNameAndNumberArray:[String] = []
     private var selectedMemberByPicker:String = ""
+    
+    //タイマーを設置
+
     
     let recordGameInstance = RecordGameModel()
     
@@ -119,6 +122,8 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        
+
         //delegateの設定
         self.memberSelectPickerView.delegate = self
         self.memberSelectPickerView.dataSource = self
@@ -138,7 +143,7 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
             
 //            yourTeam = recordGameInstance.searchTeam(teamId: _thisGame.your_team_id)!
             regulationTime = Double(_thisGame.regulation_time)
-            initializeTimer(regulationTime: regulationTime)
+//            initializeTimer(regulationTime: regulationTime)
             
         }else{
             print("failed to game infomation")
@@ -177,6 +182,20 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        print(timerAIsRunning,timerBIsRunning)
+        if (timerAIsRunning){
+            print("executed timer flagB")
+            timerA.invalidate()
+            timerAIsRunning = false
+//            アニメーション時間の補正
+//            time -= 0.5
+            watchTimerB()
+            updateTimerBIsRunning(value: true)
+            
+        }
+        print(timerAIsRunning,timerBIsRunning)
+        
         //delegateの設定
         self.memberSelectPickerView.delegate = self
         self.memberSelectPickerView.dataSource = self
@@ -204,7 +223,7 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
             
 //            yourTeam = recordGameInstance.searchTeam(teamId: _thisGame.your_team_id)!
             regulationTime = Double(_thisGame.regulation_time)
-            initializeTimer(regulationTime: regulationTime)
+//            initializeTimer(regulationTime: regulationTime)
             
         }else{
             print("failed to game infomation")
@@ -232,6 +251,10 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     func initializeTimer(regulationTime:Double){
         time = regulationTime * 60
         timerButton.titleLabel?.adjustsFontSizeToFitWidth = true
+    }
+    
+    func updateTimerBIsRunning(value:Bool){
+        timerBIsRunning = value
     }
     
     func updateTimerDisplay() {
@@ -345,27 +368,31 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
         
     }
     
-    @IBAction func resetTimerButtonTapped(_ sender: Any) {
-        timerIsRunning = false
-        initializeTimer(regulationTime: regulationTime)
-        updateTimerDisplay()
-    }
-    
-    @IBAction func timerButtonTapped(_ sender: Any) {
-        if timerIsRunning {
-            timerIsRunning = false
-            timer.invalidate()
+    func watchTimerB(){
+        if timerBIsRunning {
+            timerBIsRunning = false
+            timerB.invalidate()
         } else {
-            timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] _ in
+            timerB = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] _ in
                 guard let self = self else { return }
                 if (time != 0.0){
                     time -= 0.01
                 }
                 self.updateTimerDisplay() // タイマーの値を更新して表示を更新する
             }
-            timer.fire() // タイマーを即座に起動
-            timerIsRunning = true
+            timerB.fire() // タイマーを即座に起動
+            timerBIsRunning = true
         }
+    }
+    
+    @IBAction func resetTimerButtonTapped(_ sender: Any) {
+        timerBIsRunning = false
+        initializeTimer(regulationTime: regulationTime)
+        updateTimerDisplay()
+    }
+    
+    @IBAction func timerButtonTapped(_ sender: Any) {
+        watchTimerB()
     }
     
     func getPlayDataToChange()->PlayDataObject?{
