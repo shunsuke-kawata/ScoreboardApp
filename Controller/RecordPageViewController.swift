@@ -8,10 +8,15 @@
 import Foundation
 import UIKit
 
+var timerIsRunning: Bool = false
+var time: Double = 0.0
+var timer: Timer = Timer()
+
 class RecordPageViewController:UIPageViewController{
     
     // PageViewで表示するViewControllerを格納する配列を定義
     private var controllers: [UIViewController] = []
+    
     var registeredGame: Game? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +30,7 @@ class RecordPageViewController:UIPageViewController{
         let recordTeamA = storyboard.instantiateViewController(withIdentifier: "RecordGameAController") as! RecordGameAController
         let recordTeamB = storyboard.instantiateViewController(withIdentifier: "RecordGameBController") as! RecordGameBController
         recordTeamA.thisGame = registeredGame
+        recordTeamB.thisGame = registeredGame
         
 //        let recordTeamB = storyboard.instantiateViewController(withIdentifier: "ThirdView") as! ThirdViewController
 

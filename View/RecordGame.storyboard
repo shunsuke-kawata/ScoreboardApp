@@ -64,6 +64,10 @@
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FG3-kv-XLk">
                                 <rect key="frame" x="190" y="210" width="274" height="121"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="tcz-9F-GlS"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="bpu-fp-vzn"/>
+                                </connections>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" tag="7" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4K-1a-M2l" userLabel="miss">
                                 <rect key="frame" x="821" y="246" width="88" height="46"/>
@@ -535,6 +539,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="allScoreCountLabel" destination="qvE-zn-h2h" id="YkT-L8-K02"/>
                         <outlet property="assistMinusButton" destination="2YN-ks-Dty" id="XlE-TJ-P8W"/>
                         <outlet property="assistPlusButton" destination="MV3-te-Vi9" id="vTB-At-TrA"/>
                         <outlet property="backButton" destination="A4W-ok-Vfm" id="0oz-S1-lr6"/>
@@ -584,6 +589,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system"/>
                                 <connections>
+                                    <action selector="backButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="MCM-Yh-dJa"/>
                                     <action selector="backButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="kSC-Ie-yrT"/>
                                 </connections>
                             </button>
@@ -596,6 +602,7 @@
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="timerButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Faw-d0-huN"/>
+                                    <action selector="timerButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="ZO6-Nl-3HZ"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fp1-cO-Qt6" userLabel="teamname">
@@ -618,12 +625,17 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="リセット"/>
                                 <connections>
+                                    <action selector="resetTimerButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="lIx-e8-b9W"/>
                                     <action selector="resetTimerButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="tEE-pW-0iw"/>
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lNa-r9-25D">
                                 <rect key="frame" x="200" y="190" width="274" height="121"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="O6R-jP-x5K" id="ei9-rl-sJJ"/>
+                                    <outlet property="delegate" destination="O6R-jP-x5K" id="7jC-Yh-mo5"/>
+                                </connections>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" tag="7" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ya6-cg-OOw" userLabel="miss">
                                 <rect key="frame" x="831" y="226" width="88" height="46"/>
@@ -747,6 +759,7 @@
                                     <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="scorePlusButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="eNe-My-IZ0"/>
                                     <action selector="scorePlusButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="wwQ-62-Nju"/>
                                 </connections>
                             </button>
@@ -760,6 +773,7 @@
                                     <color key="baseBackgroundColor" systemColor="systemRedColor"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="scoreMinusButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="NGA-xQ-zce"/>
                                     <action selector="scoreMinusButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="zsU-9U-jvl"/>
                                 </connections>
                             </button>
@@ -773,6 +787,7 @@
                                     <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="shootPlusButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="KGH-5D-6Zy"/>
                                     <action selector="shootPlusButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="iAB-ik-hyY"/>
                                 </connections>
                             </button>
@@ -787,6 +802,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="shootMinusButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="LUE-jF-8AU"/>
+                                    <action selector="shootMinusButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="yvR-sl-mNf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DaO-tU-Xte">
@@ -799,6 +815,7 @@
                                     <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="assistPlusButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="ahQ-Rc-Gcr"/>
                                     <action selector="assistPlusButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="zdm-gh-1Wf"/>
                                 </connections>
                             </button>
@@ -813,6 +830,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="assistMinusButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="0bw-1l-fnt"/>
+                                    <action selector="assistMinusButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="ph8-31-zUB"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETJ-iS-ZHn">
@@ -825,6 +843,7 @@
                                     <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="missPlusButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="5tw-Eu-mgL"/>
                                     <action selector="missPlusButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="goa-VX-Aud"/>
                                 </connections>
                             </button>
@@ -839,6 +858,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="missMinusButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="iSr-c6-ojb"/>
+                                    <action selector="missMinusButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="x5a-OX-cth"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSu-ZV-hht">
@@ -852,6 +872,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="savePlusButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="kdS-zM-dP8"/>
+                                    <action selector="savePlusButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="p4k-fg-Q15"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28r-KX-LSq">
@@ -865,6 +886,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="saveMinusButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Pph-7x-gaL"/>
+                                    <action selector="saveMinusButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="crS-7A-sAc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WiG-cz-49w">
@@ -877,6 +899,7 @@
                                     <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="yellowPlusButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="1va-b8-bJD"/>
                                     <action selector="yellowPlusButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="7r0-k4-id1"/>
                                 </connections>
                             </button>
@@ -891,6 +914,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="yellowMinusButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Npx-bD-hRS"/>
+                                    <action selector="yellowMinusButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="seh-MF-I1B"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="raU-WP-m3f">
@@ -904,6 +928,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="redPlusButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="7It-fk-jVE"/>
+                                    <action selector="redPlusButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="OPc-V3-YR5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QhN-Xg-2pJ">
@@ -917,6 +942,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="redMinusButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="06j-aU-TAO"/>
+                                    <action selector="redMinusButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="t2c-xF-CPH"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5Dc-8Q-rdC" userLabel="DisplayDataTableView">
@@ -1006,8 +1032,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="vYL-nT-pJC"/>
-                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="Wwm-5b-ggB"/>
+                                    <outlet property="dataSource" destination="O6R-jP-x5K" id="9GI-Ao-Sq6"/>
+                                    <outlet property="delegate" destination="O6R-jP-x5K" id="eW0-s3-G1q"/>
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="背番号" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7I-kQ-Ooz" userLabel="numberlegend">
@@ -1094,6 +1120,37 @@
                         <viewLayoutGuide key="safeArea" id="Ge7-pw-dPn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="allScoreCountLabel" destination="3Mo-Bh-HUZ" id="9lP-EN-2Ab"/>
+                        <outlet property="assistMinusButton" destination="UhQ-ZX-Chm" id="7Ng-4d-UNM"/>
+                        <outlet property="assistPlusButton" destination="DaO-tU-Xte" id="3gN-g6-xdu"/>
+                        <outlet property="backButton" destination="ANS-st-QOE" id="jdi-0C-XS6"/>
+                        <outlet property="dataDisplayTableView" destination="5Dc-8Q-rdC" id="XCD-gL-lva"/>
+                        <outlet property="memberSelectPickerView" destination="lNa-r9-25D" id="gqT-mz-uRZ"/>
+                        <outlet property="missMinusButton" destination="Xri-Vf-UhR" id="EcM-8t-TXW"/>
+                        <outlet property="missPlusButton" destination="ETJ-iS-ZHn" id="Nvs-2h-bXj"/>
+                        <outlet property="redMinusButton" destination="QhN-Xg-2pJ" id="cv6-fA-ebh"/>
+                        <outlet property="redPlusButton" destination="raU-WP-m3f" id="Qhr-m2-p0p"/>
+                        <outlet property="resetTimerButton" destination="1BK-wa-awr" id="MAZ-7d-sf3"/>
+                        <outlet property="saveMinusButton" destination="28r-KX-LSq" id="KyQ-c2-ar3"/>
+                        <outlet property="savePlusButton" destination="wSu-ZV-hht" id="jaU-K2-kz8"/>
+                        <outlet property="scoreMinusButton" destination="O6X-zs-KiH" id="wCw-To-kBf"/>
+                        <outlet property="scorePlusButton" destination="0ab-RE-33b" id="8zC-3l-0Vr"/>
+                        <outlet property="selectedMemberAssistLabel" destination="BF0-Zy-j8s" id="dEk-70-3eR"/>
+                        <outlet property="selectedMemberMissLabel" destination="Ya6-cg-OOw" id="is9-IS-RDO"/>
+                        <outlet property="selectedMemberRedLabel" destination="fKj-Lg-R7k" id="pJ9-SV-DrG"/>
+                        <outlet property="selectedMemberSaveLabel" destination="oaa-sP-9Jt" id="MCe-Pg-ceC"/>
+                        <outlet property="selectedMemberScoreLabel" destination="B1G-by-SSP" id="zwV-X1-R13"/>
+                        <outlet property="selectedMemberScoreLateLabel" destination="7Ap-Ij-nq9" id="Bhm-iv-zye"/>
+                        <outlet property="selectedMemberShootLabel" destination="4ZH-1g-a2O" id="eR8-Vw-4OH"/>
+                        <outlet property="selectedMemberYellowLabel" destination="Ipg-GO-nnY" id="w7F-Z8-5TJ"/>
+                        <outlet property="shootMinusButton" destination="Mew-BU-YDn" id="P3q-X5-Dc6"/>
+                        <outlet property="shootPlusButton" destination="y3Q-pH-vk5" id="Sy2-mx-5zu"/>
+                        <outlet property="teamNameLabel" destination="Fp1-cO-Qt6" id="PrY-eG-FoQ"/>
+                        <outlet property="timerButton" destination="JR1-O4-wsz" id="hZU-wy-kxX"/>
+                        <outlet property="yellowMinusButton" destination="Wnw-Oe-byf" id="Tnj-dQ-yGm"/>
+                        <outlet property="yellowPlusButton" destination="WiG-cz-49w" id="6WD-31-8Me"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3L-P3-fgu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

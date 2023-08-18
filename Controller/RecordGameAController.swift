@@ -1,125 +1,18 @@
 import Foundation
 import UIKit
 
-class PlayDataObject {
-    let id: String
-    let number: Int
-    let name: String
-    var score_count: Int
-    var shoot_count: Int
-    var assist_count: Int
-    var miss_count: Int
-    var save_count: Int
-    var yellow_count: Int
-    var red_count: Int
-    
-    init(id: String, number: Int, name: String) {
-        self.id = id
-        self.number = number
-        self.name = name
-        self.score_count = 0
-        self.shoot_count = 0
-        self.assist_count = 0
-        self.miss_count = 0
-        self.save_count = 0
-        self.yellow_count = 0
-        self.red_count = 0
-    }
-    
-    func increaseScore() {
-        self.score_count += 1
-    }
-    
-    func decreaseScore() {
-        if self.score_count > 0 {
-            self.score_count -= 1
-        }
-    }
-    
-    func increaseShoot() {
-        self.shoot_count += 1
-    }
-    
-    func decreaseShoot() {
-        if self.shoot_count > 0 {
-            self.shoot_count -= 1
-        }
-    }
-    
-    func increaseAssist() {
-        self.assist_count += 1
-    }
-    
-    func decreaseAssist() {
-        if self.assist_count > 0 {
-            self.assist_count -= 1
-        }
-    }
-    
-    func increaseMiss() {
-        self.miss_count += 1
-    }
-    
-    func decreaseMiss() {
-         if self.miss_count > 0 {
-             self.miss_count -= 1
-         }
-     }
-    
-    func increaseSave() {
-        self.save_count += 1
-    }
-    
-    func decreaseSave() {
-        if self.save_count > 0 {
-            self.save_count -= 1
-        }
-    }
-    
-    func increaseYellow() {
-        if self.yellow_count < 2{
-            self.yellow_count += 1
-        }
-        
-        if self.yellow_count == 2 {
-            self.red_count = 1
-        }
-    }
-    
-    func decreaseYellow() {
-        if self.yellow_count > 0 {
-            self.yellow_count -= 1
-        }
-    }
-    
-    func increaseRed() {
-        if self.red_count == 0{
-            self.red_count = 1
-        }
-        
-    }
-    
-    func decreaseRed() {
-        if self.red_count == 1 {
-            self.red_count = 0
-        }
-    }
-}
-
+var allScoreCountMyTeam:Int = 0
 
 class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate, UIPickerViewDataSource {
     
     var thisGame: Game? = nil
-    private var timerIsRunning: Bool = false
-    private var time: Double = 0.0
-    private var timer: Timer = Timer()
     private var regulationTime:Double = 0.0
-    private var myTeam:Team?
-    private var yourTeam: Team?
+    private var myTeam:Team? = nil
     private var playDataObjectArray:Dictionary<String,PlayDataObject> = [:]
     private var idAndIndexPath:Dictionary<Int,String> = [:]
     private var pickerNameAndNumberArray:[String] = []
     private var selectedMemberByPicker:String = ""
+    
     
     let recordGameInstance = RecordGameModel()
     
@@ -129,7 +22,10 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     
     @IBOutlet weak var dataDisplayTableView: UITableView!
     @IBOutlet weak var teamNameLabel: UILabel!
-
+    
+    
+    @IBOutlet weak var allScoreCountLabel: UILabel!
+    
     @IBOutlet weak var memberSelectPickerView: UIPickerView!
     
     @IBOutlet weak var selectedMemberScoreLabel: UILabel!
@@ -217,8 +113,9 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         super.viewWillAppear(animated)
         
         //delegateの設定
-        memberSelectPickerView.delegate = self
-        memberSelectPickerView.dataSource = self
+        self.memberSelectPickerView.delegate = self
+        self.memberSelectPickerView.dataSource = self
+        self.memberSelectPickerView.frame  = CGRect(x: 190, y: 210, width: 274, height: 121)
         
         if let _thisGame = thisGame {
             myTeam = recordGameInstance.searchTeam(teamId: _thisGame.my_team_id)
@@ -240,7 +137,8 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
             print("failed to game infomation")
         }
     
-        updateTimerDisplay()
+        self.updateTimerDisplay()
+        self.updateAllScoreLabel()
     }
     
     // 列数
@@ -270,11 +168,20 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         return splitComponents[1]
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //delegateの設定
+        self.memberSelectPickerView.delegate = self
+        self.memberSelectPickerView.dataSource = self
+        self.memberSelectPickerView.frame  = CGRect(x: 190, y: 210, width: 274, height: 121)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //delegateの設定
-        memberSelectPickerView.delegate = self
-        memberSelectPickerView.dataSource = self
+        self.memberSelectPickerView.delegate = self
+        self.memberSelectPickerView.dataSource = self
+        self.memberSelectPickerView.frame  = CGRect(x: 190, y: 210, width: 274, height: 121)
         
         if let _thisGame = thisGame {
             myTeam = recordGameInstance.searchTeam(teamId: _thisGame.my_team_id)
@@ -296,7 +203,8 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
             print("failed to game infomation")
         }
     
-        updateTimerDisplay()
+        self.updateTimerDisplay()
+        self.updateAllScoreLabel()
     }
     
     func setTeamInfomation(team:Team?){
@@ -316,13 +224,13 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     
     
     func initializeTimer(regulationTime:Double){
-        self.time = regulationTime * 60
+        time = regulationTime * 60
         timerButton.titleLabel?.adjustsFontSizeToFitWidth = true
     }
     
     func updateTimerDisplay() {
-        let minutes = Int(self.time / 60)
-        let seconds = Int(self.time) % 60
+        let minutes = Int(time / 60)
+        let seconds = Int(time) % 60
         let timerTitle = String(format: "%02d:%02d", minutes, seconds)
         timerButton.setTitle(timerTitle, for: .normal) // ボタンのタイトルを更新する
     }
@@ -330,6 +238,15 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     func addPlayDataObjectArray(indexString:String,tmpPlayData:PlayDataObject)->Int{
         playDataObjectArray[indexString] = tmpPlayData
         return playDataObjectArray.count
+    }
+    
+    func updateAllScoreLabel(){
+        allScoreCountMyTeam = 0
+        for element in self.playDataObjectArray{
+            let value = element.value
+            allScoreCountMyTeam  += value.score_count
+        }
+        self.allScoreCountLabel.text = String(allScoreCountMyTeam) + "-" + String(allScoreCountYourTeam)
     }
     
     func updateSelectedMemberInfomation(){
@@ -366,7 +283,7 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func getCell(atRow row: Int) -> UITableViewCell? {
         let indexPath = IndexPath(row: row, section: 0) // 0はセクション番号です
-        let cell = dataDisplayTableView.cellForRow(at: indexPath)
+        let cell = self.dataDisplayTableView.cellForRow(at: indexPath)
         return cell
     }
     
@@ -440,8 +357,8 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         } else {
             timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] _ in
                 guard let self = self else { return }
-                if (self.time != 0.0){
-                    self.time -= 0.01
+                if (time != 0.0){
+                    time -= 0.01
                 }
                 self.updateTimerDisplay() // タイマーの値を更新して表示を更新する
             }
@@ -465,8 +382,9 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         if let playData = getPlayDataToChange(){
             playData.increaseScore()
         }
-        updateSelectedMemberInfomation()
-        updateDisplayDataTableView()
+        self.updateSelectedMemberInfomation()
+        self.updateDisplayDataTableView()
+        self.updateAllScoreLabel()
 
     }
     
@@ -475,104 +393,105 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
             playData.decreaseScore()
             
         }
-        updateSelectedMemberInfomation()
-        updateDisplayDataTableView()
+        self.updateSelectedMemberInfomation()
+        self.updateDisplayDataTableView()
+        self.updateAllScoreLabel()
     }
     
     @IBAction func shootPlusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
                 playData.increaseShoot()
         }
-        updateSelectedMemberInfomation()
-        updateDisplayDataTableView()
+        self.updateSelectedMemberInfomation()
+        self.updateDisplayDataTableView()
     }
     
     @IBAction func shootMinusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
             playData.decreaseShoot()
         }
-        updateSelectedMemberInfomation()
-        updateDisplayDataTableView()
+        self.updateSelectedMemberInfomation()
+        self.updateDisplayDataTableView()
     }
     
     @IBAction func assistPlusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
             playData.increaseAssist()
         }
-        updateSelectedMemberInfomation()
-        updateDisplayDataTableView()
+        self.updateSelectedMemberInfomation()
+        self.updateDisplayDataTableView()
     }
     
     @IBAction func assistMinusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
             playData.decreaseAssist()
         }
-        updateSelectedMemberInfomation()
-        updateDisplayDataTableView()
+        self.updateSelectedMemberInfomation()
+        self.updateDisplayDataTableView()
     }
     
     @IBAction func missPlusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
             playData.increaseMiss()
         }
-        updateSelectedMemberInfomation()
-        updateDisplayDataTableView()
+        self.updateSelectedMemberInfomation()
+        self.updateDisplayDataTableView()
     }
     
     @IBAction func missMinusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
             playData.decreaseMiss()
         }
-        updateSelectedMemberInfomation()
-        updateDisplayDataTableView()
+        self.updateSelectedMemberInfomation()
+        self.updateDisplayDataTableView()
     }
     
     @IBAction func savePlusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
             playData.increaseSave()
         }
-        updateSelectedMemberInfomation()
-        updateDisplayDataTableView()
+        self.updateSelectedMemberInfomation()
+        self.updateDisplayDataTableView()
     }
     
     @IBAction func saveMinusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
             playData.decreaseSave()
         }
-        updateSelectedMemberInfomation()
-        updateDisplayDataTableView()
+        self.updateSelectedMemberInfomation()
+        self.updateDisplayDataTableView()
     }
     
     @IBAction func yellowPlusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
             playData.increaseYellow()
         }
-        updateSelectedMemberInfomation()
-        updateDisplayDataTableView()
+        self.updateSelectedMemberInfomation()
+        self.updateDisplayDataTableView()
     }
     
     @IBAction func yellowMinusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
             playData.decreaseYellow()
         }
-        updateSelectedMemberInfomation()
-        updateDisplayDataTableView()
+        self.updateSelectedMemberInfomation()
+        self.updateDisplayDataTableView()
     }
     
     @IBAction func redPlusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
             playData.increaseRed()
         }
-        updateSelectedMemberInfomation()
-        updateDisplayDataTableView()
+        self.updateSelectedMemberInfomation()
+        self.updateDisplayDataTableView()
     }
     
     @IBAction func redMinusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
             playData.decreaseRed()
         }
-        updateSelectedMemberInfomation()
-        updateDisplayDataTableView()
+        self.updateSelectedMemberInfomation()
+        self.updateDisplayDataTableView()
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {

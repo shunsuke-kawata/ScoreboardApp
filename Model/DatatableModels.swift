@@ -60,5 +60,110 @@ class PlayData:Object,ObjectKeyIdentifiable{
     @Persisted var created_at:Date = Date() //作成日
     @Persisted var updated_at:Date = Date() //更新日
     
-    
 }
+
+class PlayDataObject {
+    let id: String
+    let number: Int
+    let name: String
+    var score_count: Int
+    var shoot_count: Int
+    var assist_count: Int
+    var miss_count: Int
+    var save_count: Int
+    var yellow_count: Int
+    var red_count: Int
+    
+    init(id: String, number: Int, name: String) {
+        self.id = id
+        self.number = number
+        self.name = name
+        self.score_count = 0
+        self.shoot_count = 0
+        self.assist_count = 0
+        self.miss_count = 0
+        self.save_count = 0
+        self.yellow_count = 0
+        self.red_count = 0
+    }
+    
+    func increaseScore() {
+        self.score_count += 1
+    }
+    
+    func decreaseScore() {
+        if self.score_count > 0 {
+            self.score_count -= 1
+        }
+    }
+    
+    func increaseShoot() {
+        self.shoot_count += 1
+    }
+    
+    func decreaseShoot() {
+        if self.shoot_count > 0 {
+            self.shoot_count -= 1
+        }
+    }
+    
+    func increaseAssist() {
+        self.assist_count += 1
+    }
+    
+    func decreaseAssist() {
+        if self.assist_count > 0 {
+            self.assist_count -= 1
+        }
+    }
+    
+    func increaseMiss() {
+        self.miss_count += 1
+    }
+    
+    func decreaseMiss() {
+         if self.miss_count > 0 {
+             self.miss_count -= 1
+         }
+     }
+    
+    func increaseSave() {
+        self.save_count += 1
+    }
+    
+    func decreaseSave() {
+        if self.save_count > 0 {
+            self.save_count -= 1
+        }
+    }
+    
+    func increaseYellow() {
+        if self.yellow_count < 2{
+            self.yellow_count += 1
+        }
+        
+        if self.yellow_count == 2 {
+            self.red_count = 1
+        }
+    }
+    
+    func decreaseYellow() {
+        if self.yellow_count > 0 {
+            self.yellow_count -= 1
+        }
+    }
+    
+    func increaseRed() {
+        if self.red_count == 0{
+            self.red_count = 1
+        }
+        
+    }
+    
+    func decreaseRed() {
+        if self.red_count == 1 {
+            self.red_count = 0
+        }
+    }
+}
+

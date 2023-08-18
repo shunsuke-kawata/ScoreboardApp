@@ -14,8 +14,6 @@ let regulationTimeArray :[String] = ["15","20","25","30","35","40","45","50"]
 
 class RegisterNewGameController:UIViewController{
     
-    
-    
     var teamsArray:[String] = []
     
     let showTeamsInstance = ShowTeamsModel()
