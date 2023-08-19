@@ -39,7 +39,6 @@ class RecordGameModel{
             try! realm.write {
                 realm.add(playData)
             }
-            print("added my")
         }
         
         for yourPlayData in yourPlayDataObjectArray{
@@ -58,7 +57,6 @@ class RecordGameModel{
             try! realm.write {
                 realm.add(playData)
             }
-            print("added your")
         }
         
         for myScoreData in myTeamScoreDataArray{
@@ -72,7 +70,6 @@ class RecordGameModel{
             try! realm.write {
                 game.score_data.append(scoreData)
             }
-            print("added myScore")
         }
         
         for yourScoreData in yourTeamScoreDataArray{
@@ -87,7 +84,6 @@ class RecordGameModel{
                 game.score_data.append(scoreData)
             }
             
-            print("added yourScore")
         }
         
     }
