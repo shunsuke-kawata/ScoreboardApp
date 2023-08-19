@@ -8,14 +8,17 @@
 import Foundation
 import UIKit
 
+let halfArray:[String] = ["前半","後半"]
 //ゲームの登録に使用する変数
 var time: Double = 0.0
 var timerAIsRunning:Bool = false
 var timerBIsRunning:Bool = false
+var selectedHalf = halfArray[0]
 var myTeamScoreDataArray:[ScoreDataObject] = []
 var yourTeamScoreDataArray:[ScoreDataObject] = []
 var myPlayDataObjectArray:Dictionary<String,PlayDataObject> = [:]
 var yourPlayDataObjectArray:Dictionary<String,PlayDataObject> = [:]
+var registeredGame: Game? = nil
 var myTeam:Team? = nil
 var yourTeam:Team? = nil
 var myIdAndIndexPath:Dictionary<Int,String> = [:]
@@ -29,7 +32,7 @@ class RecordPageViewController:UIPageViewController{
     // PageViewで表示するViewControllerを格納する配列を定義
     private var controllers: [UIViewController] = []
     
-    var registeredGame: Game? = nil
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -38,9 +38,10 @@
                                     <action selector="timerButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="BOr-xu-9Kr"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ssz-tO-sFu" userLabel="teamname">
-                                <rect key="frame" x="190" y="107" width="299" height="46"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ssz-tO-sFu" userLabel="teamname">
+                                <rect key="frame" x="190" y="113" width="300" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -534,6 +535,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TF6-kU-51p">
+                                <rect key="frame" x="511" y="55" width="83" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button" titleAlignment="center"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfq-Zf-W2z">
+                                <rect key="frame" x="1098" y="70" width="60" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="linkColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="記録"/>
+                                <connections>
+                                    <action selector="submitPlayDataButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="cAh-Qo-Et1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -544,6 +562,7 @@
                         <outlet property="assistPlusButton" destination="MV3-te-Vi9" id="vTB-At-TrA"/>
                         <outlet property="backButton" destination="A4W-ok-Vfm" id="0oz-S1-lr6"/>
                         <outlet property="dataDisplayTableView" destination="baw-wk-3hy" id="gWo-UF-LrZ"/>
+                        <outlet property="halfSelectButton" destination="TF6-kU-51p" id="4B1-Ar-C1g"/>
                         <outlet property="memberSelectPickerView" destination="FG3-kv-XLk" id="9OH-3y-I20"/>
                         <outlet property="missMinusButton" destination="YQO-zL-d2V" id="rdw-18-orS"/>
                         <outlet property="missPlusButton" destination="9Ph-Oe-e4P" id="8Qj-L2-i6I"/>
@@ -564,6 +583,7 @@
                         <outlet property="selectedMemberYellowLabel" destination="QZ2-vi-HUd" id="qXN-fR-Ykm"/>
                         <outlet property="shootMinusButton" destination="MGW-v3-XAm" id="Di2-LP-pnd"/>
                         <outlet property="shootPlusButton" destination="QyB-gp-8dL" id="aEy-0h-hnv"/>
+                        <outlet property="submitPlayDataButton" destination="pfq-Zf-W2z" id="Ml2-am-QE1"/>
                         <outlet property="teamNameLabel" destination="Ssz-tO-sFu" id="qGv-Xb-Lsd"/>
                         <outlet property="timerButton" destination="2Ig-4C-58k" id="4Yv-X5-kHH"/>
                         <outlet property="yellowMinusButton" destination="tkk-rv-7v5" id="XfL-Mc-tC6"/>
@@ -605,9 +625,10 @@
                                     <action selector="timerButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="ZO6-Nl-3HZ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fp1-cO-Qt6" userLabel="teamname">
-                                <rect key="frame" x="200" y="103" width="299" height="46"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fp1-cO-Qt6" userLabel="teamname">
+                                <rect key="frame" x="200" y="113" width="300" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1116,6 +1137,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZcQ-is-kkA">
+                                <rect key="frame" x="511" y="55" width="83" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button" titleAlignment="center"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIQ-mA-pTD">
+                                <rect key="frame" x="1098" y="70" width="60" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="linkColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="記録"/>
+                                <connections>
+                                    <action selector="submitPlayDataButtonTapped:" destination="O6R-jP-x5K" eventType="touchUpInside" id="k0j-K3-0LS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ge7-pw-dPn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1126,6 +1164,7 @@
                         <outlet property="assistPlusButton" destination="DaO-tU-Xte" id="3gN-g6-xdu"/>
                         <outlet property="backButton" destination="ANS-st-QOE" id="jdi-0C-XS6"/>
                         <outlet property="dataDisplayTableView" destination="5Dc-8Q-rdC" id="XCD-gL-lva"/>
+                        <outlet property="halfSelectButton" destination="ZcQ-is-kkA" id="RLM-nV-wVI"/>
                         <outlet property="memberSelectPickerView" destination="lNa-r9-25D" id="gqT-mz-uRZ"/>
                         <outlet property="missMinusButton" destination="Xri-Vf-UhR" id="EcM-8t-TXW"/>
                         <outlet property="missPlusButton" destination="ETJ-iS-ZHn" id="Nvs-2h-bXj"/>
@@ -1146,6 +1185,7 @@
                         <outlet property="selectedMemberYellowLabel" destination="Ipg-GO-nnY" id="w7F-Z8-5TJ"/>
                         <outlet property="shootMinusButton" destination="Mew-BU-YDn" id="P3q-X5-Dc6"/>
                         <outlet property="shootPlusButton" destination="y3Q-pH-vk5" id="Sy2-mx-5zu"/>
+                        <outlet property="submitPlayDataButton" destination="sIQ-mA-pTD" id="U7F-gW-tQ1"/>
                         <outlet property="teamNameLabel" destination="Fp1-cO-Qt6" id="PrY-eG-FoQ"/>
                         <outlet property="timerButton" destination="JR1-O4-wsz" id="hZU-wy-kxX"/>
                         <outlet property="yellowMinusButton" destination="Wnw-Oe-byf" id="Tnj-dQ-yGm"/>
@@ -1154,7 +1194,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3L-P3-fgu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="577" y="4"/>
+            <point key="canvasLocation" x="609" y="4"/>
         </scene>
         <!--Record Page View Controller-->
         <scene sceneID="JCl-ag-DzD">
@@ -1170,8 +1210,14 @@
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -14,9 +14,81 @@ class RecordGameModel{
     func searchTeam(teamId:String)->Team?{
         let teamTable = realm.objects(Team.self)
         if let resultTeam = teamTable.where({ $0.id == teamId}).first  {
+            print(resultTeam.name)
             return resultTeam
         }else{
             return nil
         }
+    }
+    
+    func registerNewGame(game:Game,myTeamScoreDataArray:[ScoreDataObject],yourTeamScoreDataArray:[ScoreDataObject],myPlayDataObjectArray:Dictionary<String,PlayDataObject>,yourPlayDataObjectArray:Dictionary<String,PlayDataObject>){
+        
+        for myPlayData in myPlayDataObjectArray{
+            let playData = PlayData()
+            let value = myPlayData.value
+            playData.game_id = game.id
+            playData.member_id = myPlayData.key
+            playData.score_count = value.score_count
+            playData.shoot_count = value.shoot_count
+            playData.assist_count = value.assist_count
+            playData.miss_count = value.miss_count
+            playData.save_count = value.save_count
+            playData.yellow_count = value.yellow_count
+            playData.red_count = value.red_count
+            
+            try! realm.write {
+                realm.add(playData)
+            }
+            print("added my")
+        }
+        
+        for yourPlayData in yourPlayDataObjectArray{
+            let playData = PlayData()
+            let value = yourPlayData.value
+            playData.game_id = game.id
+            playData.member_id = yourPlayData.key
+            playData.score_count = value.score_count
+            playData.shoot_count = value.shoot_count
+            playData.assist_count = value.assist_count
+            playData.miss_count = value.miss_count
+            playData.save_count = value.save_count
+            playData.yellow_count = value.yellow_count
+            playData.red_count = value.red_count
+            
+            try! realm.write {
+                realm.add(playData)
+            }
+            print("added your")
+        }
+        
+        for myScoreData in myTeamScoreDataArray{
+            let scoreData = ScoreData()
+            scoreData.member_id = myScoreData.id
+            scoreData.game_id = game.id
+            scoreData.time = myScoreData.time
+            scoreData.half_flag = myScoreData.halfFlag
+            
+            //条件を満たしたら配列に追加する
+            try! realm.write {
+                game.score_data.append(scoreData)
+            }
+            print("added myScore")
+        }
+        
+        for yourScoreData in yourTeamScoreDataArray{
+            let scoreData = ScoreData()
+            scoreData.member_id = yourScoreData.id
+            scoreData.game_id = game.id
+            scoreData.time = yourScoreData.time
+            scoreData.half_flag = yourScoreData.halfFlag
+            
+            //条件を満たしたら配列に追加する
+            try! realm.write {
+                game.score_data.append(scoreData)
+            }
+            
+            print("added yourScore")
+        }
+        
     }
 }

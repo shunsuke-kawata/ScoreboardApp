@@ -101,7 +101,7 @@ class RegisterNewGameController:UIViewController{
             //navigationControllerクラスがない場合はメソッドそのものが呼び出されない
             
             let recordGameController = storyboard.instantiateViewController(withIdentifier: "RecordPageViewController") as! RecordPageViewController
-            recordGameController.registeredGame = result.game
+            registeredGame = result.game
             self.navigationController?.pushViewController(recordGameController, animated: true)
         }else{
             print("failed to register game")

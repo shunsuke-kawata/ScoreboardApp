@@ -30,6 +30,8 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     
     @IBOutlet weak var allScoreCountLabel: UILabel!
     
+    @IBOutlet weak var halfSelectButton: UIButton!
+    
     @IBOutlet weak var memberSelectPickerView: UIPickerView!
     
     @IBOutlet weak var selectedMemberScoreLabel: UILabel!
@@ -62,6 +64,8 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     
     @IBOutlet weak var redPlusButton: UIButton!
     @IBOutlet weak var redMinusButton: UIButton!
+    
+    @IBOutlet weak var submitPlayDataButton: UIButton!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let _yourTeam = yourTeam {
@@ -118,37 +122,35 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        thisGame = registeredGame
+        thisGame = registeredGame
+        
         print(timerAIsRunning,timerBIsRunning)
         if (timerAIsRunning){
             print("executed timer flagB")
             timerA.invalidate()
             timerAIsRunning = false
-//            アニメーション時間の補正
-//            time -= 0.5
+            //            アニメーション時間の補正
+            //            time -= 0.5
             watchTimerB()
             updateTimerBIsRunning(value: true)
             
         }
-
         //delegateの設定
         self.memberSelectPickerView.delegate = self
         self.memberSelectPickerView.dataSource = self
         self.memberSelectPickerView.frame  = CGRect(x: 190, y: 210, width: 274, height: 121)
         
         if let _thisGame = thisGame {
-            
             if let _yourTeam = yourTeam {
                 setTeamInfomation(team: _yourTeam)
             }
-            
-//            yourTeam = recordGameInstance.searchTeam(teamId: _thisGame.your_team_id)!
             regulationTime = Double(_thisGame.regulation_time)
-//            initializeTimer(regulationTime: regulationTime)
-            
         }else{
             print("failed to game infomation")
         }
         self.updateAllScoreLabel()
+        self.configureHalfMenu()
     }
     
     // 列数
@@ -178,43 +180,47 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
         return splitComponents[1]
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        
-        print(timerAIsRunning,timerBIsRunning)
-        
-        //delegateの設定
-        self.memberSelectPickerView.delegate = self
-        self.memberSelectPickerView.dataSource = self
-        self.memberSelectPickerView.frame  = CGRect(x: 190, y: 210, width: 274, height: 121)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        thisGame = registeredGame
+        
         //delegateの設定
         self.memberSelectPickerView.delegate = self
         self.memberSelectPickerView.dataSource = self
         self.memberSelectPickerView.frame  = CGRect(x: 190, y: 210, width: 274, height: 121)
         
         if let _thisGame = thisGame {
-            yourTeam = recordGameInstance.searchTeam(teamId: _thisGame.your_team_id)
             
             if let _yourTeam = yourTeam {
                 setTeamInfomation(team: _yourTeam)
             }
-            
-//            yourTeam = recordGameInstance.searchTeam(teamId: _thisGame.your_team_id)!
             regulationTime = Double(_thisGame.regulation_time)
-//            initializeTimer(regulationTime: regulationTime)
-            
         }else{
             print("failed to game infomation")
         }
     
         self.updateTimerDisplay()
         self.updateAllScoreLabel()
+        self.configureHalfMenu()
     }
+    
+    private func configureHalfMenu(){
+            let actions = halfArray
+                .compactMap { i in
+                    UIAction(
+                        title:i,
+                        state:i == selectedHalf ? .on : .off,
+                        handler: { _ in
+                            selectedHalf = i
+                            self.configureHalfMenu()
+                        }
+                    )
+                }
+            halfSelectButton.menu = UIMenu(title: "", options: .displayInline, children: actions)
+            halfSelectButton.showsMenuAsPrimaryAction = true
+            halfSelectButton.setTitle(selectedHalf, for: .normal)
+        }
     
     func setTeamInfomation(team:Team?){
         
@@ -402,11 +408,23 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     }
     
     
+    @IBAction func submitPlayDataButtonTapped(_ sender: Any) {
+        if let _thisGame = thisGame{
+
+            let _ = recordGameInstance.searchTeam(teamId: _thisGame.my_team_id)
+            recordGameInstance.registerNewGame(game: _thisGame, myTeamScoreDataArray: myTeamScoreDataArray, yourTeamScoreDataArray: yourTeamScoreDataArray, myPlayDataObjectArray: myPlayDataObjectArray, yourPlayDataObjectArray: yourPlayDataObjectArray)
+            
+        }
+    }
+    
     @IBAction func scorePlusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange(){
-            playData.increaseScore()
-            addYourScoreDataArray(playData: playData)
-            print(yourTeamScoreDataArray)
+            if playData.score_count<playData.shoot_count{
+                playData.increaseScore()
+                addYourScoreDataArray(playData: playData)
+                print(yourTeamScoreDataArray)
+            }
+            
         }
         self.updateSelectedMemberInfomation()
         self.updateDisplayDataTableView()
@@ -436,7 +454,9 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     
     @IBAction func shootMinusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
-            playData.decreaseShoot()
+            if playData.score_count < playData.shoot_count {
+                playData.decreaseShoot()
+            }
         }
         self.updateSelectedMemberInfomation()
         self.updateDisplayDataTableView()

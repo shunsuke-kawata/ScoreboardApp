@@ -48,8 +48,9 @@ class Game:Object,ObjectKeyIdentifiable{
 }
 
 class ScoreData:Object,ObjectKeyIdentifiable{
-    @Persisted var id:String
+    @Persisted(primaryKey: true) var id:String = UUID().uuidString  //uuid
     @Persisted var member_id:String
+    @Persisted var game_id:String
     @Persisted var time:Double
     @Persisted var half_flag:Int
 }

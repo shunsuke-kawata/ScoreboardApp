@@ -22,6 +22,8 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     
     @IBOutlet weak var allScoreCountLabel: UILabel!
     
+    @IBOutlet weak var halfSelectButton: UIButton!
+    
     @IBOutlet weak var memberSelectPickerView: UIPickerView!
     
     @IBOutlet weak var selectedMemberScoreLabel: UILabel!
@@ -54,6 +56,8 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     
     @IBOutlet weak var redPlusButton: UIButton!
     @IBOutlet weak var redMinusButton: UIButton!
+    
+    @IBOutlet weak var submitPlayDataButton: UIButton!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let _myTeam = myTeam {
@@ -108,6 +112,8 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        thisGame = registeredGame
+        
         print(timerAIsRunning,timerBIsRunning)
         if (timerBIsRunning){
             print("executed timer flagA")
@@ -119,16 +125,12 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
             updateTimerAIsRunning(value: true)
             
         }
-        print(timerAIsRunning,timerBIsRunning)
-                
         //delegateの設定
         self.memberSelectPickerView.delegate = self
         self.memberSelectPickerView.dataSource = self
         self.memberSelectPickerView.frame  = CGRect(x: 190, y: 210, width: 274, height: 121)
         
         if let _thisGame = thisGame {
-            myTeam = recordGameInstance.searchTeam(teamId: _thisGame.my_team_id)
-            
             if let _myTeam = myTeam {
                 setTeamInfomation(team: _myTeam)
             }
@@ -142,6 +144,7 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         }
     
         self.updateAllScoreLabel()
+        self.configureHalfMenu()
     }
     
     // 列数
@@ -171,26 +174,16 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         return splitComponents[1]
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        
-        //delegateの設定
-        self.memberSelectPickerView.delegate = self
-        self.memberSelectPickerView.dataSource = self
-        self.memberSelectPickerView.frame  = CGRect(x: 190, y: 210, width: 274, height: 121)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        thisGame = registeredGame
         //delegateの設定
         self.memberSelectPickerView.delegate = self
         self.memberSelectPickerView.dataSource = self
         self.memberSelectPickerView.frame  = CGRect(x: 190, y: 210, width: 274, height: 121)
         
         if let _thisGame = thisGame {
-            myTeam = recordGameInstance.searchTeam(teamId: _thisGame.my_team_id)
-            
             if let _myTeam = myTeam {
                 setTeamInfomation(team: _myTeam)
             }
@@ -205,7 +198,25 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     
         self.updateTimerDisplay()
         self.updateAllScoreLabel()
+        self.configureHalfMenu()
     }
+    
+    private func configureHalfMenu(){
+            let actions = halfArray
+                .compactMap { i in
+                    UIAction(
+                        title:i,
+                        state:i == selectedHalf ? .on : .off,
+                        handler: { _ in
+                            selectedHalf = i
+                            self.configureHalfMenu()
+                        }
+                    )
+                }
+            halfSelectButton.menu = UIMenu(title: "", options: .displayInline, children: actions)
+            halfSelectButton.showsMenuAsPrimaryAction = true
+            halfSelectButton.setTitle(selectedHalf, for: .normal)
+        }
     
     func setTeamInfomation(team:Team?){
         
@@ -404,12 +415,26 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         watchTimerA()
     }
     
+    @IBAction func submitPlayDataButtonTapped(_ sender: Any) {
+        
+        if let _thisGame = thisGame{
+
+            let _ = recordGameInstance.searchTeam(teamId: _thisGame.my_team_id)
+            recordGameInstance.registerNewGame(game: _thisGame, myTeamScoreDataArray: myTeamScoreDataArray, yourTeamScoreDataArray: yourTeamScoreDataArray, myPlayDataObjectArray: myPlayDataObjectArray, yourPlayDataObjectArray: yourPlayDataObjectArray)
+            
+        }
+        
+    }
+    
     
     @IBAction func scorePlusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange(){
-            playData.increaseScore()
-            addMyScoreDataArray(playData:playData)
-            print(myTeamScoreDataArray)
+            if playData.score_count < playData.shoot_count{
+                playData.increaseScore()
+                addMyScoreDataArray(playData:playData)
+                print(myTeamScoreDataArray)
+            }
+            
         }
         self.updateSelectedMemberInfomation()
         self.updateDisplayDataTableView()
@@ -438,7 +463,9 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     
     @IBAction func shootMinusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
-            playData.decreaseShoot()
+            if playData.score_count < playData.shoot_count {
+                playData.decreaseShoot()
+            }
         }
         self.updateSelectedMemberInfomation()
         self.updateDisplayDataTableView()
