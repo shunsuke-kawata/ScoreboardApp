@@ -8,18 +8,29 @@
 import Foundation
 import UIKit
 
-var isSwiped:Bool = false
-
+//ゲームの登録に使用する変数
 var time: Double = 0.0
 var timerAIsRunning:Bool = false
 var timerBIsRunning:Bool = false
+var myTeamScoreDataArray:[ScoreDataObject] = []
+var yourTeamScoreDataArray:[ScoreDataObject] = []
+var myPlayDataObjectArray:Dictionary<String,PlayDataObject> = [:]
+var yourPlayDataObjectArray:Dictionary<String,PlayDataObject> = [:]
+var myTeam:Team? = nil
+var yourTeam:Team? = nil
+var myIdAndIndexPath:Dictionary<Int,String> = [:]
+var yourIdAndIndexPath:Dictionary<Int,String> = [:]
+
 
 class RecordPageViewController:UIPageViewController{
+    
+    let recordGameInstance = RecordGameModel()
     
     // PageViewで表示するViewControllerを格納する配列を定義
     private var controllers: [UIViewController] = []
     
     var registeredGame: Game? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initPageViewController()
@@ -37,8 +48,26 @@ class RecordPageViewController:UIPageViewController{
         //試合時間を初期化
         if let _registeredGame = registeredGame {
             time = Double(_registeredGame.regulation_time)*60
-        }
+            myTeam = recordGameInstance.searchTeam(teamId: _registeredGame.my_team_id)
+            yourTeam = recordGameInstance.searchTeam(teamId: _registeredGame.your_team_id)
+            if let _myTeam = myTeam {
+                for (index,member) in _myTeam.members.enumerated(){
+                    let tmpPlayData: PlayDataObject = PlayDataObject(id: member.id, number: member.number, name: member.name)
+                    myIdAndIndexPath[index] = member.id
+                    let _ = addMyPlayDataObjectArray(indexString: member.id, tmpPlayData: tmpPlayData)
+                }
+            }
+            
+            if let _yourTeam = yourTeam {
+                for (index,member) in _yourTeam.members.enumerated(){
+                    let tmpPlayData: PlayDataObject = PlayDataObject(id: member.id, number: member.number, name: member.name)
+                    yourIdAndIndexPath[index] = member.id
+                    let _ = addYourPlayDataObjectArray(indexString: member.id, tmpPlayData: tmpPlayData)
+                }
+//                setTeamInfomation(team: _yourTeam)
+            }
 
+        }
         // インスタンス化したViewControllerを配列に保存する
         self.controllers = [ recordTeamA,recordTeamB ]
 
@@ -49,10 +78,16 @@ class RecordPageViewController:UIPageViewController{
         self.dataSource = self
     }
     
+    func addMyPlayDataObjectArray(indexString:String,tmpPlayData:PlayDataObject)->Int{
+        myPlayDataObjectArray[indexString] = tmpPlayData
+        return myPlayDataObjectArray.count
+    }
     
+    func addYourPlayDataObjectArray(indexString:String,tmpPlayData:PlayDataObject)->Int{
+        yourPlayDataObjectArray[indexString] = tmpPlayData
+        return yourPlayDataObjectArray.count
+    }
     
-    
-
     
 }
 

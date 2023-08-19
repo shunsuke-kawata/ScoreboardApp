@@ -8,12 +8,8 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     
     var thisGame: Game? = nil
     private var regulationTime:Double = 0.0
-    private var myTeam:Team? = nil
-    private var playDataObjectArray:Dictionary<String,PlayDataObject> = [:]
-    private var idAndIndexPath:Dictionary<Int,String> = [:]
     private var pickerNameAndNumberArray:[String] = []
     private var selectedMemberByPicker:String = ""
-    
     
     let recordGameInstance = RecordGameModel()
     
@@ -23,7 +19,6 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     
     @IBOutlet weak var dataDisplayTableView: UITableView!
     @IBOutlet weak var teamNameLabel: UILabel!
-    
     
     @IBOutlet weak var allScoreCountLabel: UILabel!
     
@@ -74,45 +69,57 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         // セルを取得する
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "protoDisplayData", for: indexPath)
        
-        let indexString = idAndIndexPath[indexPath.row]!
+        let indexString = myIdAndIndexPath[indexPath.row]!
         //indexPath.rowの番号と追加されたictのindexが同じ番号であると言える
         let numberLabel = cell.contentView.viewWithTag(1) as!UILabel
-        numberLabel.text =  String(playDataObjectArray[indexString]!.number)
+        numberLabel.text =  String(myPlayDataObjectArray[indexString]!.number)
         let nameLabel = cell.contentView.viewWithTag(2) as!UILabel
-        nameLabel.text = playDataObjectArray[indexString]!.name
+        nameLabel.text = myPlayDataObjectArray[indexString]!.name
         let scoreLabel = cell.contentView.viewWithTag(3) as!UILabel
-        scoreLabel.text = String(playDataObjectArray[indexString]!.score_count)
+        scoreLabel.text = String(myPlayDataObjectArray[indexString]!.score_count)
         let shootLabel = cell.contentView.viewWithTag(4) as!UILabel
-        shootLabel.text = String(playDataObjectArray[indexString]!.shoot_count)
+        shootLabel.text = String(myPlayDataObjectArray[indexString]!.shoot_count)
         let assistLabel = cell.contentView.viewWithTag(5) as!UILabel
-        assistLabel.text = String(playDataObjectArray[indexString]!.assist_count)
+        assistLabel.text = String(myPlayDataObjectArray[indexString]!.assist_count)
         
         let scoreLateLabel = cell.contentView.viewWithTag(6) as!UILabel
-        if (playDataObjectArray[indexString]!.score_count == 0){
-            scoreLateLabel.text = String(Double(playDataObjectArray[indexString]!.score_count)) + "%"
+        if (myPlayDataObjectArray[indexString]!.score_count == 0){
+            scoreLateLabel.text = String(Double(myPlayDataObjectArray[indexString]!.score_count)) + "%"
         }
-        else if (playDataObjectArray[indexString]!.shoot_count == 0){
+        else if (myPlayDataObjectArray[indexString]!.shoot_count == 0){
             selectedMemberScoreLateLabel.text  = "error"
         }else{
-            let scoreLate = round(Double(playDataObjectArray[indexString]!.score_count)/Double(playDataObjectArray[indexString]!.shoot_count)*100)
+            let scoreLate = round(Double(myPlayDataObjectArray[indexString]!.score_count)/Double(myPlayDataObjectArray[indexString]!.shoot_count)*100)
             selectedMemberScoreLateLabel.text = String(scoreLate) + "%"
         }
 
         let missLabel = cell.contentView.viewWithTag(7) as!UILabel
-        missLabel.text = String(playDataObjectArray[indexString]!.miss_count)
+        missLabel.text = String(myPlayDataObjectArray[indexString]!.miss_count)
         let saveLabel = cell.contentView.viewWithTag(8) as!UILabel
-        saveLabel.text = String(playDataObjectArray[indexString]!.save_count)
+        saveLabel.text = String(myPlayDataObjectArray[indexString]!.save_count)
         let yellowLabel = cell.contentView.viewWithTag(9) as!UILabel
-        yellowLabel.text = String(playDataObjectArray[indexString]!.yellow_count)
+        yellowLabel.text = String(myPlayDataObjectArray[indexString]!.yellow_count)
         let redLabel = cell.contentView.viewWithTag(10) as!UILabel
-        redLabel.text = String(playDataObjectArray[indexString]!.red_count)
+        redLabel.text = String(myPlayDataObjectArray[indexString]!.red_count)
         
         return cell
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
+        
+        print(timerAIsRunning,timerBIsRunning)
+        if (timerBIsRunning){
+            print("executed timer flagA")
+            timerB.invalidate()
+            timerBIsRunning = false
+            //            アニメーション時間の補正
+            //            time -= 0.5
+            watchTimerA()
+            updateTimerAIsRunning(value: true)
+            
+        }
+        print(timerAIsRunning,timerBIsRunning)
                 
         //delegateの設定
         self.memberSelectPickerView.delegate = self
@@ -123,11 +130,6 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
             myTeam = recordGameInstance.searchTeam(teamId: _thisGame.my_team_id)
             
             if let _myTeam = myTeam {
-                for (index,member) in _myTeam.members.enumerated(){
-                    let tmpPlayData: PlayDataObject = PlayDataObject(id: member.id, number: member.number, name: member.name)
-                    idAndIndexPath[index] = member.id
-                    let _ = addPlayDataObjectArray(indexString: member.id, tmpPlayData: tmpPlayData)
-                }
                 setTeamInfomation(team: _myTeam)
             }
             
@@ -139,7 +141,6 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
             print("failed to game infomation")
         }
     
-        self.updateTimerDisplay()
         self.updateAllScoreLabel()
     }
     
@@ -173,18 +174,7 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print(timerAIsRunning,timerBIsRunning)
-        if (timerBIsRunning){
-            print("executed timer flagA")
-            timerB.invalidate()
-            timerBIsRunning = false
-            //            アニメーション時間の補正
-            //            time -= 0.5
-            watchTimerA()
-            updateTimerAIsRunning(value: true)
-            
-        }
-        print(timerAIsRunning,timerBIsRunning)
+        
         //delegateの設定
         self.memberSelectPickerView.delegate = self
         self.memberSelectPickerView.dataSource = self
@@ -202,11 +192,6 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
             myTeam = recordGameInstance.searchTeam(teamId: _thisGame.my_team_id)
             
             if let _myTeam = myTeam {
-                for (index,member) in _myTeam.members.enumerated(){
-                    let tmpPlayData: PlayDataObject = PlayDataObject(id: member.id, number: member.number, name: member.name)
-                    idAndIndexPath[index] = member.id
-                    let _ = addPlayDataObjectArray(indexString: member.id, tmpPlayData: tmpPlayData)
-                }
                 setTeamInfomation(team: _myTeam)
             }
             
@@ -255,17 +240,18 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     func addPlayDataObjectArray(indexString:String,tmpPlayData:PlayDataObject)->Int{
-        playDataObjectArray[indexString] = tmpPlayData
-        return playDataObjectArray.count
+        myPlayDataObjectArray[indexString] = tmpPlayData
+        return myPlayDataObjectArray.count
     }
     
     func updateAllScoreLabel(){
         allScoreCountMyTeam = 0
-        for element in self.playDataObjectArray{
+        for element in myPlayDataObjectArray{
             let value = element.value
             allScoreCountMyTeam  += value.score_count
         }
         self.allScoreCountLabel.text = String(allScoreCountMyTeam) + "-" + String(allScoreCountYourTeam)
+        print(allScoreCountMyTeam)
     }
     
     func updateSelectedMemberInfomation(){
@@ -273,7 +259,7 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         
         //背番号を取得
         if let idString = splitComponents.first {
-            if let selectedMemberDatum = playDataObjectArray[idString] {
+            if let selectedMemberDatum = myPlayDataObjectArray[idString] {
                 selectedMemberScoreLabel.text = String(selectedMemberDatum.score_count)
                 selectedMemberShootLabel.text = String(selectedMemberDatum.shoot_count)
                 selectedMemberAssistLabel.text = String(selectedMemberDatum.assist_count)
@@ -326,14 +312,11 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
 
                         let scoreLateLabel = cell.contentView.viewWithTag(6) as!UILabel
                         if (data.score_count == 0){
-                            print(1)
                             scoreLateLabel.text = String(Double(data.score_count)) + "%"
                         }
                         else if (data.shoot_count == 0){
-                            print(2)
                             scoreLateLabel.text  = "error"
                         }else{
-                            print(3)
                             let scoreLate = round(Double(data.score_count)/Double(data.shoot_count)*100)
                             scoreLateLabel.text = String(scoreLate) + "%"
                         }
@@ -363,10 +346,15 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     func watchTimerA(){
-        if timerAIsRunning {
+        if(timerBIsRunning){
+            timerB.invalidate()
+        }
+        if (timerAIsRunning) {
+            print("true is called")
             timerAIsRunning = false
             timerA.invalidate()
         } else {
+            print("false is called")
             timerA = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [weak self] _ in
                 guard let self = self else { return }
                 if (time != 0.0){
@@ -379,19 +367,8 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         }
     }
     
-    @IBAction func resetTimerButtonTapped(_ sender: Any) {
-        timerAIsRunning = false
-        initializeTimer(regulationTime: regulationTime)
-        updateTimerDisplay()
-    }
-    
-    @IBAction func timerButtonTapped(_ sender: Any) {
-        watchTimerA()
-    }
-    
-  
     func getPlayDataToChange()->PlayDataObject?{
-        if let idString = selectedMemberByPicker.components(separatedBy: ":").first, let returnValue = playDataObjectArray[idString]{
+        if let idString = selectedMemberByPicker.components(separatedBy: ":").first, let returnValue = myPlayDataObjectArray[idString]{
             return returnValue
         }else{
             print("break")
@@ -399,10 +376,40 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         }
     }
     
+    func addMyScoreDataArray(playData:PlayDataObject){
+        let scoreData = ScoreDataObject(id: playData.id, time: Double(time), halfFlag: 1)
+        myTeamScoreDataArray.append(scoreData)
+    }
+    
+    func popMyScoreDataArray(playData:PlayDataObject){
+        for (index,scoreData) in myTeamScoreDataArray.reversed().enumerated(){
+            if (scoreData.id == playData.id){
+                //その人の最新の得点データを削除する
+                myTeamScoreDataArray.remove(at: index)
+                break
+            }
+        }
+    }
+    
+    @IBAction func resetTimerButtonTapped(_ sender: Any) {
+        timerAIsRunning = false
+        timerBIsRunning = false
+        timerA.invalidate()
+        timerB.invalidate()
+        initializeTimer(regulationTime: regulationTime)
+        self.updateTimerDisplay()
+    }
+    
+    @IBAction func timerButtonTapped(_ sender: Any) {
+        watchTimerA()
+    }
+    
     
     @IBAction func scorePlusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange(){
             playData.increaseScore()
+            addMyScoreDataArray(playData:playData)
+            print(myTeamScoreDataArray)
         }
         self.updateSelectedMemberInfomation()
         self.updateDisplayDataTableView()
@@ -413,7 +420,8 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBAction func scoreMinusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
             playData.decreaseScore()
-            
+            popMyScoreDataArray(playData: playData)
+            print(myTeamScoreDataArray)
         }
         self.updateSelectedMemberInfomation()
         self.updateDisplayDataTableView()

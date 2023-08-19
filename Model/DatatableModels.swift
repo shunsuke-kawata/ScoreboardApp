@@ -41,9 +41,17 @@ class Game:Object,ObjectKeyIdentifiable{
     @Persisted var my_team_id:String //自分のチームのid
     @Persisted var your_team_id:String//相手のチームのid
     @Persisted var regulation_time:Int //試合時間
+    @Persisted var score_data:List = RealmSwift.List<ScoreData>()
     
     @Persisted var created_at:Date = Date() //作成日
     @Persisted var updated_at:Date = Date() //更新日
+}
+
+class ScoreData:Object,ObjectKeyIdentifiable{
+    @Persisted var id:String
+    @Persisted var member_id:String
+    @Persisted var time:Double
+    @Persisted var half_flag:Int
 }
 
 class PlayData:Object,ObjectKeyIdentifiable{
@@ -62,6 +70,20 @@ class PlayData:Object,ObjectKeyIdentifiable{
     
 }
 
+//得点の時刻と選手を記録するオブジェクト
+class ScoreDataObject{
+    let id:String
+    let time:Double
+    let halfFlag:Int
+    
+    init(id: String, time: Double, halfFlag: Int) {
+        self.id = id
+        self.time = time
+        self.halfFlag = halfFlag
+    }
+}
+
+//プレイデータを選手ごとに記録するオブジェクト
 class PlayDataObject {
     let id: String
     let number: Int
