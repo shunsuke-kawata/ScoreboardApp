@@ -21,7 +21,6 @@ class ShowResultModel{
         if let resultGame = realm.objects(Game.self).where({ $0.id == gameId}).first {
             resultMyTeam = realm.objects(Team.self).where({$0.id == resultGame.my_team_id}).first
             resultYourTeam  = realm.objects(Team.self).where({$0.id == resultGame.your_team_id}).first
-            print(resultMyTeam,resultYourTeam)
             
             if (resultMyTeam != nil){
                 for member in resultMyTeam!.members {
@@ -58,7 +57,17 @@ class ShowResultModel{
         return tmp
     }
     
-    func compileDisplsyScoreData(){
+    func fetchDisplayScoreData(gameId:String)->[ResultScoreDataObject]{
+        var resultScoreDataObjectArray:[ResultScoreDataObject] = []
+        let resultScoreData = realm.objects(ScoreData.self).filter({ $0.game_id == gameId})
         
+        for scoreData in resultScoreData {
+            if let resultMember = realm.objects(Player.self).where({ $0.id == scoreData.member_id }).first {
+                let tmpScoreDataObject = ResultScoreDataObject(id: scoreData.id, number: resultMember.number, name: resultMember.name, time: scoreData.time,halfFlag: scoreData.half_flag)
+                resultScoreDataObjectArray.append(tmpScoreDataObject)
+            }
+        }
+        
+        return resultScoreDataObjectArray
     }
 }

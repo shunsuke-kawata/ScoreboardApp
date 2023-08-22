@@ -47,6 +47,9 @@ class ShowResultController:UIViewController {
         
         let result = showResultInstance.fetchResultData(gameId: resultGameId)
         
+        let resultScoreDataArray = showResultInstance.fetchDisplayScoreData(gameId: resultGameId)
+        print(resultScoreDataArray)
+        
         if(result.flag){
             gameNameLabel.text = result.game?.title
             myTeamNameLabel.text = result.myTeamResult?.name
@@ -102,6 +105,9 @@ class ShowResultController:UIViewController {
         super.viewDidLoad()
         
         let result = showResultInstance.fetchResultData(gameId: resultGameId)
+        
+        let resultScoreDataArray = showResultInstance.fetchDisplayScoreData(gameId: resultGameId)
+        print(resultScoreDataArray)
         
         if(result.flag){
             gameNameLabel.text = result.game?.title
