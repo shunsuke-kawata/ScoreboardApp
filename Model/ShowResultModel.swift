@@ -12,7 +12,7 @@ import RealmSwift
 
 class ShowResultModel{
     let realm = try! Realm() //realmデータベースのインスタンスを取得
-    func fetchResultData(gameId:String)->(flag:Bool,game:Game?,myTeam:Team?,yourTeam:Team?,myPlayData:[PlayData],yourPlayData:[PlayData]){
+    func fetchResultData(gameId:String)->(flag:Bool,game:Game?,myTeamResult:Team?,yourTeamResult:Team?,myPlayData:[PlayData],yourPlayData:[PlayData]){
         var resultMyTeam:Team? = nil
         var resultYourTeam:Team? = nil
         var resultMyPlayData:[PlayData] = []
@@ -21,6 +21,7 @@ class ShowResultModel{
         if let resultGame = realm.objects(Game.self).where({ $0.id == gameId}).first {
             resultMyTeam = realm.objects(Team.self).where({$0.id == resultGame.my_team_id}).first
             resultYourTeam  = realm.objects(Team.self).where({$0.id == resultGame.your_team_id}).first
+            print(resultMyTeam,resultYourTeam)
             
             if (resultMyTeam != nil){
                 for member in resultMyTeam!.members {
@@ -55,5 +56,9 @@ class ShowResultModel{
             tmp["allRed"]! += datum.red_count
         }
         return tmp
+    }
+    
+    func compileDisplsyScoreData(){
+        
     }
 }

@@ -11,9 +11,11 @@ import UIKit
 class ShowResultController:UIViewController {
     
     var resultGameId:String = ""
+    var scoreDataArray:[ScoreData] = []
     
     let showResultInstance = ShowResultModel()
     
+    @IBOutlet weak var gameNameLabel: UILabel!
     @IBOutlet weak var myTeamNameLabel: UILabel!
     
     @IBOutlet weak var myTotalDisplayScoreLabel: UILabel!
@@ -46,8 +48,9 @@ class ShowResultController:UIViewController {
         let result = showResultInstance.fetchResultData(gameId: resultGameId)
         
         if(result.flag){
-            myTeamNameLabel.text = result.myTeam?.name
-            yourTeamNameLabel.text = result.yourTeam?.name
+            gameNameLabel.text = result.game?.title
+            myTeamNameLabel.text = result.myTeamResult?.name
+            yourTeamNameLabel.text = result.yourTeamResult?.name
 
             let compiledMyPlayData =  showResultInstance.compileShowResultData(playData: result.myPlayData)
 
@@ -101,12 +104,12 @@ class ShowResultController:UIViewController {
         let result = showResultInstance.fetchResultData(gameId: resultGameId)
         
         if(result.flag){
-            myTeamNameLabel.text = result.myTeam?.name
-            yourTeamNameLabel.text = result.yourTeam?.name
+            gameNameLabel.text = result.game?.title
+            myTeamNameLabel.text = result.myTeamResult?.name
+            yourTeamNameLabel.text = result.yourTeamResult?.name
 
             let compiledMyPlayData =  showResultInstance.compileShowResultData(playData: result.myPlayData)
-            print(compiledMyPlayData)
-
+            print(result.myPlayData)
             myTotalDisplayScoreLabel.text = String(compiledMyPlayData["allScore"]!)
             myTotalScoreLabel.text = String(compiledMyPlayData["allScore"]!)
             myTotalShootLabel.text = String(compiledMyPlayData["allShoot"]!)
@@ -126,9 +129,8 @@ class ShowResultController:UIViewController {
             myTotalRedLabel.text = String(compiledMyPlayData["allRed"]!)
 
             let compiledYourPlayData = showResultInstance.compileShowResultData(playData: result.yourPlayData)
-            print(compiledYourPlayData)
-
-
+            print(result.yourPlayData)
+            
             yourTotalDisplayScoreLabel.text = String(compiledYourPlayData["allScore"]!)
             yourTotalScoreLabel.text = String(compiledYourPlayData["allScore"]!)
             yourTotalShootLabel.text = String(compiledYourPlayData["allShoot"]!)

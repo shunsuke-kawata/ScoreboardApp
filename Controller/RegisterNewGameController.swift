@@ -181,7 +181,11 @@ class RegisterNewGameController:UIViewController{
         }else if (selectedMyteam == "--" || selectedYourteam == "--"){
             print("teamname is blank")
             return false
-        }else{
+        }else if (selectedMyteam == selectedYourteam) {
+            print("same team is selected")
+            return false
+        }
+        else{
             return true
         }
     }
