@@ -46,8 +46,8 @@ class RegisterNewGameController:UIViewController{
         super.viewWillAppear(animated)
         
         //それぞれのボタンのメニューを設定する
-        configureWeatherMenu()
-        configureRegulationTimeMenu()
+        self.configureWeatherMenu()
+        self.configureRegulationTimeMenu()
         
         //データベースからのデータ取得（初回以降）
         teams = showTeamsInstance.fetchAllTeams()
@@ -66,22 +66,22 @@ class RegisterNewGameController:UIViewController{
         }
         
         //チームのリストからメニューを設定する
-        configureMyTeamMenu(teamsArray: teamsArray)
-        configureYourTeamMenu(teamsArray: teamsArray)
+        self.configureMyTeamMenu(teamsArray: teamsArray)
+        self.configureYourTeamMenu(teamsArray: teamsArray)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //それぞれのボタンのメニューを設定する
-        configureWeatherMenu()
-        configureRegulationTimeMenu()
+        self.configureWeatherMenu()
+        self.configureRegulationTimeMenu()
         
         teams = showTeamsInstance.fetchAllTeams()
         
         //チームのリストからメニューを設定する
-        configureMyTeamMenu(teamsArray:teamsArray)
-        configureYourTeamMenu(teamsArray: teamsArray)
+        self.configureMyTeamMenu(teamsArray:teamsArray)
+        self.configureYourTeamMenu(teamsArray: teamsArray)
         
     }
     @IBAction func backButtonTapped(_ sender: Any) {

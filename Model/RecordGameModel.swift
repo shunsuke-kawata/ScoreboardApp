@@ -13,7 +13,6 @@ class RecordGameModel{
     let realm = try! Realm() //realmデータベースのインスタンスを取得
     func searchTeam(teamId:String)->Team?{
         if let resultTeam = realm.objects(Team.self).where({ $0.id == teamId}).first  {
-            print(resultTeam.name)
             return resultTeam
         }else{
             return nil

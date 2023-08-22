@@ -19,7 +19,6 @@ class RegisterNewTeamModel{
         //チームオブジェクトを作成
         let team = Team()
         if let result = realm.objects(Team.self).where({ $0.name == teamName}).first  {
-            print(result.name)
             print("there is already same name team")
             return false
         }else{

@@ -115,8 +115,6 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         super.viewWillAppear(animated)
         
         thisGame = registeredGame
-        
-        print(timerAIsRunning,timerBIsRunning)
         if (timerBIsRunning){
             timerB.invalidate()
             timerBIsRunning = false
@@ -133,7 +131,7 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         
         if let _thisGame = thisGame {
             if let _myTeam = myTeam {
-                setTeamInfomation(team: _myTeam)
+                self.setTeamInfomation(team: _myTeam)
             }
             
 //            yourTeam = recordGameInstance.searchTeam(teamId: _thisGame.your_team_id)!
@@ -144,6 +142,7 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
             print("failed to game infomation")
         }
     
+        self.updateTimerDisplay()
         self.updateAllScoreLabel()
         self.configureHalfMenu()
     }
@@ -164,8 +163,7 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     //選択が変更された時の処理
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedMemberByPicker = pickerNameAndNumberArray[row]
-        print(selectedMemberByPicker)
-        updateSelectedMemberInfomation()
+        self.updateSelectedMemberInfomation()
         
     }
     
@@ -186,12 +184,9 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         
         if let _thisGame = thisGame {
             if let _myTeam = myTeam {
-                setTeamInfomation(team: _myTeam)
+                self.setTeamInfomation(team: _myTeam)
             }
-            
-//            yourTeam = recordGameInstance.searchTeam(teamId: _thisGame.your_team_id)!
             regulationTime = Double(_thisGame.regulation_time)
-//            initializeTimer(regulationTime: regulationTime)
             
         }else{
             print("failed to game infomation")
@@ -231,7 +226,7 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         }else{
             print("failed to set team infomation")
         }
-        updateSelectedMemberInfomation()
+        self.updateSelectedMemberInfomation()
     }
     
     
@@ -357,11 +352,6 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         
     }
     
-    //スクロール中の処理
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        updateDisplayDataTableView()
-    }
-    
     func watchTimerA(){
         if(timerBIsRunning){
             timerB.invalidate()
@@ -413,12 +403,12 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         timerBIsRunning = false
         timerA.invalidate()
         timerB.invalidate()
-        initializeTimer(regulationTime: regulationTime)
+        self.initializeTimer(regulationTime: regulationTime)
         self.updateTimerDisplay()
     }
     
     @IBAction func timerButtonTapped(_ sender: Any) {
-        watchTimerA()
+        self.watchTimerA()
     }
     
     @IBAction func submitPlayDataButtonTapped(_ sender: Any) {
@@ -447,8 +437,7 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         if let playData = getPlayDataToChange(){
             if playData.score_count < playData.shoot_count{
                 playData.increaseScore()
-                addMyScoreDataArray(playData:playData)
-                print(myTeamScoreDataArray)
+                self.addMyScoreDataArray(playData:playData)
             }
             
         }
@@ -461,8 +450,7 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBAction func scoreMinusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
             playData.decreaseScore()
-            popMyScoreDataArray(playData: playData)
-            print(myTeamScoreDataArray)
+            self.popMyScoreDataArray(playData: playData)
         }
         self.updateSelectedMemberInfomation()
         self.updateDisplayDataTableView()

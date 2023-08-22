@@ -31,9 +31,7 @@ class RecordPageViewController:UIPageViewController{
     
     // PageViewで表示するViewControllerを格納する配列を定義
     private var controllers: [UIViewController] = []
-    
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initPageViewController()
@@ -59,8 +57,7 @@ class RecordPageViewController:UIPageViewController{
                 for (index,member) in _myTeam.members.enumerated(){
                     let tmpPlayData: PlayDataObject = PlayDataObject(id: member.id, number: member.number, name: member.name)
                     myIdAndIndexPath[index] = member.id
-                    let len = addMyPlayDataObjectArray(indexString: member.id, tmpPlayData: tmpPlayData)
-                    print(len)
+                    let _ = addMyPlayDataObjectArray(indexString: member.id, tmpPlayData: tmpPlayData)
                 }
             }
             
@@ -68,8 +65,7 @@ class RecordPageViewController:UIPageViewController{
                 for (index,member) in _yourTeam.members.enumerated(){
                     let tmpPlayData: PlayDataObject = PlayDataObject(id: member.id, number: member.number, name: member.name)
                     yourIdAndIndexPath[index] = member.id
-                    let len = addYourPlayDataObjectArray(indexString: member.id, tmpPlayData: tmpPlayData)
-                    print(len)
+                    let _ = addYourPlayDataObjectArray(indexString: member.id, tmpPlayData: tmpPlayData)
                 }
 //                setTeamInfomation(team: _yourTeam)
             }
@@ -94,8 +90,6 @@ class RecordPageViewController:UIPageViewController{
         yourPlayDataObjectArray[indexString] = tmpPlayData
         return yourPlayDataObjectArray.count
     }
-    
-    
 }
 
 extension RecordPageViewController: UIPageViewControllerDataSource {

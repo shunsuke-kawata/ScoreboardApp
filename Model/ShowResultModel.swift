@@ -37,7 +37,6 @@ class ShowResultModel{
                 }
             }
             return (true,resultGame,resultMyTeam,resultYourTeam,resultMyPlayData,resultYourPlayData)
-
         }else{
             return (false,nil,resultMyTeam,resultYourTeam,resultMyPlayData,resultYourPlayData)
 
@@ -47,8 +46,6 @@ class ShowResultModel{
     func compileShowResultData(playData:[PlayData])->Dictionary<String,Int>{
         var tmp:Dictionary<String,Int>  = ["allScore":0,"allShoot":0,"allAssist":0,"allMiss":0,"allSave":0,"allYellow":0,"allRed":0]
         for datum in playData{
-            tmp["allScore"]! += datum.score_count
-            tmp["allShoot"]! += datum.shoot_count
             tmp["allScore"]! += datum.score_count
             tmp["allShoot"]! += datum.shoot_count
             tmp["allAssist"]! += datum.assist_count
