@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-let halfArray:[String] = ["前半","後半"]
+let halfFlagTaple:[(flag:Int,value:String)] = [(1,"前半"),(2,"後半")]
 //ゲームの登録に使用する変数
 var time: Double = 0.0
 var timerAIsRunning:Bool = false
 var timerBIsRunning:Bool = false
-var selectedHalf = halfArray[0]
+var selectedHalf = halfFlagTaple[0]
 var myTeamScoreDataArray:[ScoreDataObject] = []
 var yourTeamScoreDataArray:[ScoreDataObject] = []
 var myPlayDataObjectArray:Dictionary<String,PlayDataObject> = [:]
@@ -38,7 +38,6 @@ class RecordPageViewController:UIPageViewController{
         super.viewDidLoad()
         self.initPageViewController()
     }
-    
     private func initPageViewController() {
 
         let storyboard = UIStoryboard(name: "RecordGame", bundle: nil)
@@ -53,11 +52,15 @@ class RecordPageViewController:UIPageViewController{
             time = Double(_registeredGame.regulation_time)*60
             myTeam = recordGameInstance.searchTeam(teamId: _registeredGame.my_team_id)
             yourTeam = recordGameInstance.searchTeam(teamId: _registeredGame.your_team_id)
+            myPlayDataObjectArray = [:]
+            yourPlayDataObjectArray = [:]
+            
             if let _myTeam = myTeam {
                 for (index,member) in _myTeam.members.enumerated(){
                     let tmpPlayData: PlayDataObject = PlayDataObject(id: member.id, number: member.number, name: member.name)
                     myIdAndIndexPath[index] = member.id
-                    let _ = addMyPlayDataObjectArray(indexString: member.id, tmpPlayData: tmpPlayData)
+                    let len = addMyPlayDataObjectArray(indexString: member.id, tmpPlayData: tmpPlayData)
+                    print(len)
                 }
             }
             
@@ -65,7 +68,8 @@ class RecordPageViewController:UIPageViewController{
                 for (index,member) in _yourTeam.members.enumerated(){
                     let tmpPlayData: PlayDataObject = PlayDataObject(id: member.id, number: member.number, name: member.name)
                     yourIdAndIndexPath[index] = member.id
-                    let _ = addYourPlayDataObjectArray(indexString: member.id, tmpPlayData: tmpPlayData)
+                    let len = addYourPlayDataObjectArray(indexString: member.id, tmpPlayData: tmpPlayData)
+                    print(len)
                 }
 //                setTeamInfomation(team: _yourTeam)
             }

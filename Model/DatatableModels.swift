@@ -37,7 +37,7 @@ class Game:Object,ObjectKeyIdentifiable{
     @Persisted(primaryKey: true) var id:String = UUID().uuidString  //uuid
     @Persisted var title:String  //チームの名前
     @Persisted var place:String   //試合が行われた場所
-    @Persisted var weather:String //その日の天気
+    @Persisted var weather:Int//その日の天気
     @Persisted var my_team_id:String //自分のチームのid
     @Persisted var your_team_id:String//相手のチームのid
     @Persisted var regulation_time:Int //試合時間

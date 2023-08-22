@@ -12,8 +12,7 @@ import RealmSwift
 class RecordGameModel{
     let realm = try! Realm() //realmデータベースのインスタンスを取得
     func searchTeam(teamId:String)->Team?{
-        let teamTable = realm.objects(Team.self)
-        if let resultTeam = teamTable.where({ $0.id == teamId}).first  {
+        if let resultTeam = realm.objects(Team.self).where({ $0.id == teamId}).first  {
             print(resultTeam.name)
             return resultTeam
         }else{
@@ -21,7 +20,7 @@ class RecordGameModel{
         }
     }
     
-    func registerNewGame(game:Game,myTeamScoreDataArray:[ScoreDataObject],yourTeamScoreDataArray:[ScoreDataObject],myPlayDataObjectArray:Dictionary<String,PlayDataObject>,yourPlayDataObjectArray:Dictionary<String,PlayDataObject>){
+    func registerNewGame(game:Game,myTeamScoreDataArray:[ScoreDataObject],yourTeamScoreDataArray:[ScoreDataObject],myPlayDataObjectArray:Dictionary<String,PlayDataObject>,yourPlayDataObjectArray:Dictionary<String,PlayDataObject>)->(flag:Bool,game:Game){
         
         for myPlayData in myPlayDataObjectArray{
             let playData = PlayData()
@@ -83,8 +82,18 @@ class RecordGameModel{
             try! realm.write {
                 game.score_data.append(scoreData)
             }
-            
         }
+        return (true,game)
         
+    }
+    
+    func deleteGame(gameId:String){
+        if let resultGame = realm.objects(Game.self).where({ $0.id == gameId}).first {
+            try! realm.write {
+                realm.delete(resultGame)
+            }
+        }else{
+            print("failed to delete game")
+        }
     }
 }

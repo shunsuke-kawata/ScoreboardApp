@@ -59,6 +59,8 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     
     @IBOutlet weak var submitPlayDataButton: UIButton!
     
+    @IBOutlet weak var endButton: UIButton!
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let _myTeam = myTeam {
             return _myTeam.members.count
@@ -116,13 +118,12 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         
         print(timerAIsRunning,timerBIsRunning)
         if (timerBIsRunning){
-            print("executed timer flagA")
             timerB.invalidate()
             timerBIsRunning = false
             //            アニメーション時間の補正
             //            time -= 0.5
-            watchTimerA()
-            updateTimerAIsRunning(value: true)
+            self.watchTimerA()
+            self.updateTimerAIsRunning(value: true)
             
         }
         //delegateの設定
@@ -202,10 +203,10 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     private func configureHalfMenu(){
-            let actions = halfArray
+            let actions = halfFlagTaple
                 .compactMap { i in
                     UIAction(
-                        title:i,
+                        title:i.value,
                         state:i == selectedHalf ? .on : .off,
                         handler: { _ in
                             selectedHalf = i
@@ -215,7 +216,7 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
                 }
             halfSelectButton.menu = UIMenu(title: "", options: .displayInline, children: actions)
             halfSelectButton.showsMenuAsPrimaryAction = true
-            halfSelectButton.setTitle(selectedHalf, for: .normal)
+            halfSelectButton.setTitle(selectedHalf.value, for: .normal)
         }
     
     func setTeamInfomation(team:Team?){
@@ -257,12 +258,17 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func updateAllScoreLabel(){
         allScoreCountMyTeam = 0
+        allScoreCountYourTeam = 0
         for element in myPlayDataObjectArray{
             let value = element.value
             allScoreCountMyTeam  += value.score_count
         }
+        
+        for element in yourPlayDataObjectArray{
+            let value = element.value
+            allScoreCountYourTeam  += value.score_count
+        }
         self.allScoreCountLabel.text = String(allScoreCountMyTeam) + "-" + String(allScoreCountYourTeam)
-        print(allScoreCountMyTeam)
     }
     
     func updateSelectedMemberInfomation(){
@@ -388,7 +394,7 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     func addMyScoreDataArray(playData:PlayDataObject){
-        let scoreData = ScoreDataObject(id: playData.id, time: Double(time), halfFlag: 1)
+        let scoreData = ScoreDataObject(id: playData.id, time: Double(time), halfFlag: selectedHalf.flag)
         myTeamScoreDataArray.append(scoreData)
     }
     
@@ -420,9 +426,19 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
         if let _thisGame = thisGame{
 
             let _ = recordGameInstance.searchTeam(teamId: _thisGame.my_team_id)
-            recordGameInstance.registerNewGame(game: _thisGame, myTeamScoreDataArray: myTeamScoreDataArray, yourTeamScoreDataArray: yourTeamScoreDataArray, myPlayDataObjectArray: myPlayDataObjectArray, yourPlayDataObjectArray: yourPlayDataObjectArray)
+            let result = recordGameInstance.registerNewGame(game: _thisGame, myTeamScoreDataArray: myTeamScoreDataArray, yourTeamScoreDataArray: yourTeamScoreDataArray, myPlayDataObjectArray: myPlayDataObjectArray, yourPlayDataObjectArray: yourPlayDataObjectArray)
             
+            if(result.flag){
+                let storyboard = UIStoryboard(name: "ShowResult", bundle: nil)
+                let showResultController = storyboard.instantiateViewController(withIdentifier: "ShowResultController") as! ShowResultController
+                
+                showResultController.resultGameId = result.game.id
+                //navigationControllerクラスがない場合はメソッドそのものが呼び出されない
+                self.navigationController?.pushViewController(showResultController, animated: true)
+            }
         }
+        
+        
         
     }
     
@@ -554,4 +570,17 @@ class RecordGameAController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBAction func backButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func endButtonTapped(_ sender: Any) {
+        if let _thisGame = thisGame {
+            recordGameInstance.deleteGame(gameId: _thisGame.id)
+        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let ViewController = storyboard.instantiateViewController(withIdentifier: "ViewController")
+        UIView.transition(with: navigationController!.view, duration: 0.5,options: .transitionCrossDissolve, animations: {
+                    self.navigationController?.pushViewController(ViewController, animated: false)
+                }, completion: nil)
+        
+    }
+    
 }

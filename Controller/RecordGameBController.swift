@@ -67,9 +67,11 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     
     @IBOutlet weak var submitPlayDataButton: UIButton!
     
+    @IBOutlet weak var endButton: UIButton!
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let _yourTeam = yourTeam {
-            print("executed")
             return _yourTeam.members.count
         }else{
             
@@ -79,7 +81,6 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     
     //多分tableViewが毎回走ることでエラーを起こしている
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("exe")
         // セルを取得する
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "protoDisplayData", for: indexPath)
        
@@ -123,17 +124,13 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
         super.viewWillAppear(animated)
         
         thisGame = registeredGame
-        thisGame = registeredGame
-        
-        print(timerAIsRunning,timerBIsRunning)
         if (timerAIsRunning){
-            print("executed timer flagB")
             timerA.invalidate()
             timerAIsRunning = false
             //            アニメーション時間の補正
             //            time -= 0.5
-            watchTimerB()
-            updateTimerBIsRunning(value: true)
+            self.watchTimerB()
+            self.updateTimerBIsRunning(value: true)
             
         }
         //delegateの設定
@@ -206,10 +203,10 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     }
     
     private func configureHalfMenu(){
-            let actions = halfArray
+            let actions = halfFlagTaple
                 .compactMap { i in
                     UIAction(
-                        title:i,
+                        title:i.value,
                         state:i == selectedHalf ? .on : .off,
                         handler: { _ in
                             selectedHalf = i
@@ -219,7 +216,7 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
                 }
             halfSelectButton.menu = UIMenu(title: "", options: .displayInline, children: actions)
             halfSelectButton.showsMenuAsPrimaryAction = true
-            halfSelectButton.setTitle(selectedHalf, for: .normal)
+        halfSelectButton.setTitle(selectedHalf.value, for: .normal)
         }
     
     func setTeamInfomation(team:Team?){
@@ -255,12 +252,16 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     
     
     func updateAllScoreLabel(){
+        allScoreCountMyTeam = 0
         allScoreCountYourTeam = 0
-        print("score",yourTeamScoreDataArray.count)
-        print("playdata",yourPlayDataObjectArray.count)
+        
+        for element in myPlayDataObjectArray{
+            let value = element.value
+            allScoreCountMyTeam  += value.score_count
+        }
+        
         for element in yourPlayDataObjectArray{
             let value = element.value
-            print(value.score_count,value.shoot_count)
             allScoreCountYourTeam  += value.score_count
         }
         self.allScoreCountLabel.text = String(allScoreCountMyTeam) + "-" + String(allScoreCountYourTeam)
@@ -380,7 +381,7 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func addYourScoreDataArray(playData:PlayDataObject){
-        let scoreData = ScoreDataObject(id: playData.id, time: Double(time), halfFlag: 1)
+        let scoreData = ScoreDataObject(id: playData.id, time: Double(time), halfFlag: selectedHalf.flag)
         yourTeamScoreDataArray.append(scoreData)
     }
     
@@ -410,10 +411,18 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     
     @IBAction func submitPlayDataButtonTapped(_ sender: Any) {
         if let _thisGame = thisGame{
-
-            let _ = recordGameInstance.searchTeam(teamId: _thisGame.my_team_id)
-            recordGameInstance.registerNewGame(game: _thisGame, myTeamScoreDataArray: myTeamScoreDataArray, yourTeamScoreDataArray: yourTeamScoreDataArray, myPlayDataObjectArray: myPlayDataObjectArray, yourPlayDataObjectArray: yourPlayDataObjectArray)
             
+            let _ = recordGameInstance.searchTeam(teamId: _thisGame.my_team_id)
+            let result = recordGameInstance.registerNewGame(game: _thisGame, myTeamScoreDataArray: myTeamScoreDataArray, yourTeamScoreDataArray: yourTeamScoreDataArray, myPlayDataObjectArray: myPlayDataObjectArray, yourPlayDataObjectArray: yourPlayDataObjectArray)
+            
+            if(result.flag){
+                let storyboard = UIStoryboard(name: "ShowResult", bundle: nil)
+                let showResultController = storyboard.instantiateViewController(withIdentifier: "ShowResultController") as! ShowResultController
+                
+                showResultController.resultGameId = result.game.id
+                //navigationControllerクラスがない場合はメソッドそのものが呼び出されない
+                self.navigationController?.pushViewController(showResultController, animated: true)
+            }
         }
     }
     
@@ -545,4 +554,17 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     @IBAction func backButtonTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func endButtonTapped(_ sender: Any) {
+        if let _thisGame = thisGame {
+            recordGameInstance.deleteGame(gameId: _thisGame.id)
+        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let ViewController = storyboard.instantiateViewController(withIdentifier: "ViewController")
+        UIView.transition(with: navigationController!.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                    self.navigationController?.pushViewController(ViewController, animated: false)
+                }, completion: nil)
+
+    }
+    
 }
