@@ -10,8 +10,7 @@
 		801A0BD72A86476D0013FDFB /* DatatableModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A0BD62A86476D0013FDFB /* DatatableModels.swift */; };
 		801A0BD92A864D6B0013FDFB /* RegisterNewGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A0BD82A864D6B0013FDFB /* RegisterNewGameModel.swift */; };
 		801A0BDB2A878F830013FDFB /* RecordGame.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 801A0BDA2A878F830013FDFB /* RecordGame.storyboard */; };
-		801A0BDD2A878FB50013FDFB /* RecordGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A0BDC2A878FB50013FDFB /* RecordGameController.swift */; };
-		8031BA7129BFA0BE00331EEB /* Recordstmp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8031BA7029BFA0BE00331EEB /* Recordstmp.storyboard */; };
+		801A0BDD2A878FB50013FDFB /* RecordGameAController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801A0BDC2A878FB50013FDFB /* RecordGameAController.swift */; };
 		8031BA7529BFA1CB00331EEB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8031BA7429BFA1CB00331EEB /* Login.storyboard */; };
 		8031BA7729BFA1F500331EEB /* Signin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8031BA7629BFA1F500331EEB /* Signin.storyboard */; };
 		8031BA7929BFA23900331EEB /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8031BA7829BFA23900331EEB /* LoginController.swift */; };
@@ -61,9 +60,13 @@
 		80888DB6292548AB0006F42A /* ScoreboardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80888DB5292548AB0006F42A /* ScoreboardUITestsLaunchTests.swift */; };
 		808DF54329C20982003DE7A8 /* RegisterNewTeam.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808DF54229C20982003DE7A8 /* RegisterNewTeam.storyboard */; };
 		808DF54529C209BE003DE7A8 /* RegisterNewTeamController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808DF54429C209BE003DE7A8 /* RegisterNewTeamController.swift */; };
-		80B472AD29BFD5460081345F /* RecordsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B472AC29BFD5460081345F /* RecordsController.swift */; };
 		80C5F5A82A881B7A00263D11 /* RecordGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C5F5A72A881B7A00263D11 /* RecordGameModel.swift */; };
 		80DE99B429FC4544008B3BD9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80DE99B329FC4543008B3BD9 /* GoogleService-Info.plist */; };
+		80F00DF02A91F55F0007259D /* ShowResult.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80F00DEF2A91F55F0007259D /* ShowResult.storyboard */; };
+		80F00DF22A91F5830007259D /* ShowResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F00DF12A91F5830007259D /* ShowResultController.swift */; };
+		80F00DF42A9206630007259D /* ShowResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F00DF32A9206630007259D /* ShowResultModel.swift */; };
+		80F0B2F22A8EACF2006B6C0C /* RecordPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F0B2F12A8EACF2006B6C0C /* RecordPageViewController.swift */; };
+		80F0B2F42A8EBD53006B6C0C /* RecordGameBController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F0B2F32A8EBD53006B6C0C /* RecordGameBController.swift */; };
 		8B40DB48856DEE9731F91E68 /* Pods_Scoreboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFA982C5F7101A3EFD80AAC /* Pods_Scoreboard.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,8 +91,7 @@
 		801A0BD62A86476D0013FDFB /* DatatableModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatatableModels.swift; sourceTree = "<group>"; };
 		801A0BD82A864D6B0013FDFB /* RegisterNewGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNewGameModel.swift; sourceTree = "<group>"; };
 		801A0BDA2A878F830013FDFB /* RecordGame.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordGame.storyboard; sourceTree = "<group>"; };
-		801A0BDC2A878FB50013FDFB /* RecordGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordGameController.swift; sourceTree = "<group>"; };
-		8031BA7029BFA0BE00331EEB /* Recordstmp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Recordstmp.storyboard; sourceTree = "<group>"; };
+		801A0BDC2A878FB50013FDFB /* RecordGameAController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordGameAController.swift; sourceTree = "<group>"; };
 		8031BA7429BFA1CB00331EEB /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		8031BA7629BFA1F500331EEB /* Signin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Signin.storyboard; sourceTree = "<group>"; };
 		8031BA7829BFA23900331EEB /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -116,10 +118,14 @@
 		80888DB5292548AB0006F42A /* ScoreboardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		808DF54229C20982003DE7A8 /* RegisterNewTeam.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterNewTeam.storyboard; sourceTree = "<group>"; };
 		808DF54429C209BE003DE7A8 /* RegisterNewTeamController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNewTeamController.swift; sourceTree = "<group>"; };
-		80B472AC29BFD5460081345F /* RecordsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsController.swift; sourceTree = "<group>"; };
 		80C5F5A72A881B7A00263D11 /* RecordGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordGameModel.swift; sourceTree = "<group>"; };
 		80DE99B229FC4484008B3BD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		80DE99B329FC4543008B3BD9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		80F00DEF2A91F55F0007259D /* ShowResult.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowResult.storyboard; sourceTree = "<group>"; };
+		80F00DF12A91F5830007259D /* ShowResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowResultController.swift; sourceTree = "<group>"; };
+		80F00DF32A9206630007259D /* ShowResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowResultModel.swift; sourceTree = "<group>"; };
+		80F0B2F12A8EACF2006B6C0C /* RecordPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPageViewController.swift; sourceTree = "<group>"; };
+		80F0B2F32A8EBD53006B6C0C /* RecordGameBController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordGameBController.swift; sourceTree = "<group>"; };
 		8BFA982C5F7101A3EFD80AAC /* Pods_Scoreboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scoreboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABFE8967F5DF0E1F9F9BA0CE /* Pods-Scoreboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scoreboard.debug.xcconfig"; path = "Target Support Files/Pods-Scoreboard/Pods-Scoreboard.debug.xcconfig"; sourceTree = "<group>"; };
 		CC8E18CDA3A0AEECFD73FE4F /* Pods-Scoreboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scoreboard.release.xcconfig"; path = "Target Support Files/Pods-Scoreboard/Pods-Scoreboard.release.xcconfig"; sourceTree = "<group>"; };
@@ -190,13 +196,13 @@
 		8031BA6F29BFA0BE00331EEB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8031BA7029BFA0BE00331EEB /* Recordstmp.storyboard */,
 				8031BA7429BFA1CB00331EEB /* Login.storyboard */,
 				8031BA7629BFA1F500331EEB /* Signin.storyboard */,
 				8031BA7C29BFA62700331EEB /* ShowTeams.storyboard */,
 				808DF54229C20982003DE7A8 /* RegisterNewTeam.storyboard */,
 				804433362A58A18400A6A983 /* RegisterNewGame.storyboard */,
 				801A0BDA2A878F830013FDFB /* RecordGame.storyboard */,
+				80F00DEF2A91F55F0007259D /* ShowResult.storyboard */,
 			);
 			path = View;
 			sourceTree = SOURCE_ROOT;
@@ -205,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				80823CB929C3C0FD009BDE94 /* RegisterNewTeamModel.swift */,
+				80F00DF32A9206630007259D /* ShowResultModel.swift */,
 				80823CBB29C4259D009BDE94 /* ShowTeamsModel.swift */,
 				801A0BD62A86476D0013FDFB /* DatatableModels.swift */,
 				801A0BD82A864D6B0013FDFB /* RegisterNewGameModel.swift */,
@@ -219,10 +226,12 @@
 				8031BA7829BFA23900331EEB /* LoginController.swift */,
 				8031BA7A29BFA25100331EEB /* SigninController.swift */,
 				8031BA7E29BFAFBA00331EEB /* ShowTeamsController.swift */,
-				80B472AC29BFD5460081345F /* RecordsController.swift */,
 				808DF54429C209BE003DE7A8 /* RegisterNewTeamController.swift */,
 				804433382A58A1C200A6A983 /* RegisterNewGameController.swift */,
-				801A0BDC2A878FB50013FDFB /* RecordGameController.swift */,
+				801A0BDC2A878FB50013FDFB /* RecordGameAController.swift */,
+				80F0B2F32A8EBD53006B6C0C /* RecordGameBController.swift */,
+				80F0B2F12A8EACF2006B6C0C /* RecordPageViewController.swift */,
+				80F00DF12A91F5830007259D /* ShowResultController.swift */,
 			);
 			path = Controller;
 			sourceTree = SOURCE_ROOT;
@@ -445,10 +454,10 @@
 				80888D9C292548AA0006F42A /* Assets.xcassets in Resources */,
 				80888D9A292548A70006F42A /* Main.storyboard in Resources */,
 				8031BA7529BFA1CB00331EEB /* Login.storyboard in Resources */,
+				80F00DF02A91F55F0007259D /* ShowResult.storyboard in Resources */,
 				80DE99B429FC4544008B3BD9 /* GoogleService-Info.plist in Resources */,
 				8031BA8129BFBC1C00331EEB /* Test.storyboard in Resources */,
 				801A0BDB2A878F830013FDFB /* RecordGame.storyboard in Resources */,
-				8031BA7129BFA0BE00331EEB /* Recordstmp.storyboard in Resources */,
 				804433372A58A18400A6A983 /* RegisterNewGame.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,17 +527,20 @@
 			files = (
 				80888D97292548A70006F42A /* ViewController.swift in Sources */,
 				80823CBC29C4259D009BDE94 /* ShowTeamsModel.swift in Sources */,
-				801A0BDD2A878FB50013FDFB /* RecordGameController.swift in Sources */,
+				801A0BDD2A878FB50013FDFB /* RecordGameAController.swift in Sources */,
 				8031BA7929BFA23900331EEB /* LoginController.swift in Sources */,
+				80F0B2F22A8EACF2006B6C0C /* RecordPageViewController.swift in Sources */,
+				80F00DF42A9206630007259D /* ShowResultModel.swift in Sources */,
 				804433392A58A1C200A6A983 /* RegisterNewGameController.swift in Sources */,
 				80C5F5A82A881B7A00263D11 /* RecordGameModel.swift in Sources */,
+				80F0B2F42A8EBD53006B6C0C /* RecordGameBController.swift in Sources */,
 				80888D93292548A70006F42A /* AppDelegate.swift in Sources */,
 				80888D95292548A70006F42A /* SceneDelegate.swift in Sources */,
 				808DF54529C209BE003DE7A8 /* RegisterNewTeamController.swift in Sources */,
 				8031BA7B29BFA25100331EEB /* SigninController.swift in Sources */,
 				80823CBA29C3C0FD009BDE94 /* RegisterNewTeamModel.swift in Sources */,
-				80B472AD29BFD5460081345F /* RecordsController.swift in Sources */,
 				801A0BD72A86476D0013FDFB /* DatatableModels.swift in Sources */,
+				80F00DF22A91F5830007259D /* ShowResultController.swift in Sources */,
 				801A0BD92A864D6B0013FDFB /* RegisterNewGameModel.swift in Sources */,
 				8031BA7F29BFAFBA00331EEB /* ShowTeamsController.swift in Sources */,
 			);

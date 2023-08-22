@@ -9,12 +9,10 @@ import Foundation
 import UIKit
 import RealmSwift
 
-let weatherArray:[String] = ["晴れ","くもり","雨","雪"]
-let regulationTimeArray :[String] = ["15","20","25","30","35","40","45","50"]
+let weatherTaple:[(flag:Int,value:String)] = [(1,"晴れ"),(2,"くもり"),(3,"雨"),(4,"雪")]
+let regulationTimeArray :[Int] = [15,20,25,30,35,40,45,50]
 
 class RegisterNewGameController:UIViewController{
-    
-    
     
     var teamsArray:[String] = []
     
@@ -39,7 +37,7 @@ class RegisterNewGameController:UIViewController{
     
     @IBOutlet weak var registerSubmitButton: UIButton!
     //天気の初期値
-    private var selectedWeather = weatherArray[0]
+    private var selectedWeather = weatherTaple[0]
     private var selectedRegulationTime = regulationTimeArray[2]
     private var selectedMyteam = "--"
     private var selectedYourteam = "--"
@@ -96,15 +94,14 @@ class RegisterNewGameController:UIViewController{
         }else{
             print("No validation errors")
         }
-        let regulationTimeInt = Int(selectedRegulationTime)!
-        let result = registerNewGameInstance.registerNewGame(gameTitle: gameNameField.text, placeName: placeNameField.text, weatherValue: selectedWeather, regulationTimeValue: regulationTimeInt,myTeamName: selectedMyteam, yourTeamName: selectedYourteam)
+        let result = registerNewGameInstance.registerNewGame(gameTitle: gameNameField.text, placeName: placeNameField.text, weatherValue: selectedWeather.flag, regulationTimeValue: selectedRegulationTime,myTeamName: selectedMyteam, yourTeamName: selectedYourteam)
         if (result.flag){
             let storyboard = UIStoryboard(name: "RecordGame", bundle: nil)
             //navigationControllerクラスがない場合はメソッドそのものが呼び出されない
-            if let recordGameController = storyboard.instantiateViewController(withIdentifier: "RecordGameController") as? RecordGameController {
-                recordGameController.thisGame = result.game
-                self.navigationController?.pushViewController(recordGameController, animated: true)
-            }
+            
+            let recordGameController = storyboard.instantiateViewController(withIdentifier: "RecordPageViewController") as! RecordPageViewController
+            registeredGame = result.game
+            self.navigationController?.pushViewController(recordGameController, animated: true)
         }else{
             print("failed to register game")
             return
@@ -113,10 +110,10 @@ class RegisterNewGameController:UIViewController{
     }
     
     private func configureWeatherMenu(){
-        let actions = weatherArray
+        let actions = weatherTaple
             .compactMap { i in
                 UIAction(
-                    title:i,
+                    title:i.value,
                     state:i == selectedWeather ? .on : .off,
                     handler: { _ in
                         self.selectedWeather = i
@@ -126,14 +123,14 @@ class RegisterNewGameController:UIViewController{
             }
         wetherSelectButton.menu = UIMenu(title: "", options: .displayInline, children: actions)
         wetherSelectButton.showsMenuAsPrimaryAction = true
-        wetherSelectButton.setTitle(selectedWeather, for: .normal)
+        wetherSelectButton.setTitle(selectedWeather.value, for: .normal)
     }
     
     private func configureRegulationTimeMenu(){
         let actions = regulationTimeArray
             .compactMap{ i in
                 UIAction(
-                    title:i,
+                    title:String(i),
                     state:i == selectedRegulationTime ? .on : .off,
                     handler: {  _ in
                         self.selectedRegulationTime = i
@@ -143,7 +140,7 @@ class RegisterNewGameController:UIViewController{
             }
         regulationTimeSelectButton.menu = UIMenu(title: "", options: .displayInline, children: actions)
         regulationTimeSelectButton.showsMenuAsPrimaryAction = true
-        regulationTimeSelectButton.setTitle(selectedRegulationTime, for: .normal)
+        regulationTimeSelectButton.setTitle(String(selectedRegulationTime), for: .normal)
     }
     private func configureMyTeamMenu(teamsArray:[String]){
         let actions = teamsArray.compactMap{ i in
@@ -181,7 +178,7 @@ class RegisterNewGameController:UIViewController{
         if (gameNameField.text! == ""){
             print("gamename is blank")
             return false
-        }else if (selectedMyteam == "--"){
+        }else if (selectedMyteam == "--" || selectedYourteam == "--"){
             print("teamname is blank")
             return false
         }else{

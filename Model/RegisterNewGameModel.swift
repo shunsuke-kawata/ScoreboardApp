@@ -9,16 +9,13 @@ import Foundation
 import UIKit
 import RealmSwift
 
-
-
 class RegisterNewGameModel{
     let weatherArray:Dictionary<String,String> = ["晴れ":"sunny","くもり":"cloudy","雨":"rainy","雪":"snowy"]
     let realm = try! Realm() //realmデータベースのインスタンスを取得
     
-    func registerNewGame(gameTitle:String?, placeName:String?, weatherValue:String, regulationTimeValue:Int,myTeamName:String,yourTeamName:String)->(flag:Bool,game:Game?){
+    func registerNewGame(gameTitle:String?, placeName:String?, weatherValue:Int, regulationTimeValue:Int,myTeamName:String,yourTeamName:String)->(flag:Bool,game:Game?){
         let game = Game()
-        let gameTable = realm.objects(Game.self)
-        if let result = gameTable.where({ $0.title == gameTitle!}).first  {
+        if let result = realm.objects(Game.self).where({ $0.title == gameTitle!}).first  {
             print(result.title)
             print("there is already same name team")
             return (false , nil)
@@ -27,24 +24,17 @@ class RegisterNewGameModel{
         }
         
         game.place = placeName!
-        if let japaneseWeather = weatherArray[weatherValue] {
-               game.weather = japaneseWeather
-        } else {
-            // weatherValue に対応する日本語表現が見つからなかった場合の処理
-            print("Unknown weather: \(weatherValue)")
-            return (false,nil)
-        }
+        game.weather = weatherValue
         
         game.regulation_time = regulationTimeValue
         
-        let teamTable = realm.objects(Team.self)
-        if let resultMyteam = teamTable.where({ $0.name == myTeamName}).first  {
+        if let resultMyteam = realm.objects(Team.self).where({ $0.name == myTeamName}).first  {
             game.my_team_id = resultMyteam.id
         }else{
             return (false,nil)
         }
         
-        if let resultYourteam = teamTable.where({ $0.name == yourTeamName}).first  {
+        if let resultYourteam = realm.objects(Team.self).where({ $0.name == yourTeamName}).first  {
             game.your_team_id = resultYourteam.id
         }else{
             return (false,nil)
