@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <device id="ipad10_5" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
@@ -17,31 +17,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTM-uP-4S5">
-                                <rect key="frame" x="775" y="532" width="173" height="154"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTM-uP-4S5">
+                                <rect key="frame" x="772" y="511.5" width="173" height="173"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="173" id="IZW-JN-2gB"/>
+                                    <constraint firstAttribute="height" constant="173" id="lHC-bt-Fzk"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="記録画面"/>
                                 <connections>
                                     <action selector="transitionToRegisterNewGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CcB-Us-uub"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7H-Uq-0TP">
-                                <rect key="frame" x="430" y="532" width="173" height="154"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7H-Uq-0TP">
+                                <rect key="frame" x="429.5" y="511.5" width="173" height="173"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="173" id="1vS-Z5-oKY"/>
+                                    <constraint firstAttribute="width" constant="173" id="Xlo-r6-Mdg"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="チーム一覧"/>
                                 <connections>
                                     <action selector="transitionToShowTeams:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eww-iG-bLZ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="スコアボードアプリ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Af5-03-8SM">
-                                <rect key="frame" x="364" y="171" width="639" height="204"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="57"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Rw-oc-xyU">
                                 <rect key="frame" x="1057" y="836" width="146" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -51,9 +50,34 @@
                                     <action selector="deleteDatabase:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UrC-dN-Xm6"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="スコアボードアプリ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Af5-03-8SM">
+                                <rect key="frame" x="425.5" y="166" width="515.5" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="7Cm-OF-yfH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="57"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="          " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypo-MH-dht">
+                                <rect key="frame" x="661.5" y="576.5" width="43.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ypo-MH-dht" firstAttribute="leading" secondItem="N7H-Uq-0TP" secondAttribute="trailing" constant="59" id="6lG-X0-fam"/>
+                            <constraint firstItem="Af5-03-8SM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9mh-kh-KWm"/>
+                            <constraint firstItem="mTM-uP-4S5" firstAttribute="leading" secondItem="ypo-MH-dht" secondAttribute="trailing" constant="67" id="VJV-jq-PcR"/>
+                            <constraint firstItem="ypo-MH-dht" firstAttribute="top" secondItem="Af5-03-8SM" secondAttribute="bottom" constant="330.5" id="VKJ-Yd-Zed"/>
+                            <constraint firstItem="ypo-MH-dht" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W9I-uB-gLd"/>
+                            <constraint firstItem="mTM-uP-4S5" firstAttribute="top" secondItem="Af5-03-8SM" secondAttribute="bottom" constant="265.5" id="iha-cZ-MDL"/>
+                            <constraint firstItem="N7H-Uq-0TP" firstAttribute="top" secondItem="Af5-03-8SM" secondAttribute="bottom" constant="265.5" id="lo5-cG-VyB"/>
+                            <constraint firstItem="Af5-03-8SM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="146" id="mgh-9h-9YQ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HbO-ei-ovQ"/>
                     <size key="freeformSize" width="1366" height="1024"/>
@@ -65,7 +89,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="741.43484626647137" y="-2.34375"/>
+            <point key="canvasLocation" x="741.36690647482021" y="-2.877697841726619"/>
         </scene>
     </scenes>
     <resources>
