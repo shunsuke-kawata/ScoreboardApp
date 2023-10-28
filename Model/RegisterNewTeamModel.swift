@@ -12,6 +12,8 @@ import RealmSwift
 
 class RegisterNewTeamModel{
     
+    //作成に関して背番号・名前ともに空文字を許容しない
+    
     let realm = try! Realm() //realmデータベースのインスタンスを取得
     
     func registerNewTeam(teamName:String, members:[PlayerInputObject]) ->Bool{
@@ -34,27 +36,33 @@ class RegisterNewTeamModel{
             if(member_dict.name != ""){
                 player.name=member_dict.name
             }else{
-                player.name=""
                 print("name is blank")
+                continue
             }
-            
-            
                 //空欄であれば飛ばす
-            if(String(member_dict.number) == ""){
+            if(member_dict.number == -1){
                     print("number is invalid")
                     continue
                     
+            }else if let unwrappedMemberDictNumber = member_dict.number{
+                player.number = unwrappedMemberDictNumber
             }else{
-                player.number = member_dict.number
-                }
+                print("cannnot unwrap member dict number")
+            }
             //条件を満たしたら配列に追加する
             try! realm.write {
                 team.members.append(player)
             }
         }
+        
+        if(team.members.count>0){
             try! realm.write {
                 realm.add(team)
             }
+        }else{
+            print("team has no members")
+        }
+        
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         return true
     }

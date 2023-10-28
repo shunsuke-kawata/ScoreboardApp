@@ -63,7 +63,12 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         
         let row = registerTeamData[indexPath.row]
         let numberField = cell.contentView.viewWithTag(2) as!UITextField
-        numberField.text = String(row.number)
+        if row.number != nil{
+            numberField.text = String(row.number!)
+        }else{
+            numberField.text = ""
+        }
+        
 
         let nameField = cell.contentView.viewWithTag(3) as! UITextField
         nameField.text = row.name
@@ -101,22 +106,25 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
     func validateRegisterData()->Bool{
         for datum in registerTeamData{
             //登録しないデータ　正常系としてcontinueで飛ばす
-            if(String(datum.number)=="" && datum.name==""){
+            if(datum.number==nil && datum.name==""){
                 continue
             }else{
                 //どちらかの値が入っていないデータは登録しない
-                if(String(datum.number)==""){
+                if(datum.number==nil){
                     print("number is blank")
                     return false
-                }else {
+                }else if let unwrappedDatumNumber = datum.number {
                     //アンラップを使用して判定処理を行う
-                    if(1<=datum.number && datum.number<=99){
+                    if(1<=unwrappedDatumNumber && unwrappedDatumNumber<=99){
                             continue
                     }else{
                             print("uniform number must be between 1 and 99")
                             return false
                         }
-                    }
+                }else{
+                    print("cannot unwrap datum number")
+                }
+                
             }
         }
         if(teamNameField.text! == ""){
@@ -129,6 +137,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
     }
     //Playerの背番号を更新する関数
     @IBAction func changePlayerNumber(_ sender: UITextField) {
+        print("update playernumber")
         if let changedSuperview  = sender.superview{
             let index = changedSuperview.viewWithTag(1) as!UILabel
             if let indexInt = Int(index.text!) {
@@ -136,6 +145,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
                     registerTeamData[indexInt-1].number = numberInt
                 }
                 else {
+                    registerTeamData[indexInt-1].number = nil
                     print("number is not type int")
                     return
                 }
