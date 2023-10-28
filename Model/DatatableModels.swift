@@ -11,11 +11,11 @@ import RealmSwift
 
 
 class PlayerInputObject{
-    var number:Int
+    var number:Int?
     var name:String
     var position:String
     
-    init(number: Int, name: String, position: String) {
+    init(number: Int?, name: String, position: String) {
         self.number = number
         self.name = name
         self.position = position

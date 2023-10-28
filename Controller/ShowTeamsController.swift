@@ -24,9 +24,6 @@ class ShowTeamsController:UIViewController, UITableViewDelegate, UITableViewData
         //データベースからのデータ取得（初回以降）
         teams = showInstance.fetchAllTeams()
         // データの取得後の処理を実行する
-        if let _teams = teams {
-            print(_teams.count)
-        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

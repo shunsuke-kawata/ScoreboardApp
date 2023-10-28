@@ -36,34 +36,9 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
     
         //最大で26人分の選手データを登録する配列
     //dict型の配列に変更
-    var registerTeamData:[Dictionary<String,String>] = [
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"],
-        ["number":"","name":"","position":"--"]
-    ]
+    var registerTeamData:[PlayerInputObject] = (1..<27).map { i in
+        return PlayerInputObject(number:i, name: "", position: "")
+    }
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var registerSubmitButton: UIButton!
@@ -88,10 +63,15 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         
         let row = registerTeamData[indexPath.row]
         let numberField = cell.contentView.viewWithTag(2) as!UITextField
-        numberField.text = row["number"]!
+        if row.number != nil{
+            numberField.text = String(row.number!)
+        }else{
+            numberField.text = ""
+        }
+        
 
         let nameField = cell.contentView.viewWithTag(3) as! UITextField
-        nameField.text = row["name"]!
+        nameField.text = row.name
 
          return cell
      }
@@ -122,42 +102,29 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         }
         
     }
-    //TableViewからformで送信して登録する値を取得してくる
-
-    //配列の内容を更新する関数
-    func updateRegisterTeamData(index:Int,value:String,option:String){
-        registerTeamData[index-1][option] = value
-        return
-    }
-    
-    
     //チーム登録を行うフィールドに対してバリデーションを行う
     func validateRegisterData()->Bool{
         for datum in registerTeamData{
             //登録しないデータ　正常系としてcontinueで飛ばす
-            if(datum["number"]=="" && datum["name"]==""){
+            if(datum.number==nil && datum.name==""){
                 continue
             }else{
                 //どちらかの値が入っていないデータは登録しない
-                if(datum["number"]==""){
+                if(datum.number==nil){
                     print("number is blank")
                     return false
-                }else {
-                    //numberが数値かどうか判定する
-                    let numInt:Int? = Int(datum["number"]!)
+                }else if let unwrappedDatumNumber = datum.number {
                     //アンラップを使用して判定処理を行う
-                    if let unwrappedInt = numInt{
-                        if(1<=unwrappedInt && unwrappedInt<=99){
+                    if(1<=unwrappedDatumNumber && unwrappedDatumNumber<=99){
                             continue
-                        }else{
-                            print("Number is invalid")
+                    }else{
+                            print("uniform number must be between 1 and 99")
                             return false
                         }
-                    }else{
-                        print("number is invalid")
-                        return false
-                    }
+                }else{
+                    print("cannot unwrap datum number")
                 }
+                
             }
         }
         if(teamNameField.text! == ""){
@@ -170,11 +137,18 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
     }
     //Playerの背番号を更新する関数
     @IBAction func changePlayerNumber(_ sender: UITextField) {
-        let changedNumber = String(sender.text!)
+        print("update playernumber")
         if let changedSuperview  = sender.superview{
             let index = changedSuperview.viewWithTag(1) as!UILabel
             if let indexInt = Int(index.text!) {
-                updateRegisterTeamData(index: indexInt, value: changedNumber, option: "number")
+                if let numberInt = Int(sender.text!){
+                    registerTeamData[indexInt-1].number = numberInt
+                }
+                else {
+                    registerTeamData[indexInt-1].number = nil
+                    print("number is not type int")
+                    return
+                }
             } else {
                 print("number is invalid")
                 return
@@ -191,8 +165,9 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
         if let changedSuperview  = sender.superview{
             let index = changedSuperview.viewWithTag(1) as!UILabel
             if let indexInt = Int(index.text!) {
-                updateRegisterTeamData(index: indexInt, value: changedName, option: "name")
+                registerTeamData[indexInt-1].name = changedName
             } else {
+                print("test")
                 print("number is invalid")
                 return
             }
