@@ -7,8 +7,6 @@
 
 //Mainを操作するcontrollerの役割
 import UIKit
-import Firebase
-import FirebaseFirestore
 import RealmSwift
 
 class ShowTeamsController:UIViewController, UITableViewDelegate, UITableViewDataSource  {

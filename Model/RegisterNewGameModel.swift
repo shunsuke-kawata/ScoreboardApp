@@ -16,8 +16,7 @@ class RegisterNewGameModel{
     func registerNewGame(gameTitle:String?, placeName:String?, weatherValue:Int, regulationTimeValue:Int,myTeamName:String,yourTeamName:String)->(flag:Bool,game:Game?){
         let game = Game()
         if let result = realm.objects(Game.self).where({ $0.title == gameTitle!}).first  {
-            print(result.title)
-            print("there is already same name team")
+            print("there is already same name team", result)
             return (false , nil)
         }else{
             game.title = gameTitle!

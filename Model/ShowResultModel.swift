@@ -12,7 +12,7 @@ import RealmSwift
 
 class ShowResultModel{
     let realm = try! Realm() //realmデータベースのインスタンスを取得
-    func fetchResultData(gameId:String)->(flag:Bool,game:Game?,myTeam:Team?,yourTeam:Team?,myPlayData:[PlayData],yourPlayData:[PlayData]){
+    func fetchResultData(gameId:String)->(flag:Bool,game:Game?,myTeamResult:Team?,yourTeamResult:Team?,myPlayData:[PlayData],yourPlayData:[PlayData]){
         var resultMyTeam:Team? = nil
         var resultYourTeam:Team? = nil
         var resultMyPlayData:[PlayData] = []
@@ -37,7 +37,6 @@ class ShowResultModel{
                 }
             }
             return (true,resultGame,resultMyTeam,resultYourTeam,resultMyPlayData,resultYourPlayData)
-
         }else{
             return (false,nil,resultMyTeam,resultYourTeam,resultMyPlayData,resultYourPlayData)
 
@@ -49,8 +48,6 @@ class ShowResultModel{
         for datum in playData{
             tmp["allScore"]! += datum.score_count
             tmp["allShoot"]! += datum.shoot_count
-            tmp["allScore"]! += datum.score_count
-            tmp["allShoot"]! += datum.shoot_count
             tmp["allAssist"]! += datum.assist_count
             tmp["allMiss"]! += datum.miss_count
             tmp["allSave"]! += datum.save_count
@@ -58,5 +55,19 @@ class ShowResultModel{
             tmp["allRed"]! += datum.red_count
         }
         return tmp
+    }
+    
+    func fetchDisplayScoreData(gameId:String)->[ResultScoreDataObject]{
+        var resultScoreDataObjectArray:[ResultScoreDataObject] = []
+        let resultScoreData = realm.objects(ScoreData.self).filter({ $0.game_id == gameId})
+        
+        for scoreData in resultScoreData {
+            if let resultMember = realm.objects(Player.self).where({ $0.id == scoreData.member_id }).first {
+                let tmpScoreDataObject = ResultScoreDataObject(id: scoreData.id, number: resultMember.number, name: resultMember.name, time: scoreData.time,halfFlag: scoreData.half_flag)
+                resultScoreDataObjectArray.append(tmpScoreDataObject)
+            }
+        }
+        
+        return resultScoreDataObjectArray
     }
 }

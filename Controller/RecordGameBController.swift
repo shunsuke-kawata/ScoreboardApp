@@ -140,12 +140,13 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
         
         if let _thisGame = thisGame {
             if let _yourTeam = yourTeam {
-                setTeamInfomation(team: _yourTeam)
+                self.setTeamInfomation(team: _yourTeam)
             }
             regulationTime = Double(_thisGame.regulation_time)
         }else{
             print("failed to game infomation")
         }
+        self.updateTimerDisplay()
         self.updateAllScoreLabel()
         self.configureHalfMenu()
     }
@@ -166,8 +167,7 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     //選択が変更された時の処理
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedMemberByPicker = pickerNameAndNumberArray[row]
-        print(selectedMemberByPicker)
-        updateSelectedMemberInfomation()
+        self.updateSelectedMemberInfomation()
         
     }
     
@@ -216,7 +216,7 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
                 }
             halfSelectButton.menu = UIMenu(title: "", options: .displayInline, children: actions)
             halfSelectButton.showsMenuAsPrimaryAction = true
-        halfSelectButton.setTitle(selectedHalf.value, for: .normal)
+            halfSelectButton.setTitle(selectedHalf.value, for: .normal)
         }
     
     func setTeamInfomation(team:Team?){
@@ -231,7 +231,7 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
         }else{
             print("failed to set team infomation")
         }
-        updateSelectedMemberInfomation()
+        self.updateSelectedMemberInfomation()
     }
     
     func initializeTimer(regulationTime:Double){
@@ -400,18 +400,17 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
         timerAIsRunning = false
         timerB.invalidate()
         timerA.invalidate()
-        initializeTimer(regulationTime: regulationTime)
+        self.initializeTimer(regulationTime: regulationTime)
         self.updateTimerDisplay()
     }
     
     @IBAction func timerButtonTapped(_ sender: Any) {
-        watchTimerB()
+        self.watchTimerB()
     }
     
     
     @IBAction func submitPlayDataButtonTapped(_ sender: Any) {
         if let _thisGame = thisGame{
-            
             let _ = recordGameInstance.searchTeam(teamId: _thisGame.my_team_id)
             let result = recordGameInstance.registerNewGame(game: _thisGame, myTeamScoreDataArray: myTeamScoreDataArray, yourTeamScoreDataArray: yourTeamScoreDataArray, myPlayDataObjectArray: myPlayDataObjectArray, yourPlayDataObjectArray: yourPlayDataObjectArray)
             
@@ -430,8 +429,7 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
         if let playData = getPlayDataToChange(){
             if playData.score_count<playData.shoot_count{
                 playData.increaseScore()
-                addYourScoreDataArray(playData: playData)
-                print(yourTeamScoreDataArray)
+                self.addYourScoreDataArray(playData: playData)
             }
             
         }
@@ -444,9 +442,7 @@ class RecordGameBController:UIViewController,UITableViewDelegate,UITableViewData
     @IBAction func scoreMinusButtonTapped(_ sender: Any) {
         if let playData = getPlayDataToChange() {
             playData.decreaseScore()
-            popYourScoreDataArray(playData: playData)
-            print(yourTeamScoreDataArray)
-            
+            self.popYourScoreDataArray(playData: playData)
         }
         self.updateSelectedMemberInfomation()
         self.updateDisplayDataTableView()

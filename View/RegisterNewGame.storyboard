@@ -17,25 +17,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="試合情報登録" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kot-td-diI">
-                                <rect key="frame" x="481" y="20" width="405" height="98"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="試合情報登録" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kot-td-diI">
+                                <rect key="frame" x="568" y="48" width="230" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="230" id="hbW-dQ-kMz"/>
+                                    <constraint firstAttribute="height" constant="50" id="mxY-rq-ajB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kod-cN-VyZ">
-                                <rect key="frame" x="929" y="52" width="94" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kod-cN-VyZ">
+                                <rect key="frame" x="1122.5" y="60" width="93.5" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="eB5-qB-saX"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="試合登録"/>
                                 <connections>
                                     <action selector="registerSubmitButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="tUf-ah-bHh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfC-FP-c3b">
-                                <rect key="frame" x="79" y="64" width="70" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfC-FP-c3b">
+                                <rect key="frame" x="80" y="65" width="70" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="pYI-WN-D6d"/>
+                                    <constraint firstAttribute="width" constant="70" id="uRh-aO-PGp"/>
+                                </constraints>
                                 <color key="tintColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system"/>
@@ -43,93 +51,163 @@
                                     <action selector="backButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="l3a-Pb-EYr"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="試合タイトル" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eop-3U-0Yf">
-                                <rect key="frame" x="193" y="162" width="208" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="試合タイトル" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eop-3U-0Yf">
+                                <rect key="frame" x="160" y="162" width="160" height="40"/>
                                 <color key="backgroundColor" red="0.45138680930000002" green="0.99309605359999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="03Z-KF-GAd"/>
+                                    <constraint firstAttribute="height" constant="40" id="Sbp-pn-oSS"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aPI-bb-O1d">
-                                <rect key="frame" x="400" y="162" width="773" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aPI-bb-O1d">
+                                <rect key="frame" x="320" y="162" width="886" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="asM-u0-TIR"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="場所" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUf-Yk-tuP">
-                                <rect key="frame" x="193" y="290" width="208" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="場所" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUf-Yk-tuP">
+                                <rect key="frame" x="160" y="272" width="160" height="40"/>
                                 <color key="backgroundColor" red="0.45138680930000002" green="0.99309605359999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="gWc-dV-S9t"/>
+                                    <constraint firstAttribute="height" constant="40" id="uwx-En-VmX"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="72I-Dq-gar">
-                                <rect key="frame" x="400" y="290" width="773" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="72I-Dq-gar">
+                                <rect key="frame" x="320" y="272" width="886" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ADJ-CD-R6T"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="天気" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFi-J7-kxR">
-                                <rect key="frame" x="193" y="415" width="208" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天気" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFi-J7-kxR">
+                                <rect key="frame" x="160" y="382" width="160" height="40"/>
                                 <color key="backgroundColor" red="0.45138680930000002" green="0.99309605359999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="6Hp-mJ-Zjz"/>
+                                    <constraint firstAttribute="height" constant="40" id="CpN-H2-FzA"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="相手チーム" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iig-Px-D7u">
-                                <rect key="frame" x="193" y="709" width="208" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="相手チーム" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iig-Px-D7u">
+                                <rect key="frame" x="160" y="602" width="160" height="40"/>
                                 <color key="backgroundColor" red="0.45138680930000002" green="0.99309605359999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="EGu-aH-FdW"/>
+                                    <constraint firstAttribute="height" constant="40" id="fRV-Ly-NOB"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="自分チーム" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7v-RC-6on">
-                                <rect key="frame" x="193" y="540" width="208" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自分チーム" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7v-RC-6on">
+                                <rect key="frame" x="160" y="492" width="160" height="40"/>
                                 <color key="backgroundColor" red="0.45138680930000002" green="0.99309605359999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="L6O-W0-E7d"/>
+                                    <constraint firstAttribute="height" constant="40" id="TUm-YO-raM"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="試合時間" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AD-RN-nh7">
-                                <rect key="frame" x="710" y="415" width="208" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="試合時間" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AD-RN-nh7">
+                                <rect key="frame" x="946" y="382" width="160" height="40"/>
                                 <color key="backgroundColor" red="0.45138680930000002" green="0.99309605359999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="iTQ-cz-PaL"/>
+                                    <constraint firstAttribute="height" constant="40" id="wS2-Nf-WjC"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Geg-rn-eJ8">
-                                <rect key="frame" x="912" y="415" width="261" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Geg-rn-eJ8">
+                                <rect key="frame" x="1106" y="382" width="100" height="40"/>
+                                <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="O2W-An-A3z"/>
+                                    <constraint firstAttribute="height" constant="40" id="w6f-rU-bNc"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t96-FD-Ahm">
-                                <rect key="frame" x="400" y="540" width="773" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7s-hy-f0Q">
+                                <rect key="frame" x="320" y="602" width="886" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ASF-bT-QJq"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7s-hy-f0Q">
-                                <rect key="frame" x="400" y="709" width="773" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcg-CY-Vve">
+                                <rect key="frame" x="320" y="382" width="100" height="40"/>
+                                <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="tl7-cX-CKs"/>
+                                    <constraint firstAttribute="height" constant="40" id="vnR-fG-rzL"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcg-CY-Vve">
-                                <rect key="frame" x="400" y="415" width="225" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t96-FD-Ahm">
+                                <rect key="frame" x="320" y="492" width="886" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="P6p-nI-7uL"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gUf-Yk-tuP" firstAttribute="top" secondItem="Eop-3U-0Yf" secondAttribute="bottom" constant="70" id="1ma-YN-zbO"/>
+                            <constraint firstItem="Iig-Px-D7u" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="160" id="63U-Po-dMj"/>
+                            <constraint firstItem="Geg-rn-eJ8" firstAttribute="top" secondItem="72I-Dq-gar" secondAttribute="bottom" constant="70" id="6iv-Wr-sN1"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="72I-Dq-gar" secondAttribute="trailing" constant="160" id="6wB-CS-11l"/>
+                            <constraint firstItem="kot-td-diI" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="899-b1-y6f"/>
+                            <constraint firstItem="t96-FD-Ahm" firstAttribute="top" secondItem="0AD-RN-nh7" secondAttribute="bottom" constant="70" id="9KA-0C-L0k"/>
+                            <constraint firstItem="Iig-Px-D7u" firstAttribute="top" secondItem="w7v-RC-6on" secondAttribute="bottom" constant="70" id="9mh-sv-f1E"/>
+                            <constraint firstItem="mFi-J7-kxR" firstAttribute="top" secondItem="gUf-Yk-tuP" secondAttribute="bottom" constant="70" id="AhB-5y-Img"/>
+                            <constraint firstItem="mcg-CY-Vve" firstAttribute="top" secondItem="72I-Dq-gar" secondAttribute="bottom" constant="70" id="Gb5-No-MN2"/>
+                            <constraint firstItem="mFi-J7-kxR" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="160" id="H3v-fi-4CS"/>
+                            <constraint firstItem="kot-td-diI" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="28" id="IWN-Gw-7L2"/>
+                            <constraint firstItem="L7s-hy-f0Q" firstAttribute="top" secondItem="t96-FD-Ahm" secondAttribute="bottom" constant="70" id="MdH-3Y-cMJ"/>
+                            <constraint firstItem="aPI-bb-O1d" firstAttribute="leading" secondItem="Eop-3U-0Yf" secondAttribute="trailing" id="Nj0-5x-tF8"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Geg-rn-eJ8" secondAttribute="trailing" constant="160" id="Ooo-U7-bTO"/>
+                            <constraint firstItem="Eop-3U-0Yf" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="160" id="PRS-7v-br4"/>
+                            <constraint firstItem="w7v-RC-6on" firstAttribute="top" secondItem="mFi-J7-kxR" secondAttribute="bottom" constant="70" id="PXD-fg-5Y3"/>
+                            <constraint firstItem="Geg-rn-eJ8" firstAttribute="leading" secondItem="0AD-RN-nh7" secondAttribute="trailing" id="Pfg-g8-adc"/>
+                            <constraint firstItem="t96-FD-Ahm" firstAttribute="leading" secondItem="w7v-RC-6on" secondAttribute="trailing" id="RKd-wI-hBv"/>
+                            <constraint firstItem="mcg-CY-Vve" firstAttribute="leading" secondItem="mFi-J7-kxR" secondAttribute="trailing" id="RbE-Gr-9fG"/>
+                            <constraint firstItem="72I-Dq-gar" firstAttribute="leading" secondItem="gUf-Yk-tuP" secondAttribute="trailing" id="SXh-zg-Ggs"/>
+                            <constraint firstItem="Eop-3U-0Yf" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="142" id="XdC-z4-KEt"/>
+                            <constraint firstItem="cfC-FP-c3b" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="80" id="a88-Ye-cZw"/>
+                            <constraint firstItem="72I-Dq-gar" firstAttribute="top" secondItem="aPI-bb-O1d" secondAttribute="bottom" constant="70" id="aHI-gQ-Ntv"/>
+                            <constraint firstItem="kod-cN-VyZ" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="40" id="bQs-NC-2nN"/>
+                            <constraint firstItem="cfC-FP-c3b" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="45" id="cH3-9H-B7n"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="aPI-bb-O1d" secondAttribute="trailing" constant="160" id="d6o-oe-cvo"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="kod-cN-VyZ" secondAttribute="trailing" constant="150" id="dje-Dp-7ce"/>
+                            <constraint firstItem="w7v-RC-6on" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="160" id="gGA-vH-xNu"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="t96-FD-Ahm" secondAttribute="trailing" constant="160" id="gvQ-wL-a1l"/>
+                            <constraint firstItem="0AD-RN-nh7" firstAttribute="top" secondItem="72I-Dq-gar" secondAttribute="bottom" constant="70" id="hTX-Ve-6Xu"/>
+                            <constraint firstItem="gUf-Yk-tuP" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="160" id="jnM-Pi-hky"/>
+                            <constraint firstItem="aPI-bb-O1d" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="142" id="nuF-gS-8uL"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="L7s-hy-f0Q" secondAttribute="trailing" constant="160" id="t6S-QB-2iX"/>
+                            <constraint firstItem="L7s-hy-f0Q" firstAttribute="leading" secondItem="Iig-Px-D7u" secondAttribute="trailing" id="tha-tN-RaH"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="cfC-FP-c3b" id="vxs-gk-jJi"/>
@@ -151,6 +229,9 @@
         <image name="chevron.left" catalog="system" width="97" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

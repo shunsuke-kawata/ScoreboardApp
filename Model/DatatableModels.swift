@@ -9,6 +9,18 @@ import Foundation
 import UIKit
 import RealmSwift
 
+
+class PlayerInputObject{
+    var number:Int
+    var name:String
+    var position:String
+    
+    init(number: Int, name: String, position: String) {
+        self.number = number
+        self.name = name
+        self.position = position
+    }
+}
 //メンバーを定義する構造体
 class Player: Object ,ObjectKeyIdentifiable{
     @Persisted(primaryKey: true) var id:String = UUID() .uuidString //uuid
@@ -81,6 +93,27 @@ class ScoreDataObject{
         self.id = id
         self.time = time
         self.halfFlag = halfFlag
+    }
+}
+
+class ResultScoreDataObject{
+    let id:String
+    var number:Int
+    var name:String
+    let time:Double
+    let halfValue:String
+    
+    init(id: String, number: Int, name: String, time: Double, halfFlag: Int) {
+        self.id = id
+        self.number = number
+        self.name = name
+        self.time = time
+        if(halfFlag == 1){
+            self.halfValue = "前半"
+        }else{
+            self.halfValue = "後半"
+        }
+        
     }
 }
 
