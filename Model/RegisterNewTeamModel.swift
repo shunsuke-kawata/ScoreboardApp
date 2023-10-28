@@ -14,11 +14,11 @@ class RegisterNewTeamModel{
     
     let realm = try! Realm() //realmデータベースのインスタンスを取得
     
-    func registerNewTeam(teamName:String, members:[Dictionary<String,String>]) ->Bool{
+    func registerNewTeam(teamName:String, members:[PlayerInputObject]) ->Bool{
         
         //チームオブジェクトを作成
         let team = Team()
-        if let result = realm.objects(Team.self).where({ $0.name == teamName}).first  {
+        if realm.objects(Team.self).where({ $0.name == teamName}).first != nil  {
             print("there is already same name team")
             return false
         }else{
@@ -29,31 +29,24 @@ class RegisterNewTeamModel{
             let player = Player()
             player.team_id = team.id
 
-            if let memberName = member_dict["name"]{
-                //空欄であれば飛ばす
-                if(memberName != ""){
-                    player.name=memberName
-                }else{
-                    player.name=""
-                    print("name is blank")
-                }
+            
+            //空欄であれば飛ばす
+            if(member_dict.name != ""){
+                player.name=member_dict.name
+            }else{
+                player.name=""
+                print("name is blank")
             }
-            if let memberNumber = member_dict["number"]{
-                
-                print(type(of: memberNumber))
+            
+            
                 //空欄であれば飛ばす
-                if(memberNumber == ""){
-                    print(memberNumber)
+            if(String(member_dict.number) == ""){
                     print("number is invalid")
                     continue
                     
-                }else{
-                    if let memberNumberInt = Int(memberNumber){
-                        player.number = memberNumberInt
-                    }
+            }else{
+                player.number = member_dict.number
                 }
-            }
-            
             //条件を満たしたら配列に追加する
             try! realm.write {
                 team.members.append(player)
