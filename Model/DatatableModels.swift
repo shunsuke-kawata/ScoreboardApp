@@ -9,6 +9,18 @@ import Foundation
 import UIKit
 import RealmSwift
 
+
+class PlayerInputObject{
+    var number:Int
+    var name:String
+    var position:String
+    
+    init(number: Int, name: String, position: String) {
+        self.number = number
+        self.name = name
+        self.position = position
+    }
+}
 //メンバーを定義する構造体
 class Player: Object ,ObjectKeyIdentifiable{
     @Persisted(primaryKey: true) var id:String = UUID() .uuidString //uuid
