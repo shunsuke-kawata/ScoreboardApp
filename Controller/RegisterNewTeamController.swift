@@ -6,45 +6,26 @@
 //
 import UIKit
 
-enum PositionType: CaseIterable {
-    case none
-    case fw
-    case mf
-    case df
-    case gk
+enum PositionType: String{
+    case none = "--"
+    case fw = "FW"
+    case mf = "MF"
+    case df = "DF"
+    case gk = "GK"
     
-    var selected:String{
-        switch self {
-        case .none:
-            return "--"
-        case .fw:
-            return "FW"
-        case .mf:
-            return "MF"
-        case .df:
-            return "DF"
-        case .gk:
-            return "GK"
-        }
-    }
+    static var allCases: [PositionType] = [.none,.fw ,.mf , .df,.gk]
 }
 
-
 class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableViewDataSource  {
-    
-    //ポジションを選択するタイプの定義
-    
-        //最大で26人分の選手データを登録する配列
-    //dict型の配列に変更
+
+    //最大で26人分の選手データを登録するオブジェクトの配列
     var registerTeamData:[PlayerInputObject] = (1..<27).map { i in
-        return PlayerInputObject(number:i, name: "", position: "")
+        return PlayerInputObject(number:i, name: "", position: PositionType.none.rawValue)
     }
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var registerSubmitButton: UIButton!
     
-//    @IBOutlet weak var positionSelectButton: UIButton!
-    var selectedMenuType = PositionType.none
     @IBOutlet weak var teamNameField: UITextField!
     @IBOutlet weak var registerFormTableView: UITableView!
     
@@ -72,10 +53,62 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
 
         let nameField = cell.contentView.viewWithTag(3) as! UITextField
         nameField.text = row.name
-
-         return cell
+        
+        let positionButton = cell.contentView.viewWithTag(4) as! UIButton
+        configurePositionButton(button: positionButton, selected: row)
+        positionButton.setTitle(row.position, for: .normal)
+        return cell
      }
-    
+//    
+    private func configurePositionButton(button: UIButton, selected: PlayerInputObject) {
+        // 新しいUIActionオブジェクトを保持する変数
+        var newActions = [UIAction]()
+
+        // Enumの全ての要素に対してループ
+        for positionType in PositionType.allCases {
+            let action = UIAction(
+                title: positionType.rawValue
+//                state: selected.position == positionType.rawValue ? .on : .off
+            ) { action in
+                // ボタンのタイトルを更新
+                button.setTitle(action.title, for: .normal)
+
+                // 新しいUIActionオブジェクトを作成して、古いアクションを置き換える
+                for var newAction in newActions {
+                    // 同じタイトルを持つUIActionを新しい状態で作成
+                    if newAction.title == action.title {
+                        newAction = UIAction(
+                            title: newAction.title,
+                            state: .on
+                        ) { _ in
+                            // 何かアクションが必要ならここで実行
+                        }
+                    } else {
+                        newAction = UIAction(
+                            title: newAction.title,
+                            state: .off
+                        ) { _ in
+                            // 何かアクションが必要ならここで実行
+                        }
+                    }
+                }
+
+                // 新しいUIActionの配列でメニューを再構築
+                button.menu = UIMenu(title: "", options: .displayInline, children: newActions)
+
+                // 選択されたポジションを保存
+                selected.position = action.title
+            }
+            newActions.append(action)
+        }
+
+        // UIButtonに新しいUIMenuを設定
+        button.menu = UIMenu(title: "", options: .displayInline, children: newActions)
+        button.showsMenuAsPrimaryAction = true
+    }
+
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.configureMenu()
@@ -96,6 +129,9 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
             print("No validation errors")
         }
         if(registerNewTeamInstance.registerNewTeam(teamName:teamNameField.text!,members:registerTeamData)){
+            for i in registerTeamData{
+                print(i.position)
+            }
             self.navigationController?.popViewController(animated: true)
         }else{
             return
@@ -123,6 +159,7 @@ class RegisterNewTeamController:UIViewController, UITableViewDelegate, UITableVi
                         }
                 }else{
                     print("cannot unwrap datum number")
+                    return false
                 }
                 
             }
