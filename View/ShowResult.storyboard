@@ -68,7 +68,10 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgV-Bj-Qjz">
-                                <rect key="frame" x="312.5" y="264" width="105.5" height="54"/>
+                                <rect key="frame" x="298" y="264" width="120" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="hzn-cK-uWa"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -577,7 +580,6 @@
                             <constraint firstItem="jkV-Nl-sJL" firstAttribute="top" secondItem="wxO-eI-Qoe" secondAttribute="bottom" constant="15" id="X26-7D-JuE"/>
                             <constraint firstItem="lhn-1G-e39" firstAttribute="leading" secondItem="wxO-eI-Qoe" secondAttribute="trailing" constant="67" id="X37-uk-c6C"/>
                             <constraint firstItem="trg-Py-prf" firstAttribute="leading" secondItem="lhn-1G-e39" secondAttribute="trailing" constant="150" id="a7y-iW-icK"/>
-                            <constraint firstItem="lhn-1G-e39" firstAttribute="leading" secondItem="vgV-Bj-Qjz" secondAttribute="trailing" constant="240" id="bOX-Pi-SYD"/>
                             <constraint firstItem="VaK-4N-XnZ" firstAttribute="top" secondItem="lZD-3m-ZOH" secondAttribute="bottom" constant="15" id="cLc-ta-hY2"/>
                             <constraint firstItem="RHg-de-QMm" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="chl-bJ-kuQ"/>
                             <constraint firstItem="lhn-1G-e39" firstAttribute="top" secondItem="ggY-HI-V9r" secondAttribute="bottom" constant="50" id="dQA-Vc-LOH"/>
@@ -591,6 +593,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="j6F-x1-4kg" secondAttribute="trailing" constant="60" id="txu-Q0-5A3"/>
                             <constraint firstItem="QLM-lR-Wch" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="95" id="uL3-mU-zTI"/>
                             <constraint firstItem="trg-Py-prf" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="178" id="uNk-jR-Anr"/>
+                            <constraint firstItem="lhn-1G-e39" firstAttribute="leading" secondItem="vgV-Bj-Qjz" secondAttribute="trailing" constant="240" id="we7-Z0-Veb"/>
                             <constraint firstItem="ggY-HI-V9r" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="35" id="wrq-Lv-6Ua"/>
                             <constraint firstItem="s65-2m-ZTY" firstAttribute="leading" secondItem="lhn-1G-e39" secondAttribute="trailing" constant="67" id="yh9-Ba-5ll"/>
                             <constraint firstItem="s65-2m-ZTY" firstAttribute="top" secondItem="HDH-ZU-b7w" secondAttribute="bottom" constant="15" id="zRa-GU-K7z"/>
