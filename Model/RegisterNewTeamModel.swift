@@ -49,6 +49,8 @@ class RegisterNewTeamModel{
             }else{
                 print("cannnot unwrap member dict number")
             }
+            
+            player.position = member_dict.position
             //条件を満たしたら配列に追加する
             try! realm.write {
                 team.members.append(player)
