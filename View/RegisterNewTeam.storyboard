@@ -27,7 +27,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="b8g-yp-kjy" userLabel="RegisterFormTableView">
-                                <rect key="frame" x="160" y="264" width="860" height="506"/>
+                                <rect key="frame" x="160" y="264" width="860" height="456"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="proto" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="protoRegisterNewTeam" id="qU7-FY-x4P">
@@ -200,10 +200,10 @@
                             <constraint firstItem="Mkw-ZS-73L" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="50" id="E6B-2t-qfH"/>
                             <constraint firstItem="3wJ-Ld-IiI" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="FUm-gz-6wV"/>
                             <constraint firstItem="HpC-Hb-ddC" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="160" id="KXF-h8-lsA"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="b8g-yp-kjy" secondAttribute="bottom" constant="80" id="PZX-iN-SgK"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="HpC-Hb-ddC" secondAttribute="trailing" constant="160" id="UE5-qo-WSn"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="b8g-yp-kjy" secondAttribute="trailing" constant="160" id="WIb-JV-xaD"/>
                             <constraint firstItem="DgF-P5-bSA" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="80" id="X0Z-jt-5QU"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="b8g-yp-kjy" secondAttribute="bottom" constant="30" id="cyR-lF-hIc"/>
                             <constraint firstItem="3wJ-Ld-IiI" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="g0b-0Y-a1l"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Mkw-ZS-73L" secondAttribute="trailing" constant="80" id="nFa-dy-TCM"/>
                             <constraint firstItem="3f4-Vp-zif" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="160" id="nT2-Qr-qf5"/>
