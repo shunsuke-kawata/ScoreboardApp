@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad10_5" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,32 +18,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTM-uP-4S5">
-                                <rect key="frame" x="772" y="511.5" width="173" height="173"/>
+                                <rect key="frame" x="772" y="250" width="173" height="173"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="173" id="IZW-JN-2gB"/>
                                     <constraint firstAttribute="height" constant="173" id="lHC-bt-Fzk"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="記録画面"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="記録"/>
                                 <connections>
                                     <action selector="transitionToRegisterNewGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CcB-Us-uub"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N7H-Uq-0TP">
-                                <rect key="frame" x="429.5" y="511.5" width="173" height="173"/>
+                                <rect key="frame" x="429.5" y="250" width="173" height="173"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="173" id="1vS-Z5-oKY"/>
                                     <constraint firstAttribute="width" constant="173" id="Xlo-r6-Mdg"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="チーム一覧"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="チーム登録・編集"/>
                                 <connections>
                                     <action selector="transitionToShowTeams:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eww-iG-bLZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Rw-oc-xyU">
-                                <rect key="frame" x="1057" y="836" width="146" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Rw-oc-xyU">
+                                <rect key="frame" x="1170" y="899" width="146" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="146" id="cvt-1W-Xrb"/>
+                                    <constraint firstAttribute="height" constant="75" id="jYT-Yx-sB1"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="データリセット"/>
                                 <connections>
@@ -51,7 +54,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="スコアボードアプリ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Af5-03-8SM">
-                                <rect key="frame" x="425.5" y="166" width="515.5" height="80"/>
+                                <rect key="frame" x="443" y="120" width="480" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="7Cm-OF-yfH"/>
                                 </constraints>
@@ -60,23 +63,51 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="          " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypo-MH-dht">
-                                <rect key="frame" x="661.5" y="576.5" width="43.5" height="20.5"/>
+                                <rect key="frame" x="661.5" y="250" width="43.5" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="RSf-a9-zhU"/>
+                                    <constraint firstAttribute="width" constant="43.5" id="hEh-CY-GBM"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fGT-ht-xTo">
+                                <rect key="frame" x="426" y="473" width="173" height="173"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="173" id="IR4-wZ-42V"/>
+                                    <constraint firstAttribute="height" constant="173" id="L2s-iX-3Ic"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="チーム一覧"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSA-Kt-HNq">
+                                <rect key="frame" x="772" y="473" width="173" height="173"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="173" id="3YZ-Mg-vrH"/>
+                                    <constraint firstAttribute="width" constant="173" id="Yz4-TN-4fK"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="記録一覧"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0Rw-oc-xyU" secondAttribute="trailing" constant="50" id="69l-hm-mrG"/>
                             <constraint firstItem="ypo-MH-dht" firstAttribute="leading" secondItem="N7H-Uq-0TP" secondAttribute="trailing" constant="59" id="6lG-X0-fam"/>
+                            <constraint firstItem="fGT-ht-xTo" firstAttribute="top" secondItem="N7H-Uq-0TP" secondAttribute="bottom" constant="50" id="7cR-t4-kNa"/>
                             <constraint firstItem="Af5-03-8SM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9mh-kh-KWm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0Rw-oc-xyU" secondAttribute="bottom" constant="50" id="NMv-vD-HUz"/>
+                            <constraint firstItem="ypo-MH-dht" firstAttribute="leading" secondItem="fGT-ht-xTo" secondAttribute="trailing" constant="62.5" id="Ofg-e0-OFh"/>
                             <constraint firstItem="mTM-uP-4S5" firstAttribute="leading" secondItem="ypo-MH-dht" secondAttribute="trailing" constant="67" id="VJV-jq-PcR"/>
-                            <constraint firstItem="ypo-MH-dht" firstAttribute="top" secondItem="Af5-03-8SM" secondAttribute="bottom" constant="330.5" id="VKJ-Yd-Zed"/>
+                            <constraint firstItem="ypo-MH-dht" firstAttribute="top" secondItem="Af5-03-8SM" secondAttribute="bottom" constant="50" id="VKJ-Yd-Zed"/>
                             <constraint firstItem="ypo-MH-dht" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W9I-uB-gLd"/>
-                            <constraint firstItem="mTM-uP-4S5" firstAttribute="top" secondItem="Af5-03-8SM" secondAttribute="bottom" constant="265.5" id="iha-cZ-MDL"/>
-                            <constraint firstItem="N7H-Uq-0TP" firstAttribute="top" secondItem="Af5-03-8SM" secondAttribute="bottom" constant="265.5" id="lo5-cG-VyB"/>
-                            <constraint firstItem="Af5-03-8SM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="146" id="mgh-9h-9YQ"/>
+                            <constraint firstItem="pSA-Kt-HNq" firstAttribute="leading" secondItem="ypo-MH-dht" secondAttribute="trailing" constant="67" id="XIn-T3-lTk"/>
+                            <constraint firstItem="pSA-Kt-HNq" firstAttribute="top" secondItem="mTM-uP-4S5" secondAttribute="bottom" constant="50" id="XSj-wH-ebF"/>
+                            <constraint firstItem="mTM-uP-4S5" firstAttribute="top" secondItem="Af5-03-8SM" secondAttribute="bottom" constant="50" id="iha-cZ-MDL"/>
+                            <constraint firstItem="N7H-Uq-0TP" firstAttribute="top" secondItem="Af5-03-8SM" secondAttribute="bottom" constant="50" id="lo5-cG-VyB"/>
+                            <constraint firstItem="Af5-03-8SM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="mgh-9h-9YQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HbO-ei-ovQ"/>
